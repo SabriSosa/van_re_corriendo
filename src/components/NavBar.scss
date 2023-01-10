@@ -1,0 +1,44 @@
+.nav-link {
+  color: white !important;
+  font-size: calc(0.1vw + 1.25em) !important;
+  font-family: Lato, Sans-Serif;
+  background-color: transparent;
+  font-weight: 700 !important;
+  word-break: normal;
+}
+
+.navbar-container{
+    padding: 0 !important;
+    position: relative;
+    background-size: cover;
+
+//https://res.cloudinary.com/djbmfd9y6/image/upload/c_scale,h_650,w_1520/v1670537815/Camiontito/fondo_c1xhfs.png
+   // background:linear-gradient(black 5%, transparent 50%, transparent 0%), url("https://res.cloudinary.com/djbmfd9y6/image/upload/v1670537815/Camiontito/fondo_c1xhfs.png") no-repeat fixed;
+
+
+    @media (max-width: 767px) {
+        min-height: 400px;
+        background:linear-gradient(black 5%, transparent 50%, transparent 0%), url("https://res.cloudinary.com/djbmfd9y6/image/upload/v1670553855/Camiontito/fondo-mobile_kxldlo.png") no-repeat fixed;
+
+    }
+
+    @media (min-width:1025px) {
+        min-height: 600px;
+        background:linear-gradient(black 5%, transparent 50%, transparent 0%), url("https://res.cloudinary.com/djbmfd9y6/image/upload/c_scale,h_600,w_1520/v1670537815/Camiontito/fondo_c1xhfs.png") no-repeat fixed;
+
+    } 
+
+}
+
+
+
+#wave{
+    transform:rotate(0deg); transition: 0.3s;
+    position: absolute;
+    bottom: 0;
+}
+
+path{
+    transform:translate(0, 0px);
+    opacity:1;
+}

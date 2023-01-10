@@ -1,13 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { Suspense } from "react";
+import ReactDOM from "react-dom/client";
+import "./index.scss";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { FirebaseAppProvider } from "reactfire";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "react-multi-carousel/lib/styles.css";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import firebaseConfig from "./firebaseConfig"; //Este es el archivo que creaste con anterioridad que contiene las credenciales de Firebase
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+      <Suspense fallback={<p>Cargando...</p>}>
+        <App />
+      </Suspense>
+    </FirebaseAppProvider>
   </React.StrictMode>
 );
 
