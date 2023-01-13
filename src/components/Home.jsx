@@ -1,13 +1,23 @@
 import React from "react";
 
-import { Container } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import SimpleCarousel from "./Carousel";
 import BlogPost from "./Post";
 
+import TravelInfo from "./TravelInfo";
+
 function Home() {
+  const difference = Math.round(
+    (new Date() - new Date("10/08/2022")) / (1000 * 60 * 60 * 24)
+  ).toFixed(0);
+  const country = "URUGUAY";
+  const kms = 9000;
+  const countries = 3;
+
   return (
-    <Container fluid className="main-coint">
+    <Container fluid className="main-container">
       <SimpleCarousel />
+      <TravelInfo />
       <BlogPost />
     </Container>
   );

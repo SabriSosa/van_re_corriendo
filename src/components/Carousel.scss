@@ -19,11 +19,12 @@
   transition: 0.5s ease-in-out all;
   cursor: pointer;
 }
+
 .image-carousel:hover {
-  transform: scale(
-    1.1
-  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transform: scale(1.1);
+  /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
+
 .image-item {
   padding: 20px 0 50px 0px;
 }
@@ -43,6 +44,7 @@
 .card-post {
   flex-direction: row !important;
 }
+
 .is-selected {
   background-color: red;
 }

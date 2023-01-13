@@ -1,0 +1,47 @@
+.travel-information {
+  background-color: #74a9db;
+
+  .col {
+    text-align: center;
+    color: white;
+
+    .card {
+      background-color: #74a9db;
+      align-items: center;
+      border: none;
+    }
+  }
+}
+
+
+
+.card-title {
+  padding: 1em;
+  border: 3px solid white !important;
+  border-radius: 50% !important;
+}
+
+.card-subtitle {
+  text-transform: uppercase;
+  margin: 20px !important;
+  border-bottom: 1px solid rgb(217, 217, 217);
+
+}
+
+.card-text {
+  margin-top: 10px;
+}
+
+
+
+#wave1{
+    transform:rotate(180deg); transition: 0.3s
+}
+#wave2{
+    transform:rotate(0deg); transition: 0.3s
+}
+
+path{
+    transform:translate(0, 0px);
+    opacity:1;
+}
