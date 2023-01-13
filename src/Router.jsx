@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import ContactForm from "./pages/Contact";
 import Home from "./components/Home";
 import AboutUs from "./pages/AboutUs";
+import ProjectForm from "./components/Project";
 
 function Router() {
   return (
@@ -10,6 +11,7 @@ function Router() {
       <Route path="/home" element={<Home />} />
       <Route path="/contact" element={<ContactForm />} />
       <Route path="/about-us" element={<AboutUs />} />
+      <Route path="/project" element={<ProjectForm />} />
       <Route path="*" element={<Navigate to="/home" replace />} />
     </Routes>
   );
