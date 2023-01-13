@@ -1,14 +1,37 @@
 .full-image {
-    max-width: 100%;
-    padding: 5%;
+  max-width: 100%;
+  padding: 5%;
 }
 
 .list-group {
-    --bs-list-group-border-width : none !important;
+  --bs-list-group-border-width: none !important;
+  --bs-list-group-bg: #74a9db !important;
+  --bs-list-group-border-radius: none !important;
+  --bs-list-group-color: #fff !important;
 }
 
-.list{
-    padding: 5%;
+.list-group-item {
+  font-size: larger;
+  text-decoration: underline !important;
+  cursor: pointer;
 }
 
+.information {
+  background-color: #74a9db;
+  margin: 0px !important;
 
+  .col {
+    text-align: center;
+    color: white;
+
+    .card {
+      background-color: #74a9db;
+      align-items: center;
+      border: none;
+    }
+  }
+}
+
+.title-content > h3 {
+  margin-top: 5%;
+}
