@@ -15,39 +15,39 @@ function ProjectForm() {
       <Row className="information">
         <Col>
           <ListGroup className="list">
-            <ListGroupItem onClick={() => onClick("#diseno")}>
+            <ListGroupItem onClick={() => onClick("#design")}>
               Diseño
             </ListGroupItem>
-            <ListGroupItem onClick={() => onClick("#aislamiento")}>
+            <ListGroupItem onClick={() => onClick("#isolation")}>
               Aislamiento 
             </ListGroupItem>
-            <ListGroupItem onClick={() => onClick("#electrica")}>
+            <ListGroupItem onClick={() => onClick("#electric")}>
               Instalacion Electrica 
             </ListGroupItem>
           </ListGroup>
         </Col>
         <Col>
           <ListGroup className="list">
-            <ListGroupItem onClick={() => onClick("#revestimiento")}>
+            <ListGroupItem onClick={() => onClick("#coating")}>
               Revestimiento 
             </ListGroupItem>
-            <ListGroupItem onClick={() => onClick("#bano")}>
+            <ListGroupItem onClick={() => onClick("#bathroom")}>
               Baño 
             </ListGroupItem>
-            <ListGroupItem onClick={() => onClick("#bano")}>
+            <ListGroupItem onClick={() => onClick("#bed")}>
               Sofa Cama 
             </ListGroupItem>
           </ListGroup>
         </Col>
         <Col>
           <ListGroup className="list">
-            <ListGroupItem onClick={() => onClick("#bano")}>
+            <ListGroupItem onClick={() => onClick("#wite-water")}>
               Aguas Blancas 
             </ListGroupItem>
-            <ListGroupItem onClick={() => onClick("#bano")}>
+            <ListGroupItem onClick={() => onClick("#gray-water")}>
               Aguas Grises 
             </ListGroupItem>
-            <ListGroupItem onClick={() => onClick("#bano")}>
+            <ListGroupItem onClick={() => onClick("#black-water")}>
               Aguas Negras 
             </ListGroupItem>
           </ListGroup>
@@ -78,7 +78,7 @@ function ProjectForm() {
 
       <Wave children={info} />
 
-      <h3 id="aislamiento">Aislamiento</h3>
+      <h3 id="isolation">Aislamiento</h3>
       Si tenes el sueño de viajar, conocer muchos lugares, países, culturas o
       simplemente vacacionar de una forma distinta y económica, la mejor manera
       de hacerlo es llevando tu propia casa a cuestas. Cuando tomamos la
@@ -119,7 +119,7 @@ function ProjectForm() {
       paso a paso de cómo hacerlo. De ahí surge la idea de hacer este tutorial
       para poder simplificar las cosas a aquellos que están por pasar por
       nuestra situación de ese momento.
-      <h3 id="electrica">Electronica</h3>
+      <h3 id="electric">Electronica</h3>
       Si tenes el sueño de viajar, conocer muchos lugares, países, culturas o
       simplemente vacacionar de una forma distinta y económica, la mejor manera
       de hacerlo es llevando tu propia casa a cuestas. Cuando tomamos la
@@ -151,7 +151,7 @@ function ProjectForm() {
       de cómo hacerlo. De ahí surge la idea de hacer este tutorial para poder
       simplificar las cosas a aquellos que están por pasar por nuestra situación
       de ese momento.
-      <h3 id="revestimiento">Revestimiento</h3>
+      <h3 id="coating">Revestimiento</h3>
       Si tenes el sueño de viajar, conocer muchos lugares, países, culturas o
       simplemente vacacionar de una forma distinta y económica, la mejor manera
       de hacerlo es llevando tu propia casa a cuestas. Cuando tomamos la
