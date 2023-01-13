@@ -11,7 +11,7 @@ import { GrFacebookOption } from "react-icons/gr";
 
 const menu1 = [
   { title: "NOSOTROS", action: "about-us" },
-  { title: "PROYECTO MOTORHOME", action: "project-motorhome" },
+  { title: "PROYECTO MOTORHOME", action: "project" },
   {
     title: "DESTINOS",
     action: "places",
