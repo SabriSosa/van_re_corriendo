@@ -1,9 +1,9 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import ContactForm from "./pages/Contact";
-import Home from "./components/Home";
+import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
-import ProjectForm from "./components/Project";
+import ProjectForm from "./pages/Project";
 
 function Router() {
   return (

@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 
 function Wave({ children = "" }) {
   return (
-    <Container fluid>
+    <Container fluid className="wave-container">
       <svg
         id="wave2"
         viewBox="0 0 1440 160"

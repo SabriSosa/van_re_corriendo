@@ -8,7 +8,7 @@ import NavBarMenu from "./components/NavBar";
 import "./App.scss";
 import Router from "./Router";
 import { BrowserRouter } from "react-router-dom";
-import Footer from "./pages/Footer";
+import Footer from "./components/Footer";
 
 // export default (props) => {
 //   const [posts, setPosts] = React.useState([]);

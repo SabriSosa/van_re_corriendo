@@ -7,7 +7,7 @@ import "./Contact.scss";
 function ContactForm() {
   return (
     <Container>
-      <Container className="title-content" >
+    <Container className="title-contact" >
       <TitleComp title1="Contacto"/>
         Si has llegado hasta aquí es porque quieres contactarnos... ¡Pues no lo
         dudes! Habla ahora o calla para siempre. Puedes enviarnos un correo a

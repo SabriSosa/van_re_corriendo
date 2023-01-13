@@ -1,10 +1,10 @@
 import React from "react";
 
 import { Container, Row, Col, Card } from "react-bootstrap";
-import SimpleCarousel from "./Carousel";
-import BlogPost from "./Post";
+import SimpleCarousel from "../components/Carousel";
+import BlogPost from "../components/Post";
 
-import TravelInfo from "./TravelInfo";
+import TravelInfo from "../components/TravelInfo";
 
 function Home() {
   const difference = Math.round(

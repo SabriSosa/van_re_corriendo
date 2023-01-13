@@ -1,13 +1,14 @@
 import React from "react";
 
 import { Container } from "react-bootstrap";
+import TitleComp from "../components/Title";
 
-import './AboutUs.scss';
+import "./AboutUs.scss";
 
 function AboutUs() {
   return (
     <Container>
-      <h1>QUIENES SOMOS</h1>
+      <TitleComp title1="Quienes" title2="Somos" />
       <span>
         Lorem Ipsum es simplemente el texto de relleno de las imprentas y
         archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de
