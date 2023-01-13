@@ -2,6 +2,8 @@ import React from "react";
 
 import { Container } from "react-bootstrap";
 
+import './AboutUs.scss';
+
 function AboutUs() {
   return (
     <Container>
