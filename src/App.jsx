@@ -8,6 +8,7 @@ import NavBarMenu from "./components/NavBar";
 import "./App.scss";
 import Router from "./Router";
 import { BrowserRouter } from "react-router-dom";
+import Footer from "./pages/Footer";
 
 // export default (props) => {
 //   const [posts, setPosts] = React.useState([]);
@@ -62,6 +63,7 @@ function App() {
     <FirestoreProvider sdk={firestoreInstance}>
       <NavBarMenu />
       <Router />
+      <Footer/>
     </FirestoreProvider>
     </BrowserRouter>
 

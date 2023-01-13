@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import TitleComp from "./Title";
+import TitleComp from "../components/Title";
 import "./Contact.scss";
 
 function ContactForm() {
