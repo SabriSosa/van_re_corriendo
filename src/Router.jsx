@@ -4,6 +4,7 @@ import ContactForm from "./pages/Contact";
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
 import ProjectForm from "./pages/Project";
+import TravelRoute from "./pages/TravelRoute";
 
 function Router() {
   return (
@@ -12,6 +13,7 @@ function Router() {
       <Route path="/contact" element={<ContactForm />} />
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/project" element={<ProjectForm />} />
+      <Route path="/route" element={<TravelRoute />} />
       <Route path="*" element={<Navigate to="/home" replace />} />
     </Routes>
   );

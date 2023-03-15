@@ -7,38 +7,69 @@
   word-break: normal;
 }
 
-.navbar-container{
-    padding: 0 !important;
-    position: relative;
-    background-size: cover;
 
-//https://res.cloudinary.com/djbmfd9y6/image/upload/c_scale,h_650,w_1520/v1670537815/Camiontito/fondo_c1xhfs.png
-   // background:linear-gradient(black 5%, transparent 50%, transparent 0%), url("https://res.cloudinary.com/djbmfd9y6/image/upload/v1670537815/Camiontito/fondo_c1xhfs.png") no-repeat fixed;
+.navbar-toggler{
+    border: none !important;
+    margin-right: 0px !important;
+   
+}
+.navbar-toggler:focus{
+    box-shadow: none !important;
+}
 
+.navbar-container {
+  position: relative;
+  background-size: contain !important;
+  background: linear-gradient(black 5%, transparent 50%, transparent 0%),
+    url("https://res.cloudinary.com/djbmfd9y6/image/upload/v1670537815/Camiontito/fondo_c1xhfs.png")
+      no-repeat fixed;
 
-    @media (max-width: 767px) {
-        min-height: 400px;
-        background:linear-gradient(black 5%, transparent 50%, transparent 0%), url("https://res.cloudinary.com/djbmfd9y6/image/upload/v1670553855/Camiontito/fondo-mobile_kxldlo.png") no-repeat fixed;
-
-    }
-
-    @media (min-width:1025px) {
-        min-height: 600px;
-        background:linear-gradient(black 5%, transparent 50%, transparent 0%), url("https://res.cloudinary.com/djbmfd9y6/image/upload/c_scale,h_600,w_1520/v1670537815/Camiontito/fondo_c1xhfs.png") no-repeat fixed;
-
-    } 
+  @media (min-width: 320px) {
+    /* smartphones, iPhone, portrait 480x320 phones */
+    height: 23vh;
+  }
+  @media (min-width: 481px) {
+    /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+    height: 35vh;
+  }
+  @media (min-width: 641px) {
+    /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+    height: 48vh;
+  }
+  @media (min-width: 961px) {
+    /* tablet, landscape iPad, lo-res laptops ands desktops */
+    height: 62vh;
+  }
+  @media (min-width: 1025px) {
+    /* big landscape tablets, laptops, and desktops */
+    height: 70vh;
+  }
+  @media (min-width: 1281px) {
+    /* hi-res laptops and desktops */
+    height: 70vh;
+  }
 
 }
 
-
-
-#wave{
-    transform:rotate(0deg); transition: 0.3s;
-    position: absolute;
-    bottom: 0;
+#wave {
+  transform: rotate(0deg);
+  transition: 0.3s;
+  position: absolute;
+  bottom: 0;
 }
 
-path{
-    transform:translate(0, 0px);
-    opacity:1;
+path {
+  transform: translate(0, 0px);
+  opacity: 1;
+}
+
+
+.toggle-nav{
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.offcanvas-header{
+    margin-right: 10px !important;
 }

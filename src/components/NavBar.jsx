@@ -30,14 +30,16 @@ const menu2 = [
 function NavBarMenu() {
   return (
     <Container fluid className="navbar-container">
-      <Navbar key="navbar" bg="ligth" expand="lg" className="mb-3 nav-bar">
+      <Navbar key="navbar" bg="ligth"  variant="dark" expand="lg" className="mb-3 nav-bar">
         <Container fluid>
-          <Navbar.Toggle aria-controls={`offcanvasNavbar-expand`} />
+          <Container className="toggle-nav">
+          <Navbar.Toggle aria-controls={`offcanvasNavbar-expand`}  />
 
+          </Container>
           <Navbar.Offcanvas
             id={`offcanvasNavbar-expand`}
             aria-labelledby={`offcanvasNavbarLabel-expand`}
-            placement="end"
+            placement="start"
           >
             <Offcanvas.Header closeButton>
               <Offcanvas.Title>Van Re Corriendo</Offcanvas.Title>
@@ -72,7 +74,7 @@ function NavBarMenu() {
                 <Nav.Link href="#">
                   <GrFacebookOption />
                 </Nav.Link>
-                <Nav.Link href="#">
+                <Nav.Link href="https://www.instagram.com/van_re_corriendo">
                   <RiInstagramLine />
                 </Nav.Link>
               </Nav>

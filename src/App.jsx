@@ -11,7 +11,7 @@ import { BrowserRouter } from "react-router-dom";
 import Footer from "./components/Footer";
 
 // export default (props) => {
-//   const [posts, setPosts] = React.useState([]);
+//   const [posts, setPosts] = React. ([]);
 
 //   const getPosts = async () => {
 //     // Initialize Firebase
