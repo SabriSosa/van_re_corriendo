@@ -102,7 +102,7 @@ export default function BlogPost() {
   return (
     <Container className="container-posts">
      <TitleComp title1="Post"/>
-      <Row xs={1} md={3} className="g-4">
+      <Row xs={1} md={3} className="g-4 posts">
         {images.map((image, idx) => (
           <Col>
             <Card className="card-post">

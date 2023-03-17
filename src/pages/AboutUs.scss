@@ -1,22 +1,24 @@
-span {
-  margin: 25px;
-}
+.aboutUs {
+  span {
+    margin: 25px;
+  }
 
-h2 {
-  border-bottom: 1px solid #545454;
-  color: #545454;
-  padding-bottom: 0.5em;
-  margin-bottom: 1em !important;
-  margin-top: 1em !important;
+  .title-about {
+    border-bottom: 1px solid #545454;
+    color: #545454;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em !important;
+    margin-top: 1.5em !important;
 
-  padding-left: 10px;
-  padding-right: 10px;
-  font-family: Montserrat, sans-serif;
-  text-transform: Uppercase;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: Montserrat, sans-serif;
+    text-transform: Uppercase;
 
-  svg {
-    margin-left: 10px;
-    float: right;
+    svg {
+      margin-left: 10px;
+      float: right;
+    }
   }
 }
 
@@ -25,7 +27,3 @@ h2 {
   margin: 10px;
 }
 
-.person2 {
-  float: left;
-  margin: 10px;
-}

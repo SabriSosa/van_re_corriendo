@@ -26,6 +26,7 @@ function TravelInfo() {
             <Card.Subtitle as="h3" className="">
               Donde estamos
             </Card.Subtitle>
+            <Container className="divider"/>
             <Card.Text as="h1">{country}</Card.Text>
           </Card>
         </Col>
@@ -37,6 +38,7 @@ function TravelInfo() {
             <Card.Subtitle as="h3" className="">
               Dias de viaje
             </Card.Subtitle>
+            <Container className="divider"/>
             <Card.Text as="h1">{difference}</Card.Text>
           </Card>
         </Col>
@@ -48,6 +50,7 @@ function TravelInfo() {
             <Card.Subtitle as="h3" className="">
               KMS Recorridos
             </Card.Subtitle>
+            <Container className="divider"/>
             <Card.Text as="h1">{kms}</Card.Text>
           </Card>
         </Col>
@@ -57,8 +60,9 @@ function TravelInfo() {
               <BiWorld size={50} />
             </Card.Title>
             <Card.Subtitle as="h3" className="">
-              Paises
+              Paises visitados
             </Card.Subtitle>
+            <Container className="divider"/>
             <Card.Text as="h1">{countries}</Card.Text>
           </Card>
         </Col>

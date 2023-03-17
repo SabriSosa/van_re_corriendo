@@ -5,50 +5,103 @@
   background-color: transparent;
   font-weight: 700 !important;
   word-break: normal;
+  @media (max-width: 991px) {
+    color: black !important;
+  }
 }
 
-
-.navbar-toggler{
-    border: none !important;
-    margin-right: 0px !important;
-   
+.social-media{
+    @media (max-width: 991px) {
+        display: none !important ;
+    }
 }
-.navbar-toggler:focus{
-    box-shadow: none !important;
+.offcanvas-header {
+    justify-content: end !important;
+}
+
+.navbar-body {
+  align-items: center;
+  text-transform: uppercase;
+
+
+  @media (max-width: 991px) {
+    align-items: flex-start;
+    text-transform: none;
+
+  }
+}
+
+.navbar-toggler {
+  border: none !important;
+  margin-right: 0px !important;
+}
+.navbar-toggler:focus {
+  box-shadow: none !important;
 }
 
 .navbar-container {
   position: relative;
-  background-size: contain !important;
+  width: 100% !important;
   background: linear-gradient(black 5%, transparent 50%, transparent 0%),
-    url("https://res.cloudinary.com/djbmfd9y6/image/upload/v1670537815/Camiontito/fondo_c1xhfs.png")
+    url("https://res.cloudinary.com/djbmfd9y6/image/upload/v1678993437/Camiontito/fondo-mobile.png")
       no-repeat fixed;
+  background-size: contain;
+  height: 30vh;
 
-  @media (min-width: 320px) {
-    /* smartphones, iPhone, portrait 480x320 phones */
-    height: 23vh;
-  }
-  @media (min-width: 481px) {
-    /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
-    height: 35vh;
-  }
-  @media (min-width: 641px) {
-    /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
-    height: 48vh;
-  }
-  @media (min-width: 961px) {
-    /* tablet, landscape iPad, lo-res laptops ands desktops */
-    height: 62vh;
-  }
-  @media (min-width: 1025px) {
-    /* big landscape tablets, laptops, and desktops */
-    height: 70vh;
-  }
-  @media (min-width: 1281px) {
-    /* hi-res laptops and desktops */
+  @media screen and (orientation: landscape) {
+    background: linear-gradient(black 5%, transparent 50%, transparent 0%),
+      url("https://res.cloudinary.com/djbmfd9y6/image/upload/v1678990866/Camiontito/fondo_landscape.png")
+        no-repeat fixed;
+    background-size: contain;
     height: 70vh;
   }
 
+  //Pantallas pequeñas (móviles en landscape de más de 576px)
+  @media (min-width: 576px) and (orientation: portrait) {
+    height: 30vh;
+  }
+
+  //Pantallas medianas (tablets de más de 768px)
+  @media (min-width: 768px) and (orientation: portrait){
+    height: 30vh;
+  }
+
+  //Pantallas grandes (desktops de más de 992px)
+  @media (min-width: 992px) and (orientation: portrait){
+    height: 50vh;
+  }
+
+  //Pantallas muy grandes (desktops de más de 1200px)
+  @media (min-width: 1200px)and (orientation: portrait) {
+    height: 90vh;
+
+    background-size: cover;
+  }
+
+  //   @media (min-width: 320px) {
+  //     /* smartphones, iPhone, portrait 480x320 phones */
+  //     height: 22vh;
+  //   }
+  //   @media (min-width: 481px) {
+  //     /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+  //     height: 30vh;
+  //   }
+  //   @media (min-width: 641px) {
+  //     /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+  //     height: 33vh;
+  //   }
+  //   @media (min-width: 961px) {
+  //     /* tablet, landscape iPad, lo-res laptops ands desktops */
+  //     height: 48vh;
+  //   }
+  //   @media (min-width: 1025px) {
+  //     /* big landscape tablets, laptops, and desktops */
+  //     height: 55vh;
+  //   }
+  //   @media (min-width: 1281px) {
+  //     /* hi-res laptops and desktops */
+  //     height: 55vh;
+  //   }
 }
 
 #wave {
@@ -56,6 +109,7 @@
   transition: 0.3s;
   position: absolute;
   bottom: 0;
+  margin-bottom: -1px;
 }
 
 path {
@@ -63,13 +117,31 @@ path {
   opacity: 1;
 }
 
-
-.toggle-nav{
-    display: flex;
-    justify-content: flex-end;
+.toggle-nav {
+  display: flex;
+  justify-content: space-between;
 }
 
+.offcanvas-header {
+  margin-right: 10px !important;
+}
 
-.offcanvas-header{
-    margin-right: 10px !important;
+.logo-link-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px !important;
+  @media (min-width: 992px) {
+    display: none !important ;
+  }
+}
+
+.offcanvas-container {
+  flex-wrap: wrap !important;
+}
+
+.logo-link-menu {
+  @media (max-width: 991px) {
+    display: none !important ;
+  }
 }

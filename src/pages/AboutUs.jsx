@@ -8,7 +8,7 @@ import "./AboutUs.scss";
 
 function AboutUs() {
   return (
-    <Container>
+    <Container className="aboutUs">
       <TitleComp title1="Quienes" title2="Somos" />
       <p>
         Lorem Ipsum es simplemente el texto de relleno de las imprentas y
@@ -24,7 +24,7 @@ function AboutUs() {
         incluye versiones de Lorem Ipsum.
       </p>
 
-      <h2>
+      <h2 className="title-about">
         SABRI
         <MdPerson className="title-icon" />
       </h2>
@@ -74,14 +74,14 @@ function AboutUs() {
           PageMaker, el cual incluye versiones de Lorem Ipsum.
         </p>
       </div>
-      <h2>
+      <h2 className="title-about">
         ROBERT
         <MdPerson className="title-icon" />
       </h2>
       <div>
         <Image
-          className="person2"
-          src="https://res.cloudinary.com/djbmfd9y6/image/upload/w_250,c_fill,ar_1:1,g_auto,r_max/v1673907436/Camiontito/IMG_20220824_141420_1_wy8kj5.jpg"
+          className="person"
+          src="https://res.cloudinary.com/djbmfd9y6/image/upload/w_200,c_fill,ar_1:1,g_auto,r_max/v1673907436/Camiontito/IMG_20220824_141420_1_wy8kj5.jpg"
         />
 
         <p>

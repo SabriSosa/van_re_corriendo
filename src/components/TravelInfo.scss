@@ -1,12 +1,17 @@
 .container-fluid {
   padding: 0px !important;
+  margin-bottom: -5px;
 }
 .travel-information {
   background-color: #74a9db;
+  margin: 0px !important;
 
+  align-items: center;
+  
   .col {
     text-align: center;
     color: white;
+    padding-bottom: 25px;
 
     .card {
       background-color: #74a9db;
@@ -20,16 +25,22 @@
   padding: 1em;
   border: 3px solid white !important;
   border-radius: 50% !important;
+  font-size: 1em !important;
 }
 
 .card-subtitle {
   text-transform: uppercase;
-  margin: 20px !important;
-  border-bottom: 1px solid rgb(217, 217, 217);
+  margin: 0px 20px !important;
+}
+
+.divider {
+  margin-top: 5px;
+  background: rgb(217, 217, 217);
+  height: 1px;
 }
 
 .card-text {
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 #wave1 {

@@ -15,33 +15,49 @@ function ProjectForm() {
   };
 
   const info = (
-    <Container fluid>
-      <Row className="information">
-        <ButtonGroup className="list">
+    <section class="cards">
+        <article class="card">
           <Button variant="outline-light" onClick={() => onClick("#design")}>Diseño</Button>{" "}
+        </article>
+        <article class="card">
           <Button variant="outline-light" onClick={() => onClick("#isolation")}>Aislamiento</Button>{" "}
+        </article>
+        <article class="card">
           <Button variant="outline-light" onClick={() => onClick("#electric")}>Instalacion Electrica</Button>{" "}
+        </article>
+        <article class="card">
           <Button variant="outline-light" onClick={() => onClick("#coating")}>Revestimiento</Button>{" "}
-        </ButtonGroup>
-        <ButtonGroup className="list">
+        </article>
+        <article class="card">
           <Button variant="outline-light" onClick={() => onClick("#bathroom")}>Baño</Button>{" "}
+        </article>
+        <article class="card">
           <Button variant="outline-light" onClick={() => onClick("#bed")}>Sofa Cama</Button>{" "}
+        </article>
+        <article class="card">
           <Button variant="outline-light" onClick={() => onClick("#wite-water")}>Aguas Blancas</Button>{" "}
+        </article>
+        <article class="card">
           <Button variant="outline-light" onClick={() => onClick("#gray-water")}>Aguas Grises</Button>{" "}
-        </ButtonGroup>
-        <ButtonGroup className="list">
+        </article>
+        <article class="card">
           <Button variant="outline-light" onClick={() => onClick("#black-water")}>Aguas Negras</Button>{" "}
+        </article>
+        <article class="card">
           <Button variant="outline-light" onClick={() => onClick("#kitchen")}>Cocina</Button>{" "}
+        </article>
+        <article class="card">
           <Button variant="outline-light" onClick={() => onClick("#solar")}>Energia Solar</Button>{" "}
+        </article>
+        <article class="card">
           <Button variant="outline-light" onClick={() => onClick("#hot-cool")}>Calefacion</Button>{" "}
-        </ButtonGroup>
-      </Row>
-    </Container>
+        </article>
+    </section>  
   );
 
   return (
     <Container className="content">
-      <TitleComp title1="Proyecto" title2="Motorhome" />
+      <TitleComp title1="Construccion" title2="" />
       Si tenes el sueño de viajar, conocer muchos lugares, países, culturas o
       simplemente vacacionar de una forma distinta y económica, la mejor manera
       de hacerlo es llevando tu propia casa a cuestas. Cuando tomamos la
@@ -166,7 +182,7 @@ function ProjectForm() {
       internet pero nunca logramos dar con una guía paso a paso de cómo hacerlo.
       De ahí surge la idea de hacer este tutorial para poder simplificar las
       cosas a aquellos que están por pasar por nuestra situación de ese momento.
-<h3 id="bano"> Bano </h3>
+<h3 id="bano"> Baño </h3>
 Baño 🚿 para la construcción de la estructura del baño utilizamos madera fenólica con varias manos de protector para la humedad. 
 Para el plato de la ducha colocamos varias capas de fibra de vidrio y resina. Tanto las paredes como en el techo decidimos revestirlo de pvc expandido, es un material impermeable, 
 con una linda terminación y bastante sencillo de manipular. Además colocamos una claraboya que aporta luz y ventilación. 😉

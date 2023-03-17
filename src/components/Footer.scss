@@ -8,7 +8,7 @@ footer {
   align-items: center;
 
   .footer-image {
-    max-width: 8%;
+    max-width: 11%;
     cursor: pointer;
   }
 
@@ -20,7 +20,7 @@ footer {
   }
 
   .icon-footer {
-    padding: 0.3rem 0.35rem 0.35rem 0.35rem;
+    padding: 0.2rem 0.35rem 0.6rem 0.35rem;
     border: 1px solid #212529;
     border-radius: 50% !important;
     background-color: white;
@@ -28,11 +28,11 @@ footer {
     cursor: pointer;
   }
 
-  .insta-footer:hover {
+  .insta-footer {
     background: rgba(0, 0, 0, 0) url("../images/insta.gif") no-repeat scroll 0 0;
     color: white;
   }
-  .face-footer:hover {
+  .face-footer {
     background: rgb(59, 89, 152);
     color: white;
   }

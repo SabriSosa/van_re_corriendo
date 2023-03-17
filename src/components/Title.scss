@@ -1,21 +1,17 @@
 .title-content {
-  margin-top: 40px;
-  width: 100% !important;
-  max-width: var(--content-max-width, var(--breakpoint-xl));
-
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-bottom: 1px solid #545454;
+  margin-top: 1em !important;
+  margin-bottom: 1em !important;
+  text-transform: Uppercase;
   h2 {
-    border-bottom: 1px solid #545454;
-    color: #545454;
-    padding-bottom: 0.5em;
-    margin-bottom: 1.5em;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-family: Montserrat, sans-serif;
-    text-transform: Uppercase;
-    
-    img {
-      margin-left: 10px;
-      float: right;
-    }
+    margin-bottom: 10px;
+  }
+  img {
+    height: 50px;
   }
 }
+

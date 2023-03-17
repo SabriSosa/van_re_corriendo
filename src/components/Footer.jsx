@@ -1,6 +1,6 @@
 import { Container, Image } from "react-bootstrap";
 import { GrFacebookOption } from "react-icons/gr";
-import { RiInstagramLine } from "react-icons/ri";
+import { RiInstagramLine, RiYoutubeLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
 import "./Footer.scss";
@@ -15,25 +15,23 @@ const Footer = () => {
   return (
     <footer>
       <Container className="section1">
-        <Link
-          className="icon-footer face-footer"
-          to={{ pathname: "https://www.instagram.com/van_re_corriendo/" }}
-        >
-          <GrFacebookOption size={25} />
-        </Link>
+        <div>
+          <a target="_blank"  href="https://www.facebook.com/profile.php?id=100085509656617"
+              className="icon-footer face-footer">
+            <GrFacebookOption size={25} />
+          </a>
+        </div>
         <Image
           className="footer-image"
           onClick={() => goToTop()}
           src="https://res.cloudinary.com/djbmfd9y6/image/upload/c_scale,h_150/v1670534765/Camiontito/logo_t5a3np.png"
         />
-
-        <Link
-          className="icon-footer insta-footer"
-          to={{ pathname: "https://www.instagram.com/van_re_corriendo/" }}
-          target="_blank"
-        >
-          <RiInstagramLine size={25} />
-        </Link>
+        <div>
+          <a target="_blank" href="https://www.instagram.com/van_re_corriendo/"
+              className="icon-footer insta-footer">
+            <RiInstagramLine size={25} />
+          </a>
+        </div>
       </Container>
       {`Copyright © Van Re Corriendo ${year}`}
     </footer>
