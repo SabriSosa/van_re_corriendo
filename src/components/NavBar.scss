@@ -10,24 +10,22 @@
   }
 }
 
-.social-media{
-    @media (max-width: 991px) {
-        display: none !important ;
-    }
+.social-media-menu {
+  @media (max-width: 991px) {
+    display: none !important ;
+  }
 }
 .offcanvas-header {
-    justify-content: end !important;
+  justify-content: end !important;
 }
 
 .navbar-body {
   align-items: center;
   text-transform: uppercase;
 
-
   @media (max-width: 991px) {
     align-items: flex-start;
     text-transform: none;
-
   }
 }
 
@@ -62,60 +60,36 @@
   }
 
   //Pantallas medianas (tablets de más de 768px)
-  @media (min-width: 768px) and (orientation: portrait){
+  @media (min-width: 768px) and (orientation: portrait) {
     height: 30vh;
   }
 
   //Pantallas grandes (desktops de más de 992px)
-  @media (min-width: 992px) and (orientation: portrait){
+  @media (min-width: 992px) and (orientation: portrait) {
     height: 50vh;
   }
 
   //Pantallas muy grandes (desktops de más de 1200px)
-  @media (min-width: 1200px)and (orientation: portrait) {
+  @media (min-width: 1200px) and (orientation: portrait) {
     height: 90vh;
 
     background-size: cover;
   }
-
-  //   @media (min-width: 320px) {
-  //     /* smartphones, iPhone, portrait 480x320 phones */
-  //     height: 22vh;
-  //   }
-  //   @media (min-width: 481px) {
-  //     /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
-  //     height: 30vh;
-  //   }
-  //   @media (min-width: 641px) {
-  //     /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
-  //     height: 33vh;
-  //   }
-  //   @media (min-width: 961px) {
-  //     /* tablet, landscape iPad, lo-res laptops ands desktops */
-  //     height: 48vh;
-  //   }
-  //   @media (min-width: 1025px) {
-  //     /* big landscape tablets, laptops, and desktops */
-  //     height: 55vh;
-  //   }
-  //   @media (min-width: 1281px) {
-  //     /* hi-res laptops and desktops */
-  //     height: 55vh;
-  //   }
 }
 
-#wave {
+#wave-menu {
   transform: rotate(0deg);
   transition: 0.3s;
   position: absolute;
   bottom: 0;
   margin-bottom: -1px;
+  path {
+    transform: translate(0, 0px);
+    opacity: 1;
+  }
 }
 
-path {
-  transform: translate(0, 0px);
-  opacity: 1;
-}
+
 
 .toggle-nav {
   display: flex;
@@ -144,4 +118,10 @@ path {
   @media (max-width: 991px) {
     display: none !important ;
   }
+}
+
+
+.offcanvas-start{
+  width: 250px !important;
+  opacity: 0.9;
 }

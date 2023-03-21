@@ -20,11 +20,8 @@ footer {
   }
 
   .icon-footer {
-    padding: 0.2rem 0.35rem 0.6rem 0.35rem;
-    border: 1px solid #212529;
-    border-radius: 50% !important;
-    background-color: white;
-    color: #212529;
+    border-radius: 2px !important;
+   
     cursor: pointer;
   }
 
@@ -33,7 +30,6 @@ footer {
     color: white;
   }
   .face-footer {
-    background: rgb(59, 89, 152);
-    color: white;
+    color: rgb(59, 89, 152);
   }
 }

@@ -1,4 +1,4 @@
-.container-fluid {
+.container-travel {
   padding: 0px !important;
   margin-bottom: -5px;
 }
@@ -7,7 +7,7 @@
   margin: 0px !important;
 
   align-items: center;
-  
+
   .col {
     text-align: center;
     color: white;
@@ -19,28 +19,28 @@
       border: none;
     }
   }
-}
 
-.card-title {
-  padding: 1em;
-  border: 3px solid white !important;
-  border-radius: 50% !important;
-  font-size: 1em !important;
-}
+  .card-title {
+    padding: 1em;
+    border: 3px solid white !important;
+    border-radius: 50% !important;
+    font-size: 1em !important;
+  }
 
-.card-subtitle {
-  text-transform: uppercase;
-  margin: 0px 20px !important;
-}
+  .card-subtitle {
+    text-transform: uppercase;
+    margin: 0px 20px !important;
+  }
 
-.divider {
-  margin-top: 5px;
-  background: rgb(217, 217, 217);
-  height: 1px;
-}
+  .divider {
+    margin-top: 5px;
+    background: rgb(217, 217, 217);
+    height: 1px;
+  }
 
-.card-text {
-  margin-top: 5px;
+  .card-text {
+    margin-top: 5px;
+  }
 }
 
 #wave1 {

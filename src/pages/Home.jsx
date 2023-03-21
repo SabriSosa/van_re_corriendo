@@ -2,7 +2,7 @@ import React from "react";
 
 import { Container, Row, Col, Card } from "react-bootstrap";
 import SimpleCarousel from "../components/Carousel";
-import BlogPost from "../components/Post";
+import Destinations from "../components/Destinations";
 
 import TravelInfo from "../components/TravelInfo";
 
@@ -18,7 +18,7 @@ function Home() {
     <Container fluid className="main-container">
       <SimpleCarousel />
       <TravelInfo />
-      <BlogPost />
+      <Destinations />
     </Container>
   );
 }

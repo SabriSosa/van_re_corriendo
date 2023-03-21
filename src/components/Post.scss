@@ -1,124 +1,109 @@
-.shape-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.vertical-line {
-  border-left: 1px solid #74a9db;
-  height: 80px;
-}
-
-.diamond-shape {
-  background: #74a9db;
-  height: 60px;
-  text-align: center;
-  transform: rotate(45deg);
-  width: 60px !important;
-}
-.item-date {
-  color: #fff;
-  display: table-cell;
-  height: 60px;
-  transform: rotate(-45deg);
-  vertical-align: middle;
-  width: 60px;
-}
-.card-title,
-.card-text {
-  text-align: center;
-}
-
 .card-post {
   border: none !important;
-}
+  display: flex;
+  flex-direction: row;
 
-.read-more-btn {
-  background-color: #74a9db !important;
-  border-color: #74a9db !important;
-}
-
-.read-more-btn-div {
-  text-align: center;
-}
-
-// Social Media Buttons
-.insta {
-  background-color: #333;
-  cursor: pointer;
-  color: white;
-  border-radius: 50%;
-  height: 25px;
-  width: 25px;
-  padding: 5px;
-}
-
-.insta:hover {
-  background: rgba(0, 0, 0, 0) url("../images/insta.gif") no-repeat scroll 0 0;
-}
-
-.social-media {
-  margin-bottom: 15px;
-}
-
-.social-media-icon {
-  circle {
-    fill: #333;
+  .shape-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-}
 
-.face:hover {
-  circle {
-    fill: rgb(59, 89, 152);
+  .vertical-line {
+    border-left: 1px solid #74a9db;
+    height: 80px;
   }
-}
-.tw:hover {
-  circle {
-    fill: rgb(0, 172, 237);
+
+  .diamond-shape {
+    background: #74a9db;
+    height: 60px;
+    text-align: center;
+    transform: rotate(45deg);
+    width: 60px !important;
   }
-}
-.wp:hover {
-  circle {
-    fill: rgb(37, 211, 102);
+  .item-date {
+    color: #fff;
+    display: table-cell;
+    height: 60px;
+    transform: rotate(-45deg);
+    vertical-align: middle;
+    width: 60px;
   }
-}
-.link:hover {
-  circle {
-    fill: rgb(0, 127, 177);
+  .card-title,
+  .card-text {
+    text-align: center;
   }
-}
-.pint:hover {
-  circle {
-    fill: rgb(203, 33, 40);
+
+  // Social Media Buttons
+  .insta {
+    background-color: #333;
+    cursor: pointer;
+    color: white;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    padding: 5px;
   }
-}
 
-.title-post {
-}
+  .insta:hover {
+    background: rgba(0, 0, 0, 0) url("../images/insta.gif") no-repeat scroll 0 0;
+  }
 
-.card-body {
-  padding-top: 30px !important;
-}
+  .social-media {
+    margin-bottom: 15px;
+  }
 
-.img-hover-zoom {
-  overflow: hidden;
-  border-radius: 0.5em;
-}
+  .social-media-icon {
+    circle {
+      fill: #333;
+    }
+  }
 
+  .face:hover {
+    circle {
+      fill: rgb(59, 89, 152);
+    }
+  }
+  .tw:hover {
+    circle {
+      fill: rgb(0, 172, 237);
+    }
+  }
+  .wp:hover {
+    circle {
+      fill: rgb(37, 211, 102);
+    }
+  }
+  .link:hover {
+    circle {
+      fill: rgb(0, 127, 177);
+    }
+  }
+  .pint:hover {
+    circle {
+      fill: rgb(203, 33, 40);
+    }
+  }
 
-.img-hover-zoom:hover {
-  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
-}
+  .card-body {
+    padding-top: 30px !important;
+  }
 
-.img-hover-zoom--basic img {
-  transition: transform 0.5s ease;
-  cursor: pointer;
-}
+  .img-hover-zoom {
+    overflow: hidden;
+    border-radius: 0.5em;
+  }
 
-.img-hover-zoom--basic:hover img {
-  transform: scale(1.5);
-}
+  .img-hover-zoom:hover {
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+  }
 
-.posts{
-  margin-top: 10px !important   ;
+  .img-hover-zoom--basic img {
+    transition: transform 0.5s ease;
+    cursor: pointer;
+  }
+
+  .img-hover-zoom--basic:hover img {
+    transform: scale(1.5);
+  }
 }

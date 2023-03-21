@@ -1,0 +1,25 @@
+//Carrousel
+.simple-carrousel {
+    object-fit: contain;
+    object-position: center;
+    overflow: hidden;
+  
+    @media (min-width: 992px) or (orientation: landscape) {
+      flex: 1 1 0px;
+    }
+    .carousel-item {
+      @media (min-width: 992px) or (orientation: landscape) {
+        padding: 2% 20% !important;
+      }
+    }
+  
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      opacity: 1;
+      @media (min-width: 992px) or (orientation: landscape) {
+        background-color: #74a9db;
+        opacity: 1;
+      }
+    }
+  }
+  

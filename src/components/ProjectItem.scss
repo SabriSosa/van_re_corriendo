@@ -1,0 +1,17 @@
+//Flex Container
+.container-project {
+  margin-top: 20px;
+  @media (min-width: 992px) or (orientation: "landscape") {
+    display: flex;
+    align-items: center;
+    //Text and Description
+    .item-project {
+      flex: 1 1 0px;
+
+      h3 {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+

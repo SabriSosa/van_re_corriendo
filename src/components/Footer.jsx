@@ -1,7 +1,6 @@
 import { Container, Image } from "react-bootstrap";
-import { GrFacebookOption } from "react-icons/gr";
-import { RiInstagramLine, RiYoutubeLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { FaFacebookSquare,FaInstagram } from "react-icons/fa";
+
 
 import "./Footer.scss";
 
@@ -17,8 +16,8 @@ const Footer = () => {
       <Container className="section1">
         <div>
           <a target="_blank"  href="https://www.facebook.com/profile.php?id=100085509656617"
-              className="icon-footer face-footer">
-            <GrFacebookOption size={25} />
+              >
+            <FaFacebookSquare className= "face-footer icon-footer "size={25} />
           </a>
         </div>
         <Image
@@ -28,8 +27,8 @@ const Footer = () => {
         />
         <div>
           <a target="_blank" href="https://www.instagram.com/van_re_corriendo/"
-              className="icon-footer insta-footer">
-            <RiInstagramLine size={25} />
+              >
+            <FaInstagram className="insta-footer icon-footer" size={25} />
           </a>
         </div>
       </Container>

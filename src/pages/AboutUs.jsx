@@ -81,7 +81,7 @@ function AboutUs() {
       <div>
         <Image
           className="person"
-          src="https://res.cloudinary.com/djbmfd9y6/image/upload/w_200,c_fill,ar_1:1,g_auto,r_max/v1673907436/Camiontito/IMG_20220824_141420_1_wy8kj5.jpg"
+          src="https://res.cloudinary.com/djbmfd9y6/image/upload/w_200,c_fill,ar_1:1,g_auto,r_max/v1679080143/Camiontito/robert-photo.jpg"
         />
 
         <p>

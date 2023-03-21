@@ -16,7 +16,7 @@ function TravelInfo() {
   const countries = 3;
 
   const info = (
-    <Container fluid>
+    <Container fluid className="container-travel">
       <Row className="travel-information">
         <Col>
           <Card>

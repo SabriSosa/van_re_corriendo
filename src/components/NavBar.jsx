@@ -11,7 +11,7 @@ import { GrFacebookOption } from "react-icons/gr";
 
 const menu1 = [
   { title: "Nosotros", action: "about-us" },
-  { title: "Construccion", action: "project" },
+  { title: "Construcción", action: "project" },
   {
     title: "Destinos",
     action: "places",
@@ -80,14 +80,14 @@ function NavBarMenu() {
                 <Nav.Link
                   target="_blank"
                   href="https://www.facebook.com/profile.php?id=100085509656617"
-                  className="social-media"
+                  className="social-media-menu"
                 >
                   <GrFacebookOption />
                 </Nav.Link>
                 <Nav.Link
                   target="_blank"
                   href="https://www.instagram.com/van_re_corriendo"
-                  className="social-media"
+                  className="social-media-menu"
                 >
                   <RiInstagramLine />
                 </Nav.Link>
@@ -98,7 +98,7 @@ function NavBarMenu() {
       </Navbar>
 
       <svg
-        id="wave"
+        id="wave-menu"
         viewBox="0 0 1440 210"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
