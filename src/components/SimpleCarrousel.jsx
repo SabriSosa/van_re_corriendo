@@ -5,7 +5,7 @@ import { Carousel } from "react-bootstrap";
 
 import './SimpleCarrousel.scss'
 
-export default function SimpleCarrousel({ images = [] , prefix="", video = false}) {
+export default function SimpleCarrousel({ images = [] , prefix="", video = false, padding = false}) {
   const [index, setIndex] = useState(0);
 
   const cld = new Cloudinary({
@@ -20,7 +20,7 @@ export default function SimpleCarrousel({ images = [] , prefix="", video = false
 
   return (
     <Carousel
-      className="simple-carrousel"
+      className={"simple-carrousel" + (images.length < 2 ? " hide-control": "")}
       activeIndex={index}
       onSelect={handleSelect}
       interval = {3000}

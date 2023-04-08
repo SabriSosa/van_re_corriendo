@@ -13,7 +13,7 @@ function Router() {
       <Route path="/contact" element={<ContactForm />} />
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/project" element={<ProjectForm />} />
-      <Route path="/route" element={<TravelRoute />} />
+      <Route path="/route" element={<TravelRoute isMarkerShown />} />
       <Route path="*" element={<Navigate to="/home" replace />} />
     </Routes>
   );

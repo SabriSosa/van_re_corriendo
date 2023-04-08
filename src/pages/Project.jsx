@@ -17,6 +17,7 @@ function ProjectForm() {
     { title: "Revestimiento", action: "coating" },
     { title: "Baño", action: "bathroom" },
     { title: "Sofa Cama", action: "bed" },
+    { title: "Almacenamiento", action: "storage"},
     { title: "Aguas Blancas", action: "white-water" },
     { title: "Aguas Grises", action: "gray-water" },
     { title: "Aguas Negras", action: "black-water" },
@@ -153,6 +154,21 @@ function ProjectForm() {
         iría el tanque de aguas blancas. De ancho tiene 130cm solo 10cm menos que una tradicional de 2 plazas, 
         cómo resultado tenemos una cama súper cómoda y fácil de armar a diario."
       />
+       <ProjectItem
+        count={5}
+        title="Almacenamiento"
+        id="storage"
+        description="Como nuestro objetivo era vivir en el motorhome, nuestro espacio de guardado tendría que ser importante.  
+
+        Uno de los aspectos más complicados a nuestro entender a la hora de hacer un cambio tan radical en tu forma de vida es acostumbrarte a vivir con menos, es evidente que no vas a poder viajar con todas tus pertenencias, ni toda tu ropa, ni todos tus accesorios, ni todos tus artículos de cocina. Muchas veces asociamos calidad de vida con acumulación de objetos realmente innecesarios o sustituibles por uno más genérico. 
+        
+        De todas formas, necesitábamos un almacenamiento considerable, y decidimos repartirlo en secciones, una para la ropa (ropero), uno para las cosas de la cocina (aéreo grande) y otro para el resto de las cosas (aéreo pequeño), y un montón de recovecos más donde se pueden guardar cositas 😊  
+        
+        El ropero tiene 3 estantes con rieles para acceder a la parte posterior y a su vez el primer estante, en la parte inferior tiene dos percheros. Como resultado (y un tanto exagerado) tenemos un ropero de casi 1,90m de altura por 0,80m de ancho y 0,6m de profundidad. 
+        
+        Los aéreos al igual que el ropero, usamos estructura de madera con alfajías de 2x1 y fenólico para paredes y puertas. El pequeño del lado del ropero es de 1,20 y el grande de casi 2,00 de largo siendo de 30 x 30 (alto, profundo)"
+      />
+    
     </Container>
   );
 }
