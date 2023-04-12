@@ -44,18 +44,25 @@ function ProjectForm() {
   return (
     <Container className="project">
       <TitleComp title1="Construccion" title2="" />
-      Si tenes el sueño de viajar, conocer muchos lugares, países, culturas o
-      simplemente vacacionar de una forma distinta y económica, la mejor manera
-      de hacerlo es llevando tu propia casa a cuestas. Cuando tomamos la
-      decisión de salir a recorrer América y luego de conseguir el vehículo que
-      queríamos, llego el momento de ver cómo armarlo por dentro. Averiguamos
-      precios en distintas empresas que se dedicaban a hacerlo y con todas
-      teníamos el mismo problema, no llegábamos de ninguna manera a pagar lo que
-      nos pedían. Esto hizo que tomáramos la decisión de hacerlo por nuestra
-      cuenta. Empezamos a buscar distintos tutoriales e información en internet
-      pero nunca logramos dar con una guía paso a paso de cómo hacerlo. De ahí
-      surge la idea de hacer este tutorial para poder simplificar las cosas a
-      aquellos que están por pasar por nuestra situación de ese momento.
+
+      <p>
+      Si sos de las personas que les encanta viajar, te imaginas levantándote todos los días en un lugar diferente? 
+      Conocer distintas personas y costumbres nuevas? O simplemente te gusta escaparte los fines de semana o en tus vacaciones 
+      y no estar dependiendo de la disponibilidad y los horarios de hoteles costosos, sin dudas el motorhome es una excelente opción.
+      Si a eso le sumas la experiencia de construirlo vos mismo/a, como resultado es un proyecto hermoso y satisfactorio que cuando 
+      salís a la ruta sin dudas es único.
+      </p>
+      <p>
+      Hoy por hoy, ya habiendo experimentado por un tiempo la sensación de libertad que te da un motorhome, 
+      queremos compartirlo con todos como fue nuestro proceso de construcción.
+      </p>
+      <p>
+      Sin dudas, el hacerlo uno mismo conlleva que no todo sea perfecto ni mucho menos (aunque el objetivo principal debería ser que sea funcional)
+       pero si una gran satisfacción y además te da la certeza de que ante cualquier reparación/modificación sabes exactamente como está todo construido. 
+      </p>
+      <p>
+      Intentamos que la explicación sea lo más clara posible, dividiéndolo en diferentes secciones y tratando de especificar que materiales utilizamos y que fue lo que intentamos hacer.
+      </p>
       <Image
         className="full-image"
         src="https://res.cloudinary.com/djbmfd9y6/image/upload/c_scale,h_1736,w_2320/v1673556330/Camiontito/IMG_20220514_150555_ed0ev6.jpg"
