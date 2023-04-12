@@ -35,7 +35,7 @@ export default function Post({ post, setModalShow, setSelectedPost }) {
                 className="text-description"
                 dangerouslySetInnerHTML={{
                   __html:
-                    DOMPurify.sanitize(post.description.slice(0, 250)) + "...",
+                    DOMPurify.sanitize(post.description)
                 }}
               ></div>
 

@@ -16,6 +16,7 @@ import { initializeApp } from "firebase/app";
 import firebaseConfig from "../firebaseConfig";
 import Post from "./Post";
 import PostModal from "./PostModal";
+import PaginationPost from "./Pagination";
 
 export default function Destinations() {
   const [posts, setPosts] = React.useState([]);
@@ -32,7 +33,6 @@ export default function Destinations() {
     const sectionsCollectionRef = collection(db, "post");
     const q = query(sectionsCollectionRef, orderBy("id", "asc"));
     const querySnapshot = await getDocs(q);
-
 
     // reset the todo items value
     setPosts([]);
@@ -64,22 +64,39 @@ export default function Destinations() {
   const onHide = () => {
     setModalShow(false);
     setSelectedPost(undefined);
-
   };
+
+  let postComponents = [];
+
+  posts.map((post) =>
+    postComponents.push(
+      <Post
+        key={post.title}
+        setSelectedPost={setSelectedPost}
+        setModalShow={setModalShow}
+        post={post}
+      />
+    )
+  );
+
+  const totalRows = postComponents.length;
+  const rowsPerPage = 6;
+
+  const totalPages = Math.ceil(totalRows/rowsPerPage);
+
+  console.log("totalRows",totalRows)
+  console.log("rowsPerPage",rowsPerPage)
+  console.log("totalPages",totalPages)
+
   return (
     <Container className="container-destinations">
       <TitleComp title1="Destinos" />
       <PostModal selectedPost={selectedPost} show={modalShow} onHide={onHide} />
-      <Row xs={1} md={3} className="g-4 destinations">
-        {posts.map((post) => (
-          <Post
-            key={post.title}
-            setSelectedPost={setSelectedPost}
-            setModalShow={setModalShow}
-            post={post}
-          />
-        ))}
-      </Row>
+      <PaginationPost
+        data={postComponents}
+        rowsPerPage={rowsPerPage}
+        totalPages={totalPages}
+      />
     </Container>
   );
 }
