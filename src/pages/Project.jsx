@@ -27,9 +27,9 @@ function ProjectForm() {
   ];
 
   const info = (
-    <section class="cards">
+    <section className="cards">
       {sections.map((section) => (
-        <article class="card">
+        <article className="card">
           <Button
             variant="outline-light"
             onClick={() => onClick(`#${section.action}`)}

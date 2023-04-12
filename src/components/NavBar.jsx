@@ -54,15 +54,15 @@ function NavBarMenu() {
               <Nav className="navbar-body justify-content-center flex-grow-1 pe-3">
                 {menu1.map((menu) =>
                   menu.submenu ? (
-                    <NavDropdown id={menu.title} title={menu.title}>
+                    <NavDropdown key={menu.title} title={menu.title}>
                       {menu.submenu.map((sub) => (
-                        <NavDropdown.Item id={sub.title} href={sub.action}>
+                        <NavDropdown.Item key={sub.title} href={sub.action}>
                           {sub.title}
                         </NavDropdown.Item>
                       ))}
                     </NavDropdown>
                   ) : (
-                    <Nav.Link id={menu.title} href={menu.action}>
+                    <Nav.Link key={menu.title} href={menu.action}>
                       {menu.title}
                     </Nav.Link>
                   )
@@ -72,7 +72,7 @@ function NavBarMenu() {
                 </Nav.Link>
 
                 {menu2.map((menu) => (
-                  <Nav.Link id={menu.title} href={menu.action}>
+                  <Nav.Link key={menu.title} href={menu.action}>
                     {menu.title}
                   </Nav.Link>
                 ))}

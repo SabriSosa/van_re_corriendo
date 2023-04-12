@@ -1,6 +1,5 @@
 import { Container, Image } from "react-bootstrap";
-import { FaFacebookSquare,FaInstagram } from "react-icons/fa";
-
+import { FaFacebookSquare, FaInstagram } from "react-icons/fa";
 
 import "./Footer.scss";
 
@@ -15,9 +14,12 @@ const Footer = () => {
     <footer>
       <Container className="section1">
         <div>
-          <a target="_blank"  href="https://www.facebook.com/profile.php?id=100085509656617"
-              >
-            <FaFacebookSquare className= "face-footer icon-footer "size={25} />
+          <a
+            target="_blank"
+            href="https://www.facebook.com/profile.php?id=100085509656617"
+            rel="noreferrer"
+          >
+            <FaFacebookSquare className="face-footer icon-footer " size={25} />
           </a>
         </div>
         <Image
@@ -26,8 +28,11 @@ const Footer = () => {
           src="https://res.cloudinary.com/djbmfd9y6/image/upload/c_scale,h_150/v1670534765/Camiontito/logo_t5a3np.png"
         />
         <div>
-          <a target="_blank" href="https://www.instagram.com/van_re_corriendo/"
-              >
+          <a
+            target="_blank"
+            href="https://www.instagram.com/van_re_corriendo/"
+            rel="noreferrer"
+          >
             <FaInstagram className="insta-footer icon-footer" size={25} />
           </a>
         </div>

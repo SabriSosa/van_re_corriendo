@@ -74,6 +74,7 @@ function SimpleCarousel() {
           return (
             <Container
               id = {index}
+              key={index}
               className={`image-carousel ${index === nextSlide ? 'is-selected': ''}`}
               style={{ backgroundImage: `url(${image})` }}
             >

@@ -1,0 +1,33 @@
+//Flex Container
+.container-modal {
+  @media (min-width: 992px) or (orientation: "landscape") {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    //Text and Description
+    .description-modal {
+      max-height: calc(100vh - 200px);
+      overflow-y: auto;
+      flex: 1 1 0px;
+      text-align: start;
+      h3 {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+
+.post-modal {
+  .modal-dialog {
+    max-width: 65% !important;
+  }
+}
+
+.modal-header-post {
+  padding-bottom: 0px;
+}
+
+.modal-header-title {
+  display: flex;
+  flex-direction: column;
+}
