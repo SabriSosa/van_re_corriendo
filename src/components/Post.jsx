@@ -5,13 +5,11 @@ import "./Post.scss";
 import Button from "react-bootstrap/Button";
 import DOMPurify from "dompurify";
 import { Container } from "react-bootstrap";
-
-
-
 import SimpleCarrousel from "./SimpleCarrousel";
 import SocialMedia from "./SocialMedia";
 
 export default function Post({ post, setModalShow, setSelectedPost }) {
+  
   const handleClick = () => {
     setSelectedPost(post);
     setModalShow(true);
