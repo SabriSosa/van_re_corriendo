@@ -6,10 +6,6 @@
   .card-title {
     text-align: center;
   }
-
-  .text-description {
-    text-align: justify;
-  }
 }
 .post-carrousel {
   .carousel-item {
@@ -25,7 +21,14 @@
   margin-top: 15px;
 }
 
+.description-destination {
+  text-align: center;
+}
 
-.description-destination{
+.text-description {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
   text-align: center;
 }
