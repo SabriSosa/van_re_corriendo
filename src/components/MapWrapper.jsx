@@ -11,23 +11,20 @@ import XYZ from "ol/source/XYZ";
 import Feature from "ol/Feature";
 import Polyline from "ol/format/Polyline";
 import { Circle as CircleStyle, Fill, Icon, Stroke, Style } from "ol/style";
-import { MultiPoint, Point } from "ol/geom";
+import { Point } from "ol/geom";
 import { Overlay } from "ol";
 import { Popover } from "bootstrap";
 import { toLonLat } from "ol/proj";
 
 import "./MapWrapper.scss";
-import * as FirestoreService from "../../services/firestore";
 
-import TitleComp from "../Title";
+import TitleComp from "./Title";
 import { Container } from "react-bootstrap";
 import { toStringHDMS } from "ol/coordinate";
 
-function MapWrapper(props) {
+function MapWrapper({routes, coordinates}) {
   // set intial state
   const [map, setMap] = useState();
-  const [coordinates, setCoordinates] = useState();
-  const [routes, setRoutes] = useState();
   const [overlay, setOverlay] = useState();
 
   // pull refs
@@ -83,26 +80,12 @@ function MapWrapper(props) {
 
       initialMap.addOverlay(_overlay);
 
-      // change mouse cursor when over marker
-      initialMap.on("pointermove", function (e) {
-        const pixel = initialMap.getEventPixel(e.originalEvent);
-        const hit = initialMap.hasFeatureAtPixel(pixel);
-        initialMap.getTarget().style.cursor = hit ? "pointer" : "";
-      });
-
       setMap(initialMap);
     }
   }, [mapElement, mapRef]);
 
   useEffect(() => {
     if (mapRef.current && map && coordinates) {
-      // const coordinates = [
-      //   [-56.162582739424394, -34.913942242397226], //mvdeo
-      //   [-57.633252961652396, -32.70281084131128], //young
-      //   [-58.147983409925814, -32.22477052889381], //colon
-      //   [-60.697550204944925, -32.94940865527557], //rosario
-      // ];
-
       fetch(
         "https://router.project-osrm.org/route/v1/driving/" +
           coordinates.join(";") +
@@ -142,23 +125,17 @@ function MapWrapper(props) {
             }),
           };
 
-          // var _features = new Feature({
-          //   geometry: new MultiPoint(coordinates),
-          //   type: "icon",
-          // });
-
           let vSource = new VectorSource({
             features: [routeFeature],
           });
 
           for (let i = 0; i < routes?.length; i++) {
-
             const route = routes[i];
-            console.log("route.images[0]",route.images[0])
-
             const coord = [route.location._long, route.location._lat];
             const _feature = new Feature({
               geometry: new Point(coord),
+              name: route.title,
+
             });
 
             const style = new Style({
@@ -187,31 +164,6 @@ function MapWrapper(props) {
     }
   }, [map, coordinates]);
 
-  const getRoutes = async () => {
-    const querySnapshot = await FirestoreService.getRoutes();
-
-    // reset the todo items value
-    setCoordinates([]);
-    setRoutes([]);
-
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      setRoutes((prev) => [
-        ...prev,
-        {
-          ...data,
-        },
-      ]);
-      setCoordinates((prev) => [
-        ...prev,
-        [data.location._long, data.location._lat],
-      ]);
-    });
-  };
-
-  React.useEffect(() => {
-    getRoutes();
-  }, []);
 
   useEffect(() => {
     if (overlay && map) {
@@ -219,11 +171,6 @@ function MapWrapper(props) {
     }
   }, [overlay, map]);
 
-  useEffect(() => {
-    if (overlay && map) {
-      map.on("click", handleMapClick);
-    }
-  }, [overlay]);
 
   const handleMapClick = (event) => {
     // get clicked coordinate using mapRef to access current React state inside OpenLayers callback
@@ -240,7 +187,9 @@ function MapWrapper(props) {
       popover.dispose();
     }
 
-    if (!feature) {
+    console.log("feature", feature)
+
+    if (!feature || !feature.get('name')) {
       return;
     }
 
@@ -252,7 +201,7 @@ function MapWrapper(props) {
     popover = new Popover(overLayElement.current, {
       animation: false,
       container: overLayElement.current,
-      content: "<p>The location you clicked was:</p><code>" + hdms + "</code>",
+      content: "<p>The location you clicked was:</p><code>" + hdms + "</code> <p> the name is" + feature.get('name')+ "</p>",
       html: true,
       placement: "top",
       title: "Place to show",

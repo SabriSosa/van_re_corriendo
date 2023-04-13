@@ -1,37 +1,38 @@
 // react
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-// openlayers
-import GeoJSON from 'ol/format/GeoJSON'
+import MapWrapper from "../components/MapWrapper";
+import * as FirestoreService from "../services/firestore";
 
-import forestRoute from "./data";
+export default function TravelRoute() {
+  const [coordinates, setCoordinates] = useState();
+  const [routes, setRoutes] = useState();
 
-import MapWrapper from "../components/maps/MapWrapper";
+  const getRoutes = async () => {
+    const querySnapshot = await FirestoreService.getRoutes();
 
-const containerStyle = {
-  width: "1000px",
-  height: "500px",
-};
+    // reset the todo items value
+    setCoordinates([]);
+    setRoutes([]);
 
-const { traveledRoute, actualLocation, test } = forestRoute;
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      setRoutes((prev) => [
+        ...prev,
+        {
+          ...data,
+        },
+      ]);
+      setCoordinates((prev) => [
+        ...prev,
+        [data.location._long, data.location._lat],
+      ]);
+    });
+  };
 
-const locations = [...traveledRoute, actualLocation];
-const center = {
-  lat: actualLocation.lat,
-  lng: actualLocation.lng,
-};
+  useEffect(() => {
+    getRoutes();
+  }, []);
 
-const path = [...traveledRoute, actualLocation];
-
-function TravelRoute() {
-  const [openInfoW, setOpenInfoW] = useState(false);
-  // set intial state
-  const [features, setFeatures] = useState([]);
-
-  // initialization - retrieve GeoJSON features from Mock JSON API get features from mock
-  //  GeoJson API (read from flat .json file in public directory)
- 
-  return <MapWrapper />;
+  return <MapWrapper routes={routes} coordinates={coordinates} />;
 }
-
-export default React.memo(TravelRoute);

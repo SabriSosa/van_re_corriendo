@@ -32,4 +32,10 @@ export const getRoutes = () => {
   return getDocs(q);
 };
 
+export const getProjects = () => {
+  const sectionsCollectionRef = collection(db, "project");
+  const q = query(sectionsCollectionRef, orderBy("order", "asc"));
+  return getDocs(q);
+};
+
 //https://github.com/Tammibriggs/firebase-with-react-hooks
