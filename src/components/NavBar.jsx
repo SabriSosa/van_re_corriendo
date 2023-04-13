@@ -10,20 +10,20 @@ import { RiInstagramLine } from "react-icons/ri";
 import { GrFacebookOption } from "react-icons/gr";
 
 const menu1 = [
-  { title: "Nosotros", action: "about-us" },
-  { title: "Construcción", action: "project" },
-  {
-    title: "Destinos",
-    action: "places",
-    submenu: [
-      { title: "Argentina", action: "argentina" },
-      { title: "Chile", action: "chile" },
-    ],
-  },
-];
-const menu2 = [
+  { title: "Nosotros", action: "about-us" },  
+  // {
+  //   title: "Destinos",
+  //   action: "places",
+  //   submenu: [
+  //     { title: "Argentina", action: "argentina" },
+  //     { title: "Chile", action: "chile" },
+  //   ],
+  // },
   { title: "Recorrido", action: "route" },
   { title: "Ayudanos", action: "help-us" },
+];
+const menu2 = [ 
+  { title: "Construcción", action: "project" },
   { title: "Contacto", action: "contact" },
 ];
 
