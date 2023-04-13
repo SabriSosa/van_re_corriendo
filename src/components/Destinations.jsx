@@ -1,22 +1,11 @@
 import React from "react";
 import { Container, Spinner } from "react-bootstrap";
-
-import Row from "react-bootstrap/Row";
 import "./Destinations.scss";
-
 import TitleComp from "./Title";
-import {
-  collection,
-  getDocs,
-  getFirestore,
-  orderBy,
-  query,
-} from "firebase/firestore";
-import { initializeApp } from "firebase/app";
-import firebaseConfig from "../firebaseConfig";
 import Post from "./Post";
 import PostModal from "./PostModal";
 import PaginationPost from "./Pagination";
+import * as FirestoreService from "../services/firestore";
 
 export default function Destinations() {
   const [posts, setPosts] = React.useState([]);
@@ -24,20 +13,10 @@ export default function Destinations() {
   const [selectedPost, setSelectedPost] = React.useState();
 
   const getPosts = async () => {
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-
-    // Initialize Cloud Firestore and get a reference to the service
-    const db = getFirestore(app);
-
-    const sectionsCollectionRef = collection(db, "post");
-    const q = query(sectionsCollectionRef, orderBy("id", "asc"));
-    const querySnapshot = await getDocs(q);
+    const querySnapshot = await FirestoreService.getPosts();
 
     // reset the todo items value
     setPosts([]);
-
-    // map through the query result and assign the value to the todoItems state
     querySnapshot.forEach((doc) => {
       const data = doc.data();
       setPosts((prev) => [
@@ -82,11 +61,7 @@ export default function Destinations() {
   const totalRows = postComponents.length;
   const rowsPerPage = 6;
 
-  const totalPages = Math.ceil(totalRows/rowsPerPage);
-
-  console.log("totalRows",totalRows)
-  console.log("rowsPerPage",rowsPerPage)
-  console.log("totalPages",totalPages)
+  const totalPages = Math.ceil(totalRows / rowsPerPage);
 
   return (
     <Container className="container-destinations">
