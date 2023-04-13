@@ -1,10 +1,43 @@
-import { Container } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import TitleComp from "../components/Title";
+import React, { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
+import { Button, Container, Form } from 'react-bootstrap';
+import TitleComp from '../components/Title';
 import "./Contact.scss";
 
-function ContactForm() {
+const ContactForm = () => {
+  const form = useRef();
+
+  const [name, setName] = useState()
+  const [email, setEmail] = useState()
+  const [message, setMessage] = useState()
+  
+
+  const resetForm = () => {
+    setName("")
+    setEmail("")
+    setMessage("")
+  }
+
+    //https://dashboard.emailjs.com/sign-in 
+    //user: sabrina.sosa.nicolais@gmail.com
+    //pass: Facil12.
+    const SERVICE_ID = "service_0b9ffn4";
+    const TEMPLATE_ID = "template_63cpmie";
+    const PUBLIC_KEY = "z5_r2jXFX-GOxrRvR";
+  
+    const sendEmail = (e) => {
+      e.preventDefault();
+  
+      emailjs.sendForm(SERVICE_ID, TEMPLATE_ID , form.current, PUBLIC_KEY)
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+
+      resetForm();
+  };
+    
   return (
     <Container>
       <TitleComp title1="Contacto" />
@@ -12,26 +45,28 @@ function ContactForm() {
       dudes! Habla ahora o calla para siempre. Puedes enviarnos un correo a
       través del siguiente formulario y nos pondremos en contacto contigo lo
       antes posible. Si quieres colaborar con nosotros y conocernos mejor, te
-      recomendamos que antes te pases por nuestra sección sobre nosotros.
-      <Form className="form-contact">
-        <Form.Group className="mb-3" controlId="name">
+      recomendamos que antes te pases por nuestra sección sobre nosotros.  
+
+      <Form className="form-contact" onSubmit={sendEmail} ref={form} >
+        <Form.Group className="mb-3" controlId="name" >
           <Form.Label>Nombre</Form.Label>
-          <Form.Control type="text" />
+          <Form.Control type="text" name="user_name" value={name || ''} onChange={(e) => setName(e.target.value)}/>
         </Form.Group>
         <Form.Group className="mb-3" controlId="email">
           <Form.Label>Email</Form.Label>
-          <Form.Control type="email" />
+          <Form.Control type="email" name="user_email"  value={email || ''} onChange={(e) => setEmail(e.target.value)}/>
         </Form.Group>
-        <Form.Group className="mb-3" controlId="message">
+        <Form.Group className="mb-3" controlId="message"  >
           <Form.Label>Mensaje</Form.Label>
-          <Form.Control as="textarea" rows={3} />
+          <Form.Control as="textarea" rows={3} name="message"  value={message || ''} onChange={(e) => setMessage(e.target.value)}/>
         </Form.Group>
         <Button variant="primary" type="submit" className="submit-button">
-          Enviar
+        Enviar
         </Button>
       </Form>
     </Container>
   );
-}
+
+};
 
 export default ContactForm;
