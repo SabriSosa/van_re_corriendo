@@ -41,11 +41,10 @@ const ContactForm = () => {
   return (
     <Container>
       <TitleComp title1="Contacto" />
-      Si has llegado hasta aquí es porque quieres contactarnos... ¡Pues no lo
-      dudes! Habla ahora o calla para siempre. Puedes enviarnos un correo a
-      través del siguiente formulario y nos pondremos en contacto contigo lo
-      antes posible. Si quieres colaborar con nosotros y conocernos mejor, te
-      recomendamos que antes te pases por nuestra sección sobre nosotros.  
+      
+      Ahora es el momento donde podés hacernos todas las preguntas que quieras y sacarte todas esas dudas que tienes en mente.
+      Si quieres saber más sobre la construcción del motorhome, sobre los lugares que visitamos, si quieres saber nuestra opinión,
+      o simplemente quieres conocernos un poco mas no dudes en escribirnos.
 
       <Form className="form-contact" onSubmit={sendEmail} ref={form} >
         <Form.Group className="mb-3" controlId="name" >
