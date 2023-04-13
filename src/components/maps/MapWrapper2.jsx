@@ -1,5 +1,5 @@
 // react
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 // openlayers
 import Map from "ol/Map";
@@ -11,19 +11,23 @@ import XYZ from "ol/source/XYZ";
 import Feature from "ol/Feature";
 import Polyline from "ol/format/Polyline";
 import { Circle as CircleStyle, Fill, Icon, Stroke, Style } from "ol/style";
-import { MultiPoint } from "ol/geom";
+import { MultiPoint, Point } from "ol/geom";
 import { Overlay } from "ol";
 import { Popover } from "bootstrap";
+import { toLonLat } from "ol/proj";
 
 import "./MapWrapper.scss";
+import * as FirestoreService from "../../services/firestore";
 
-import data from "./example.json";
+import TitleComp from "../Title";
+import { Container } from "react-bootstrap";
 import { toStringHDMS } from "ol/coordinate";
-import { toLonLat } from "ol/proj";
 
 function MapWrapper(props) {
   // set intial state
   const [map, setMap] = useState();
+  const [coordinates, setCoordinates] = useState();
+  const [routes, setRoutes] = useState();
   const [overlay, setOverlay] = useState();
 
   // pull refs
@@ -91,13 +95,13 @@ function MapWrapper(props) {
   }, [mapElement, mapRef]);
 
   useEffect(() => {
-    if (mapRef.current && map) {
-      const coordinates = [
-        [-56.162582739424394, -34.913942242397226], //mvdeo
-        [-57.633252961652396, -32.70281084131128], //young
-        [-58.147983409925814, -32.22477052889381], //colon
-        [-60.697550204944925, -32.94940865527557], //rosario
-      ];
+    if (mapRef.current && map && coordinates) {
+      // const coordinates = [
+      //   [-56.162582739424394, -34.913942242397226], //mvdeo
+      //   [-57.633252961652396, -32.70281084131128], //young
+      //   [-58.147983409925814, -32.22477052889381], //colon
+      //   [-60.697550204944925, -32.94940865527557], //rosario
+      // ];
 
       fetch(
         "https://router.project-osrm.org/route/v1/driving/" +
@@ -122,15 +126,8 @@ function MapWrapper(props) {
           const styles = {
             route: new Style({
               stroke: new Stroke({
-                width: 6,
-                color: [237, 212, 0, 0.8],
-              }),
-            }),
-            icon: new Style({
-              image: new Icon({
-                scale: 0.015,
-
-                src: "https://static.vecteezy.com/system/resources/previews/009/267/042/original/location-icon-design-free-png.png",
+                width: 3,
+                color: [255, 255, 255, 0.8],
               }),
             }),
             geoMarker: new Style({
@@ -138,22 +135,46 @@ function MapWrapper(props) {
                 radius: 7,
                 fill: new Fill({ color: "black" }),
                 stroke: new Stroke({
-                  color: "red",
-                  width: 2,
+                  color: [255, 255, 255, 1],
+                  width: 1,
                 }),
               }),
             }),
           };
 
-          var feature = new Feature({
-            geometry: new MultiPoint(coordinates),
-            type: "icon",
+          // var _features = new Feature({
+          //   geometry: new MultiPoint(coordinates),
+          //   type: "icon",
+          // });
+
+          let vSource = new VectorSource({
+            features: [routeFeature],
           });
 
+          for (let i = 0; i < routes?.length; i++) {
+
+            const route = routes[i];
+            console.log("route.images[0]",route.images[0])
+
+            const coord = [route.location._long, route.location._lat];
+            const _feature = new Feature({
+              geometry: new Point(coord),
+            });
+
+            const style = new Style({
+              image: new Icon({
+                scale: 0.4,
+                src: route.images[0],
+              }),
+            });
+
+            _feature.setStyle(style);
+
+            vSource.addFeatures([_feature]);
+          }
+
           const vectorLayer = new VectorLayer({
-            source: new VectorSource({
-              features: [routeFeature, feature],
-            }),
+            source: vSource,
             style: function (feature) {
               return styles[feature.get("type")];
             },
@@ -164,7 +185,33 @@ function MapWrapper(props) {
         });
       });
     }
-  }, [map]);
+  }, [map, coordinates]);
+
+  const getRoutes = async () => {
+    const querySnapshot = await FirestoreService.getRoutes();
+
+    // reset the todo items value
+    setCoordinates([]);
+    setRoutes([]);
+
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      setRoutes((prev) => [
+        ...prev,
+        {
+          ...data,
+        },
+      ]);
+      setCoordinates((prev) => [
+        ...prev,
+        [data.location._long, data.location._lat],
+      ]);
+    });
+  };
+
+  React.useEffect(() => {
+    getRoutes();
+  }, []);
 
   useEffect(() => {
     if (overlay && map) {
@@ -187,8 +234,6 @@ function MapWrapper(props) {
         return feature;
       }
     );
-
-    console.log("feature", feature);
 
     let popover = Popover.getInstance(overLayElement.current);
     if (popover) {
@@ -217,11 +262,12 @@ function MapWrapper(props) {
 
   // render component
   return (
-    <div>
+    <Container fluid>
+      <TitleComp title1="Recorrido" title2="" />
       <div ref={mapElement} className="map">
         <div ref={overLayElement} className="overlay" />
       </div>
-    </div>
+    </Container>
   );
 }
 
