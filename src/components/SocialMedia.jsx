@@ -13,18 +13,14 @@ import {
 
 import { RiInstagramLine } from "react-icons/ri";
 
-
-import './SocialMedia.scss';
+import "./SocialMedia.scss";
+import { getDateString } from "./auxiliary";
 
 export default function SocialMedia({ post }) {
   return (
     <section className="shape-section-social-media">
       <div className="container diamond-shape">
-        <div className="item-date">
-          {`${new Date(1000 * post.date.seconds).getDate()}/${
-            new Date(1000 * post.date.seconds).getMonth() + 1
-          }`}
-        </div>
+        <div className="item-date">{getDateString(post?.date)}</div>
       </div>
 
       <div className="vertical-line"></div>

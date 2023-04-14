@@ -104,11 +104,7 @@ function ProjectForm() {
 
       {projects?.map((item) => (
         <ProjectItem
-          count={item.count}
-          title={item.title}
-          id={item.id}
-          description={item.description}
-          video={item.video}
+          item = {item}
         />
       ))}
     </Container>

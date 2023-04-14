@@ -3,13 +3,15 @@ import "./ProjectItem.scss";
 import { Container } from "react-bootstrap";
 import SimpleCarrousel from "./SimpleCarrousel";
 
-function ProjectItem({
-  count = 1,
-  title = "",
-  id = "",
-  description = "",
-  video = false,
-}) {
+function ProjectItem({ item }) {
+  const {
+    count = 1,
+    title = "",
+    id = "",
+    description = "",
+    video = false,
+  } = item;
+
   const images = [];
   for (let i = 1; i <= count; i++) {
     images.push(`${id}${i}`);

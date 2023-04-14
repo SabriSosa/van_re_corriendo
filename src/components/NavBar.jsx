@@ -4,10 +4,10 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import { GrFacebookOption } from "react-icons/gr";
+import { RiInstagramLine } from "react-icons/ri";
 import "./NavBar.scss";
 
-import { RiInstagramLine } from "react-icons/ri";
-import { GrFacebookOption } from "react-icons/gr";
 
 const menu1 = [
   { title: "Nosotros", action: "about-us" },  
@@ -28,6 +28,7 @@ const menu2 = [
 ];
 
 function NavBarMenu() {
+  
   return (
     <Container fluid className="navbar-container">
       <Navbar

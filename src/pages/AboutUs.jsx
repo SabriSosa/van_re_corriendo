@@ -7,6 +7,7 @@ import { MdPerson } from "react-icons/md";
 import "./AboutUs.scss";
 
 function AboutUs() {
+  
   return (
     <Container className="aboutUs">
       <TitleComp title1="Quienes" title2="Somos" />

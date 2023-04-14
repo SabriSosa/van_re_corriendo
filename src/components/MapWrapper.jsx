@@ -12,25 +12,35 @@ import Feature from "ol/Feature";
 import Polyline from "ol/format/Polyline";
 import { Circle as CircleStyle, Fill, Icon, Stroke, Style } from "ol/style";
 import { Point } from "ol/geom";
-import { Overlay } from "ol";
-import { Popover } from "bootstrap";
-import { toLonLat } from "ol/proj";
+import { Select } from "ol/interaction";
 
 import "./MapWrapper.scss";
 
-import TitleComp from "./Title";
 import { Container } from "react-bootstrap";
-import { toStringHDMS } from "ol/coordinate";
 
-function MapWrapper({routes, coordinates}) {
+function MapWrapper({ routes, coordinates, selectedPlace, setSelectedPlace }) {
   // set intial state
   const [map, setMap] = useState();
-  const [overlay, setOverlay] = useState();
-
+  
   // pull refs
   const mapElement = useRef();
   const mapRef = useRef();
-  const overLayElement = useRef();
+
+  let selectStyle = function (feature) {
+    setSelectedPlace(feature.get("id"));
+    const img = feature.get("image").replace(/white/g, "skyblue");
+
+    let styles = [
+      new Style({
+        image: new Icon({
+          src: img,
+          scale: 0.7,
+        }),
+      }),
+    ];
+
+    return styles;
+  };
 
   // initialize map on first render - logic formerly put into componentDidMount
   useEffect(() => {
@@ -70,16 +80,6 @@ function MapWrapper({routes, coordinates}) {
       });
 
       mapRef.current = initialMap;
-
-      const _overlay = new Overlay({
-        element: overLayElement.current,
-        positioning: "bottom-center",
-        stopEvent: false,
-      });
-      setOverlay(_overlay);
-
-      initialMap.addOverlay(_overlay);
-
       setMap(initialMap);
     }
   }, [mapElement, mapRef]);
@@ -134,8 +134,8 @@ function MapWrapper({routes, coordinates}) {
             const coord = [route.location._long, route.location._lat];
             const _feature = new Feature({
               geometry: new Point(coord),
-              name: route.title,
-
+              image: route.images[0],
+              id: route.id,
             });
 
             const style = new Style({
@@ -164,58 +164,18 @@ function MapWrapper({routes, coordinates}) {
     }
   }, [map, coordinates]);
 
-
   useEffect(() => {
-    if (overlay && map) {
-      map.on("click", handleMapClick);
+    if (map) {
+      let selectInteraction = new Select({
+        style: selectStyle,
+      });
+      map.addInteraction(selectInteraction);
     }
-  }, [overlay, map]);
+  }, [map]);
 
-
-  const handleMapClick = (event) => {
-    // get clicked coordinate using mapRef to access current React state inside OpenLayers callback
-    //  https://stackoverflow.com/a/60643670
-    const feature = mapRef.current.forEachFeatureAtPixel(
-      event.pixel,
-      (feature) => {
-        return feature;
-      }
-    );
-
-    let popover = Popover.getInstance(overLayElement.current);
-    if (popover) {
-      popover.dispose();
-    }
-
-    console.log("feature", feature)
-
-    if (!feature || !feature.get('name')) {
-      return;
-    }
-
-    const coordinate = event.coordinate;
-    const hdms = toStringHDMS(toLonLat(coordinate));
-
-    overlay.setPosition(event.coordinate);
-
-    popover = new Popover(overLayElement.current, {
-      animation: false,
-      container: overLayElement.current,
-      content: "<p>The location you clicked was:</p><code>" + hdms + "</code> <p> the name is" + feature.get('name')+ "</p>",
-      html: true,
-      placement: "top",
-      title: "Place to show",
-    });
-    popover.show();
-  };
-
-  // render component
   return (
     <Container fluid>
-      <TitleComp title1="Recorrido" title2="" />
-      <div ref={mapElement} className="map">
-        <div ref={overLayElement} className="overlay" />
-      </div>
+      <div ref={mapElement} className="map"></div>
     </Container>
   );
 }
