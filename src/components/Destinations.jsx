@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Spinner } from "react-bootstrap";
 import "./Destinations.scss";
 import TitleComp from "./Title";
@@ -28,7 +28,7 @@ export default function Destinations() {
     });
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     getPosts();
   }, []);
 

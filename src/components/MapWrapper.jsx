@@ -69,10 +69,11 @@ function MapWrapper({ routes, coordinates, selectedPlace, setSelectedPlace }) {
           }),
           initalFeaturesLayer,
         ],
+        
         view: new View({
           projection: "EPSG:4326",
           center: [-56.162582739424394, -34.913942242397226],
-          zoom: 6,
+          zoom: 5,
           minZoom: 2,
           maxZoom: 19,
         }),
@@ -158,7 +159,7 @@ function MapWrapper({ routes, coordinates, selectedPlace, setSelectedPlace }) {
           });
 
           map.addLayer(vectorLayer);
-          map.getView().fit(routeFeature.getGeometry());
+          // map.getView().fit(routeFeature.getGeometry());
         });
       });
     }

@@ -40,7 +40,7 @@ export default function PostModal({ show, onHide, selectedPost }) {
         >
           {selectedPost?.title}
           <h5 id="subtitle">
-            {getDateString(selectedPost?.date)}
+            {selectedPost && getDateString(selectedPost?.date)}
           </h5>
           <h6> {postCity} </h6>
         </Modal.Title>
