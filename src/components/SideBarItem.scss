@@ -3,12 +3,35 @@
   cursor: pointer;
 }
 
-.title-side-bar,
-.sub-title-side-bar {
+.title-side-bar
+{
   color: white;
+  margin-bottom: 0 !important;
+  padding: 8px ;
+}
+.side-bar-body{
+  padding: 5px !important;
+  
+  >p {
+    font-weight: 500;
+  }
 }
 
+.sub-title-side-bar {
+  margin-bottom: 0 !important;
+  font-size: 0.75rem;  
+}
+.side-bar-date{
+  float: right;
+}
+.side-bar-text{
+  float: left;
+}
 
 .card-active{
   border: 10px solid #74a9db !important;
+}
+
+.card-img-overlay{
+  padding: 5px !important;
 }

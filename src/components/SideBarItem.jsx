@@ -1,4 +1,6 @@
+import { Col } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
+import { getDateString } from "./auxiliary";
 import "./SideBarItem.scss";
 
 function SideBarItem({ item , selectedPlace}) {
@@ -9,16 +11,20 @@ function SideBarItem({ item , selectedPlace}) {
         alt="Card image"
       />
       <Card.ImgOverlay>
-        <Card.Title className="title-side-bar">{item.city}</Card.Title>
-        <Card.Text className="sub-title-side-bar">
-          {item?.state}
-        </Card.Text>
-        <Card.Text className="sub-title-side-bar">
-          {item?.country}
-        </Card.Text>
+        <Card.Title className="title-side-bar">{item.city}</Card.Title>      
       </Card.ImgOverlay>
+      <Card.Body className="side-bar-body">
+        <Card.Text className="sub-title-side-bar side-bar-text">
+          {item?.state},  {item?.country}
+        </Card.Text>
+        <Card.Text className="sub-title-side-bar side-bar-date">
+          {getDateString(item?.date)}
+        </Card.Text>
+        </Card.Body>
     </Card>
   );
+
+
 }
 
 export default SideBarItem;
