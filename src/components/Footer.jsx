@@ -19,7 +19,7 @@ const Footer = () => {
             href="https://www.facebook.com/profile.php?id=100085509656617"
             rel="noreferrer"
           >
-            <FaFacebookSquare className="face-footer icon-footer " size={25} />
+            <FaFacebookSquare className="face-footer icon-footer " size={35} />
           </a>
         </div>
         <Image
@@ -33,7 +33,7 @@ const Footer = () => {
             href="https://www.instagram.com/van_re_corriendo/"
             rel="noreferrer"
           >
-            <FaInstagram className="insta-footer icon-footer" size={25} />
+            <FaInstagram className="insta-footer icon-footer" size={35} />
           </a>
         </div>
       </Container>

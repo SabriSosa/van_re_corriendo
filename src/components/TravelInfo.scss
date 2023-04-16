@@ -1,6 +1,6 @@
 .container-travel {
   padding: 0px !important;
-  margin-bottom: -5px;
+  margin-bottom: 3px;
 }
 .travel-information {
   background-color: #74a9db;
@@ -17,6 +17,7 @@
       background-color: #74a9db;
       align-items: center;
       border: none;
+      background: rgba(255, 255, 255, 0.2);
     }
   }
 
@@ -25,12 +26,13 @@
     border: 3px solid white !important;
     border-radius: 50% !important;
     font-size: 1em !important;
+    margin-top: 5px;
   }
 
   .card-subtitle {
     text-transform: uppercase;
     margin: 0px 20px !important;
-    font-size: 1.5rem !important;
+    font-size: 1.25rem !important;
   }
 
   .divider {
@@ -47,6 +49,7 @@
 #wave1 {
   transform: rotate(180deg);
   transition: 0.3s;
+  display: none;
 }
 #wave2 {
   transform: rotate(0deg);
@@ -56,4 +59,7 @@
 path {
   transform: translate(0, 0px);
   opacity: 1;
+}
+.wave-container{
+  padding: 0 !important;
 }

@@ -2,14 +2,17 @@ footer {
   background-color: #74a9db;
   text-align: center;
   padding: 8px;
-  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   .footer-image {
-    max-width: 11%;
+    max-width: 12%;
     cursor: pointer;
+    
+    @media (max-width: 480px) and (orientation: portrait) {
+      max-width: 25%;
+    }
   }
 
   .section1 {

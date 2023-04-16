@@ -9,9 +9,8 @@ import TravelInfo from "../components/TravelInfo";
 function Home() {
   return (
     <Container fluid className="main-container">
-      <SimpleCarousel />
-      <TravelInfo />
       <Destinations />
+      <TravelInfo />     
     </Container>
   );
 }

@@ -8,9 +8,9 @@ import { GrFacebookOption } from "react-icons/gr";
 import { RiInstagramLine } from "react-icons/ri";
 import "./NavBar.scss";
 
-
 const menu1 = [
-  { title: "Nosotros", action: "about-us" },  
+  { title: "Inicio", action: "home" },
+  { title: "Nosotros", action: "about-us" },
   // {
   //   title: "Destinos",
   //   action: "places",
@@ -19,16 +19,18 @@ const menu1 = [
   //     { title: "Chile", action: "chile" },
   //   ],
   // },
-  { title: "Recorrido", action: "route" },
+ 
+  { title: "Contacto", action: "contact" },
   { title: "Ayudanos", action: "help-us" },
 ];
-const menu2 = [ 
+const menu2 = [
   { title: "Construcción", action: "project" },
-  { title: "Contacto", action: "contact" },
+  { title: "Recorrido", action: "route" },
+ 
+  
 ];
 
 function NavBarMenu() {
-  
   return (
     <Container fluid className="navbar-container">
       <Navbar
