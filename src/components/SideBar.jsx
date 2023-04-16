@@ -4,7 +4,7 @@ import SideBarItem from "./SideBarItem";
 import "./SideBar.scss";
 import { useEffect } from "react";
 
-function SideBar({ routes, selectedPlace }) {
+function SideBar({ routes, selectedPlace , setSelectedPlace}) {
   useEffect(() => {
     if (selectedPlace) {
       const _selectedPlace = document.getElementById(selectedPlace);
@@ -24,6 +24,8 @@ function SideBar({ routes, selectedPlace }) {
             key={item.id}
             item={item}
             selectedPlace={selectedPlace}
+            setSelectedPlace={setSelectedPlace}
+
           />
         ))}
       </Container>

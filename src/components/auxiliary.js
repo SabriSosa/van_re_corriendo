@@ -46,3 +46,6 @@ export const getDateString = (date) => {
     new Date(1000 * date.seconds).getMonth() + 1
   }/${new Date(1000 * date.seconds).getFullYear()}`;
 };
+
+
+export const initialDate = new Date('2022-08-10')

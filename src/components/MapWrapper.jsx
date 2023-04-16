@@ -13,7 +13,7 @@ import Polyline from "ol/format/Polyline";
 import { Circle as CircleStyle, Fill, Icon, Stroke, Style } from "ol/style";
 import { Point } from "ol/geom";
 import { Select } from "ol/interaction";
-
+import {EventTarget} from "ol/events";
 import "./MapWrapper.scss";
 
 import { Container } from "react-bootstrap";
@@ -21,26 +21,39 @@ import { Container } from "react-bootstrap";
 function MapWrapper({ routes, coordinates, selectedPlace, setSelectedPlace }) {
   // set intial state
   const [map, setMap] = useState();
+  const [vSource, setvSource] = useState();
+  const [selectInteraction, setSelectInteraction] = useState();
   
   // pull refs
   const mapElement = useRef();
   const mapRef = useRef();
 
-  let selectStyle = function (feature) {
+  let selectStyle = function (feature) {    
     setSelectedPlace(feature.get("id"));
-    const img = feature.get("image").replace(/white/g, "skyblue");
+    const img = feature.get("image").replace(/white/g, "dodgerblue");
 
     let styles = [
       new Style({
         image: new Icon({
           src: img,
-          scale: 0.7,
+          scale: 0.9,
         }),
+        zIndex:1,
       }),
     ];
 
+    console.log('style', img)
     return styles;
   };
+
+  useEffect(() => {
+    if (selectedPlace && vSource) {
+      const __feature = vSource?.getFeatureById(selectedPlace)
+      var featuresCollection = selectInteraction.getFeatures();
+      featuresCollection.pop();
+      featuresCollection.push(__feature);
+    }
+  }, [selectedPlace,vSource ]);
 
   // initialize map on first render - logic formerly put into componentDidMount
   useEffect(() => {
@@ -79,6 +92,13 @@ function MapWrapper({ routes, coordinates, selectedPlace, setSelectedPlace }) {
         }),
         controls: [],
       });
+
+      initialMap.getLayerGroup()
+    
+       
+      initialMap.on('click', e => {
+    console.log(`layer click: ${e.coordinate}`)
+  })
 
       mapRef.current = initialMap;
       setMap(initialMap);
@@ -126,7 +146,7 @@ function MapWrapper({ routes, coordinates, selectedPlace, setSelectedPlace }) {
             }),
           };
 
-          let vSource = new VectorSource({
+          let _vSource = new VectorSource({
             features: [routeFeature],
           });
 
@@ -135,29 +155,35 @@ function MapWrapper({ routes, coordinates, selectedPlace, setSelectedPlace }) {
             const coord = [route.location._long, route.location._lat];
             const _feature = new Feature({
               geometry: new Point(coord),
-              image: route.images[0],
               id: route.id,
+              image: `https://res.cloudinary.com/djbmfd9y6/image/upload/w_100,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_white/Camiontito/Routes/${route.id}_1.png`,
+
             });
 
             const style = new Style({
               image: new Icon({
                 scale: 0.4,
-                src: route.images[0],
+                src: `https://res.cloudinary.com/djbmfd9y6/image/upload/w_100,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_white/Camiontito/Routes/${route.id}_1.png`,
               }),
             });
 
             _feature.setStyle(style);
+            _feature.setId(route.id);
 
-            vSource.addFeatures([_feature]);
+            _vSource.addFeatures([_feature]);
           }
 
           const vectorLayer = new VectorLayer({
-            source: vSource,
+            source: _vSource,
             style: function (feature) {
               return styles[feature.get("type")];
             },
           });
 
+          setvSource(_vSource);
+
+
+        
           map.addLayer(vectorLayer);
           // map.getView().fit(routeFeature.getGeometry());
         });
@@ -167,10 +193,14 @@ function MapWrapper({ routes, coordinates, selectedPlace, setSelectedPlace }) {
 
   useEffect(() => {
     if (map) {
-      let selectInteraction = new Select({
+      const _selectInteraction = new Select({
         style: selectStyle,
       });
-      map.addInteraction(selectInteraction);
+
+
+      setSelectInteraction(_selectInteraction);
+      
+      map.addInteraction(_selectInteraction);
     }
   }, [map]);
 
