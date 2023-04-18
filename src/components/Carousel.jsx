@@ -2,7 +2,7 @@ import { Container } from "react-bootstrap";
 import Carousel from "react-multi-carousel";
 import "./Carousel.scss";
 import { useState } from "react";
-import TitleComp from "./Title";
+import TitleComp from "./generic/Title";
 
 const responsive = {
   desktop: {

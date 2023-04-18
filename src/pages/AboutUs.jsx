@@ -1,8 +1,8 @@
 import React from "react";
 
 import { Container, Image } from "react-bootstrap";
-import TitleComp from "../components/Title";
 import { MdPerson } from "react-icons/md";
+import TitleComp from "../components/generic/Title";
 
 import "./AboutUs.scss";
 

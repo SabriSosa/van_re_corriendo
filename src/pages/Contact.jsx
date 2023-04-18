@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { Button, Container, Form } from 'react-bootstrap';
-import TitleComp from '../components/Title';
+import TitleComp from "../components/generic/Title";
 import "./Contact.scss";
 
 const ContactForm = () => {

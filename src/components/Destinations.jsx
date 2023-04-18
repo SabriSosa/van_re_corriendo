@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Container, Spinner } from "react-bootstrap";
 import "./Destinations.scss";
-import TitleComp from "./Title";
+import TitleComp from "./generic/Title";
 import Post from "./Post";
 import PostModal from "./PostModal";
 import PaginationPost from "./Pagination";

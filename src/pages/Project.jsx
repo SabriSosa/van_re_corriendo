@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 import { Image, Button } from "react-bootstrap";
 import "./Project.scss";
-import TitleComp from "../components/Title";
+import TitleComp from "../components/generic/Title";
 import Wave from "../components/Wave";
 import ProjectItem from "../components/ProjectItem";
 import * as FirestoreService from "../services/firestore";

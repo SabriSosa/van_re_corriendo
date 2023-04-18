@@ -1,9 +1,9 @@
 // react
 import React, { useState, useEffect } from "react";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
-import MapWrapper from "../components/MapWrapper";
+import TravelMap from "../components/TravelMap";
 import Sidebar from "../components/SideBar";
-import TitleComp from "../components/Title";
+import TitleComp from "../components/generic/Title";
 import * as FirestoreService from "../services/firestore";
 import "./TravelRoute.scss";
 
@@ -58,7 +58,7 @@ function TravelRoute() {
           />
         </Col>
         <Col xs={10} id="page-content-wrapper" className="mapwrapper">
-          <MapWrapper
+          <TravelMap
             routes={routes}
             coordinates={coordinates}
             selectedPlace={selectedPlace}
