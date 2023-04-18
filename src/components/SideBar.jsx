@@ -9,8 +9,8 @@ function SideBar({ routes, selectedPlace , setSelectedPlace}) {
     if (selectedPlace) {
       const _selectedPlace = document.getElementById(selectedPlace);
       _selectedPlace.scrollIntoView({
-        block: "nearest",
-        inline: "nearest",
+        block: "center",
+        inline: "center",
         behavior: "smooth",
       });
     }
@@ -21,6 +21,7 @@ function SideBar({ routes, selectedPlace , setSelectedPlace}) {
       <Container className="side-bar-container">
         {routes.map((item) => (
           <SideBarItem
+            id={item.id}
             key={item.id}
             item={item}
             selectedPlace={selectedPlace}

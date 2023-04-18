@@ -47,6 +47,7 @@ function TravelRoute() {
 
   return (
     <Container fluid className="travel-route">
+      <Container  id="side_bar_pc">
       <TitleComp title1="Recorrido" title2="" />
       <Row>
         <Col xs={2} id="sidebar-wrapper" className="sidebar">
@@ -65,6 +66,25 @@ function TravelRoute() {
           />
         </Col>
       </Row>
+      </Container>
+      <Container  id="side_bar_mobile">
+      <TitleComp title1="Recorrido" title2="" />
+      <Container id="page-content-wrapper" className="mapwrapper">
+          <MapWrapper
+            routes={routes}
+            coordinates={coordinates}
+            selectedPlace={selectedPlace}
+            setSelectedPlace={setSelectedPlace}
+          />
+        </Container>
+        <Container id="sidebar-wrapper" className="sidebar">
+          <Sidebar
+            routes={routes}
+            selectedPlace={selectedPlace}
+            setSelectedPlace={setSelectedPlace}
+          />
+        </Container>   
+      </Container>
     </Container>
   );
 }

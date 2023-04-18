@@ -57,6 +57,9 @@ import Footer from "./components/Footer";
 
 function App() {
   const firestoreInstance = getFirestore(useFirebaseApp());
+  
+console.log("firestore instance", firestoreInstance);
+
   return (
     <BrowserRouter>
 
