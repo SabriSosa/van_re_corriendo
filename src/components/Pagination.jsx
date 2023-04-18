@@ -12,11 +12,14 @@ export default function PaginationPost({ data, rowsPerPage, totalPages = 1 }) {
   const [showedData, showData] = React.useState(data.slice(0, rowsPerPage));
 
   const handleClick = (page) => {
-    setCurrentPage(page);
-    const pageIndex = page - 1;
-    const firstIndex = pageIndex * rowsPerPage;
-    const lastIndex = pageIndex * rowsPerPage + rowsPerPage;
-    showData(data.slice(firstIndex, lastIndex));
+    if (page >= 1 && page <=totalPages){
+      setCurrentPage(page);
+      const pageIndex = page - 1;
+      const firstIndex = pageIndex * rowsPerPage;
+      const lastIndex = pageIndex * rowsPerPage + rowsPerPage;
+      showData(data.slice(firstIndex, lastIndex));
+    }
+   
   };
 
   let items = [];
@@ -36,7 +39,13 @@ export default function PaginationPost({ data, rowsPerPage, totalPages = 1 }) {
       <Row xs={1} md={3} className="g-4 destinations">
         {showedData.map((data) => data)}
       </Row>
-      <Pagination className="pagination-destinations">{items}</Pagination>
+      <Pagination className="pagination-destinations">
+        <Pagination.First onClick={()=>handleClick(1)} />
+        <Pagination.Prev onClick={()=>handleClick(currentPage - 1)} />
+        {items}
+        <Pagination.Next  onClick={()=>handleClick(currentPage + 1)}/>
+        <Pagination.Last onClick={()=>handleClick(totalPages)}/>
+      </Pagination>
     </Container>
   );
 }
