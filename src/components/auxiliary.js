@@ -21,12 +21,15 @@ export function getCity(lat, lng, setItem) {
   function processRequest(e) {
     if (xhr.readyState === 4 && xhr.status === 200) {
       var response = JSON.parse(xhr.responseText);
+      const _address = response.address;
+      const city =
+        _address?.city ||
+        _address?.village ||
+        _address?.town ||
+        _address?.county;
+
       var ret =
-        response.address.city +
-        ", " +
-        response.address.state +
-        ", " +
-        response.address.country;
+        city + ", " + response.address.state + ", " + response.address.country;
       setItem(ret);
       return;
     }
@@ -47,5 +50,13 @@ export const getDateString = (date) => {
   }/${new Date(1000 * date.seconds).getFullYear()}`;
 };
 
+export const initialDate = new Date("2022-08-10");
 
-export const initialDate = new Date('2022-08-10')
+export const getDateFormat = (date) => {
+  const dateArray = date.split("-");
+  const _year = dateArray[0];
+  const _month = parseInt(dateArray[1], 10) - 1;
+  const _date = dateArray[2];
+  const _entryDate = new Date(_year, _month, _date);
+  return _entryDate;
+};

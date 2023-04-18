@@ -6,6 +6,7 @@ import AboutUs from "./pages/AboutUs";
 import ProjectForm from "./pages/Project";
 import TravelRoute from "./pages/TravelRoute";
 import HelpUs from "./pages/HelpUs";
+import NewItem from "./pages/NewItem";
 
 function Router() {
   return (
@@ -16,6 +17,7 @@ function Router() {
       <Route path="/project" element={<ProjectForm />} />
       <Route path="/route" element={<TravelRoute/>} />
       <Route path="/help-us" element={<HelpUs/>} />
+      <Route path="/new-item" element={<NewItem/>} />
       <Route path="*" element={<Navigate to="/home" replace />} />
     </Routes>
   );

@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.scss";
+import 'react-notifications/lib/notifications.css';
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { FirebaseAppProvider } from "reactfire";

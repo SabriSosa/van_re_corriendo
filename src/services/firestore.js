@@ -4,8 +4,13 @@ import {
   query,
   orderBy,
   collection,
-  getDocs
+  getDocs,
+  addDoc,
+  serverTimestamp,
+  GeoPoint,
+  limit,
 } from "firebase/firestore";
+import { uploadPhotoCloudinary } from "../components/auxiliary";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -35,6 +40,30 @@ export const getRoutes = () => {
 export const getProjects = () => {
   const sectionsCollectionRef = collection(db, "project");
   const q = query(sectionsCollectionRef, orderBy("order", "asc"));
+  return getDocs(q);
+};
+
+export const createRoute = async ({ lon, lat, ...rest }) => {
+  const routesColRef = collection(db, "route");
+
+  return addDoc(routesColRef, {
+    created: serverTimestamp(),
+    location: new GeoPoint(lat, lon),
+    ...rest,
+  });
+};
+export const createPost = async ({ lon, lat, ...rest }) => {
+  const postsColRef = collection(db, "post");
+  return addDoc(postsColRef, {
+    created: serverTimestamp(),
+    location: new GeoPoint(lat, lon),
+    ...rest,
+  });
+};
+
+export const getMaxId = (id) => {
+  const colRef = collection(db, id);
+  const q = query(colRef, orderBy("id", "desc"), limit(1));
   return getDocs(q);
 };
 
