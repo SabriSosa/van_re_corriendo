@@ -7,6 +7,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { GrFacebookOption } from "react-icons/gr";
 import { RiInstagramLine } from "react-icons/ri";
 import "./NavBar.scss";
+import { Link } from 'react-router-dom'
 
 const menu1 = [
   { title: "Inicio", action: "home" },
@@ -42,9 +43,9 @@ function NavBarMenu() {
       >
         <Container fluid className="offcanvas-container">
           <Container fluid className="toggle-nav">
-            <Nav.Link href="/home" className="logo-link-mobile">
+            <Link to="/home" className="logo-link-mobile nav-link">
               <Image src="https://res.cloudinary.com/djbmfd9y6/image/upload/c_scale,h_50/v1670534765/Camiontito/logo_t5a3np.png" />
-            </Nav.Link>
+            </Link>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand`} />
           </Container>
           <Navbar.Offcanvas
@@ -59,41 +60,41 @@ function NavBarMenu() {
                   menu.submenu ? (
                     <NavDropdown key={menu.title} title={menu.title}>
                       {menu.submenu.map((sub) => (
-                        <NavDropdown.Item key={sub.title} href={sub.action}>
+                        <NavDropdown.Item key={sub.title} to={sub.action}>
                           {sub.title}
                         </NavDropdown.Item>
                       ))}
                     </NavDropdown>
                   ) : (
-                    <Nav.Link key={menu.title} href={menu.action}>
+                    <Link key={menu.title} to={menu.action} className="nav-link">
                       {menu.title}
-                    </Nav.Link>
+                    </Link>
                   )
                 )}
-                <Nav.Link href="/home" className="logo-link-menu">
+                <Link to="/home" className="logo-link-menu nav-link">
                   <Image src="https://res.cloudinary.com/djbmfd9y6/image/upload/c_scale,h_150/v1670534765/Camiontito/logo_t5a3np.png" />
-                </Nav.Link>
+                </Link>
 
                 {menu2.map((menu) => (
-                  <Nav.Link key={menu.title} href={menu.action}>
+                  <Link key={menu.title} to={menu.action} className="nav-link">
                     {menu.title}
-                  </Nav.Link>
+                  </Link>
                 ))}
 
-                <Nav.Link
+                <Link
                   target="_blank"
-                  href="https://www.facebook.com/profile.php?id=100085509656617"
-                  className="social-media-menu"
+                  to="https://www.facebook.com/profile.php?id=100085509656617"
+                  className="social-media-menu nav-link"
                 >
                   <GrFacebookOption />
-                </Nav.Link>
-                <Nav.Link
+                </Link>
+                <Link
                   target="_blank"
-                  href="https://www.instagram.com/van_re_corriendo"
-                  className="social-media-menu"
+                  to="https://www.instagram.com/van_re_corriendo"
+                  className="social-media-menu nav-link"
                 >
                   <RiInstagramLine />
-                </Nav.Link>
+                </Link>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
