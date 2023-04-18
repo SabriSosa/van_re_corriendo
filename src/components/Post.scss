@@ -1,7 +1,7 @@
 .card-post {
   border: none !important;
-  display: flex;
-  flex-direction: row;
+  display: flex !important;
+  flex-direction: row !important;
 
   .card-title {
     text-align: center;

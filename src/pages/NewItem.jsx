@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { Col, Container, Row, Spinner, Toast } from "react-bootstrap";
+import { Col, Container, Row, Spinner } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import * as FirestoreService from "../services/firestore";
 import NewItemMap from "../components/NewItemMap";
 import CustomModal from "../components/generic/CustomModal";
 import { format } from "date-fns";
-import Alert from "react-bootstrap/Alert";
 
 import "./NewItem.scss";
 import { getAddress, getDateFormat } from "../components/auxiliary";

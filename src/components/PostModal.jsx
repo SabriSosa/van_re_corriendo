@@ -20,7 +20,6 @@ export default function PostModal({ show, onHide, selectedPost }) {
 
   const handleOnHide = () => {
     setPostCity(null);
-    console.log("on hide?")
     onHide();
   };
 
