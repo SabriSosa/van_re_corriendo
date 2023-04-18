@@ -20,6 +20,12 @@
 .post-modal {
   .modal-dialog {
     max-width: 61% !important;
+
+    @media only screen 
+    and (max-device-width: 480px) 
+    and (orientation: portrait) {
+      max-width: 100% !important;
+    }
   }
 }
 

@@ -40,11 +40,12 @@ const ContactForm = () => {
     
   return (
     <Container>
-      <TitleComp title1="Contacto" />
-      
+      <TitleComp title1="Contacto" />      
+      <p className='text-contact'>
       Ahora es el momento donde podés hacernos todas las preguntas que quieras y sacarte todas esas dudas que tienes en mente.
       Si quieres saber más sobre la construcción del motorhome, sobre los lugares que visitamos, si quieres saber nuestra opinión,
       o simplemente quieres conocernos un poco mas no dudes en escribirnos.
+      </p>
 
       <Form className="form-contact" onSubmit={sendEmail} ref={form} >
         <Form.Group className="mb-3" controlId="name" >

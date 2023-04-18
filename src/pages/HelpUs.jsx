@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Container } from "react-bootstrap";
-import TitleComp from "../components/Title";
+import TitleComp from "../components/generic/Title";
 
 import "./HelpUs.scss";
 
