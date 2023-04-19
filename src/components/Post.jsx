@@ -9,16 +9,37 @@ import SimpleCarrousel from "./SimpleCarrousel";
 import SocialMedia from "./SocialMedia";
 
 export default function Post({ post, setModalShow, setSelectedPost }) {
-  
   const handleClick = () => {
     setSelectedPost(post);
     setModalShow(true);
   };
 
+  const body = (id) => {
+    return ( <Card.Body className={`post-${id}`}>
+    <Card.Title className="title-destination">{post.title}</Card.Title>
+    <Container fluid className="description-destination">
+      <div
+        className="text-description"
+        dangerouslySetInnerHTML={{
+          __html: DOMPurify.sanitize(post.description),
+        }}
+      ></div>
+
+      <Button
+        variant="primary"
+        onClick={handleClick}
+        className="see-more-button"
+      >
+        Ver Mas
+      </Button>
+    </Container>
+  </Card.Body>)
+  };
+
   return (
     <Col id={post.title}>
       <Card className="card-post">
-        <SocialMedia post ={post}/>
+        <SocialMedia post={post} />
         <div>
           <div className="img-hover-zoom img-hover-zoom--basic">
             <SimpleCarrousel
@@ -28,48 +49,10 @@ export default function Post({ post, setModalShow, setSelectedPost }) {
               images={post.images}
             />
           </div>
-          <Card.Body className="post-pc">
-            <Card.Title className="title-destination">{post.title}</Card.Title>
-            <Container fluid className="description-destination">
-              <div
-                className="text-description"
-                dangerouslySetInnerHTML={{
-                  __html:
-                    DOMPurify.sanitize(post.description)
-                }}
-              ></div>
-
-              <Button
-                variant="primary"
-                onClick={handleClick}
-                className="see-more-button"
-              >
-                Ver Mas
-              </Button>
-            </Container>
-          </Card.Body>
+          {body("pc")}
         </div>
       </Card>
-      <Card.Body className="post-mobile">
-            <Card.Title className="title-destination">{post.title}</Card.Title>
-            <Container fluid className="description-destination">
-              <div
-                className="text-description"
-                dangerouslySetInnerHTML={{
-                  __html:
-                    DOMPurify.sanitize(post.description)
-                }}
-              ></div>
-
-              <Button
-                variant="primary"
-                onClick={handleClick}
-                className="see-more-button"
-              >
-                Ver Mas
-              </Button>
-            </Container>
-          </Card.Body>
+      {body("mobile")}
     </Col>
   );
 }

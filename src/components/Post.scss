@@ -31,7 +31,7 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5;
-  text-align: justify;
+  text-align: center;
 }
 
 .post-mobile{
@@ -61,3 +61,4 @@ and (orientation: portrait) {
     text-align: justify;
   }
 }
+
