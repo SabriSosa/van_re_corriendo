@@ -35,8 +35,8 @@ function NavBarMenu() {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
-
   const handleClose = () => setMenuOpen(false);
+
   return (
     <Container fluid className="navbar-container">
       <Navbar
@@ -77,7 +77,7 @@ function NavBarMenu() {
                     </NavDropdown>
                   ) : (
                     <Link
-                      onClick={toggleMenu}
+                      onClick={handleClose}
                       key={menu.title}
                       to={menu.action}
                       className="nav-link"
@@ -87,7 +87,7 @@ function NavBarMenu() {
                   )
                 )}
                 <Link
-                  onClick={toggleMenu}
+                  onClick={handleClose}
                   to="/home"
                   className="logo-link-menu nav-link"
                 >
@@ -96,7 +96,7 @@ function NavBarMenu() {
 
                 {menu2.map((menu) => (
                   <Link
-                    onClick={toggleMenu}
+                    onClick={handleClose}
                     key={menu.title}
                     to={menu.action}
                     className="nav-link"
@@ -105,22 +105,22 @@ function NavBarMenu() {
                   </Link>
                 ))}
 
-                <Link
-                  onClick={toggleMenu}
+                <a
+                  onClick={handleClose}
                   target="_blank"
-                  to="https://www.facebook.com/profile.php?id=100085509656617"
+                  href="https://www.facebook.com/profile.php?id=100085509656617"
                   className="social-media-menu nav-link"
                 >
                   <GrFacebookOption />
-                </Link>
-                <Link
-                  onClick={toggleMenu}
+                </a>
+                <a
+                  onClick={handleClose}
                   target="_blank"
-                  to="https://www.instagram.com/van_re_corriendo"
+                  href="https://www.instagram.com/van_re_corriendo"
                   className="social-media-menu nav-link"
                 >
                   <RiInstagramLine />
-                </Link>
+                </a>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>

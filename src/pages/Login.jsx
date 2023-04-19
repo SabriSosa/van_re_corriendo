@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import * as AuthService from '../services/auth'
+import * as AuthService from "../services/auth";
 
 import "./Login.scss";
 import {
@@ -28,22 +28,21 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const { email, password } = event.target;
-    
+
     const _fn =
-    authMode === "signin"
+      authMode === "signin"
         ? signInWithEmailAndPassword
         : createUserWithEmailAndPassword;
-
 
     _fn(auth, email.value, password.value)
       .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;
-        if (authMode === "signup"){
-            NotificationManager.success("Se ha creado el usuario correctamente");
-        }else{
-            await AuthService.loggedIn(user);
-            navigate("/new-item");
+        if (authMode === "signup") {
+          NotificationManager.success("Se ha creado el usuario correctamente");
+        } else {
+          await AuthService.loggedIn(user);
+          navigate("/new-item");
         }
       })
       .catch((error) => {
@@ -88,10 +87,8 @@ function Login() {
           <Form.Control type="password" placeholder="Password" />
         </Form.Group>
         <Container className="mb-3 login-btn">
-          <Button variant="primary" type="submit" className="new-item-button"  >
-          {authMode === "signin"
-            ? "Sign In"
-            : "Sign Up"}
+          <Button variant="primary" type="submit" className="new-item-button">
+            {authMode === "signin" ? "Sign In" : "Sign Up"}
           </Button>
         </Container>
       </Form>
