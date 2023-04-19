@@ -62,7 +62,7 @@ function NewItemMap({setCoord}) {
     }
   }, [map]);
 
-  return <MapWrapper map={map} setMap={setMap} />;
+  return <MapWrapper setMap={setMap} />;
 }
 
 export default NewItemMap;

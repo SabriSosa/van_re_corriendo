@@ -36,4 +36,35 @@
       padding-right: 0 !important;
     }
   }
+
+  .sidebar{
+    display: flex;
+    position: fixed;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    background-color: white;
+  }
+
+  .side-bar-container{
+    padding-bottom: 10px;
+    padding-top: 5px;
+  }
+
+  .travel-route{
+    padding: 0px !important
+
+  }
+
+  .travel-route-container{
+    padding: 0px !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    background-color: white;
+  }
+  
 }

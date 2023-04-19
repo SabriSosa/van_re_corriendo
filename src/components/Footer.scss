@@ -3,6 +3,10 @@ footer {
   text-align: center;
   padding: 8px;
   display: flex;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  right: 0;
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
@@ -15,7 +19,7 @@ footer {
     }
   }
 
-  .section1 {
+  .footer-container {
     justify-content: center;
     align-items: center;
     display: flex;

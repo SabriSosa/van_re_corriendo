@@ -12,7 +12,7 @@ const Footer = () => {
 
   return (
     <footer>
-      <Container className="section1">
+      <Container className="footer-container">
         <div>
           <a
             target="_blank"

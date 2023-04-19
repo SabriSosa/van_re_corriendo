@@ -141,7 +141,7 @@ function TravelMap({ routes, coordinates, selectedPlace, setSelectedPlace }) {
     }
   }, [map]);
 
-  return <MapWrapper map={map} setMap={setMap} />;
+  return <MapWrapper setMap={setMap} />;
 }
 
 export default TravelMap;

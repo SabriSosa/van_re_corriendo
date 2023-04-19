@@ -1,5 +1,6 @@
 // react
 import React, { useState, useEffect, useRef } from "react";
+import { isMobile } from "react-device-detect";
 
 // openlayers
 import Map from "ol/Map";
@@ -9,14 +10,42 @@ import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import XYZ from "ol/source/XYZ";
 import "./MapWrapper.scss";
+import {
+  FullScreen,
+  defaults as defaultControls,
+  Control,
+  Zoom,
+} from "ol/control.js";
 
 import { Container } from "react-bootstrap";
+import { useNavigate } from "react-router";
 
-function MapWrapper({ map, setMap }) {
+function MapWrapper({ setMap }) {
   const mapElement = useRef();
   const mapRef = useRef();
 
+  const navigate = useNavigate();
 
+  const createBackButton = () => {
+    let button = document.createElement("button");
+    button.innerHTML = '<i class="fa fa-arrow-left"></i>';
+
+    const handleBack = function (e) {
+      navigate("/home");
+    };
+
+    button.addEventListener("click", handleBack, false);
+
+    let element = document.createElement("div");
+    element.className = "ol-control back-button";
+    element.appendChild(button);
+
+    const BackButton = new Control({
+      element: element,
+    });
+
+    return BackButton;
+  };
   useEffect(() => {
     // create and add vector source layer
     const initalFeaturesLayer = new VectorLayer({
@@ -51,9 +80,15 @@ function MapWrapper({ map, setMap }) {
           minZoom: 2,
           maxZoom: 19,
         }),
-        controls: [],
+
+        controls: [new FullScreen()],
       });
 
+      if (!isMobile) {
+        initialMap.addControl(new Zoom());
+      } else {
+        initialMap.addControl(createBackButton());
+      }
       mapRef.current = initialMap;
       setMap(initialMap);
     }

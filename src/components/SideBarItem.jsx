@@ -20,7 +20,7 @@ function SideBarItem({ item, selectedPlace, setSelectedPlace }) {
       onClick={() => setSelectedPlace(item.id)}
     >
       <Card.Img
-        src={`https://res.cloudinary.com/djbmfd9y6/image/upload/c_fill,h_250,w_250/Camiontito/Routes/${item.id}_1.jpg`}
+        src={`https://res.cloudinary.com/djbmfd9y6/image/upload/c_fill,h_200,w_200/Camiontito/Routes/${item.id}_1.jpg`}
         alt="Card image"
       />
       <Card.ImgOverlay>

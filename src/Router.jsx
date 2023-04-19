@@ -8,13 +8,9 @@ import TravelRoute from "./pages/TravelRoute";
 import HelpUs from "./pages/HelpUs";
 import NewItem from "./pages/NewItem";
 import Login from "./pages/Login";
-import * as AuthService from './services/auth'
+import * as AuthService from "./services/auth";
 
-const ProtectedRoute = ({
-  redirectPath = '/login',
-  children,
-}) => {
-  
+const ProtectedRoute = ({ redirectPath = "/login", children }) => {
   const isLoggedIn = AuthService.isLoggedIn();
 
   if (!isLoggedIn) {
@@ -25,25 +21,23 @@ const ProtectedRoute = ({
 };
 
 function Router() {
-
-
   return (
     <Routes>
       <Route path="/home" element={<Home />} />
       <Route path="/contact" element={<ContactForm />} />
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/project" element={<ProjectForm />} />
-      <Route path="/route" element={<TravelRoute/>} />
-      <Route path="/help-us" element={<HelpUs/>} />
-      <Route path="/login" element={<Login/>} />
+      <Route path="/route" element={<TravelRoute />} />
+      <Route path="/help-us" element={<HelpUs />} />
+      <Route path="/login" element={<Login />} />
       <Route
-          path="/new-item"
-          element={
-            <ProtectedRoute>
-              <NewItem />
-            </ProtectedRoute>
-          }
-        />
+        path="/new-item"
+        element={
+          <ProtectedRoute>
+            <NewItem />
+          </ProtectedRoute>
+        }
+      />
       <Route path="*" element={<Navigate to="/home" replace />} />
     </Routes>
   );
