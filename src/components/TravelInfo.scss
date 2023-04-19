@@ -48,14 +48,12 @@
 
 #wave1 {
   transform: rotate(180deg);
-  transition: 0.3s;
-  display: none;
+  transition: 0.3s;  
 }
 #wave2 {
   transform: rotate(0deg);
   transition: 0.3s;
 }
-
 path {
   transform: translate(0, 0px);
   opacity: 1;

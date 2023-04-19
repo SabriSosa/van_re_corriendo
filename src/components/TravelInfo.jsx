@@ -70,7 +70,7 @@ function TravelInfo() {
     </Container>
   );
 
-  return <Wave children={info} />;
+  return <Wave children={info} wave1={false} />;
 }
 
 export default TravelInfo;

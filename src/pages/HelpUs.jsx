@@ -28,7 +28,7 @@ function HelpUs() {
       </p>
 
       <p>
-      También nos podés escribir desde las redes sociales:
+      O escribirnos desde las redes sociales:
       <a className="social" href="https://www.messenger.com/t/100085509656617" target="_blank">
       <img src="https://res.cloudinary.com/djbmfd9y6/image/upload/c_scale,w_150/v1681856889/Camiontito/fb-logo.png"/>
       </a>

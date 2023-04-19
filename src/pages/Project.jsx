@@ -100,7 +100,7 @@ function ProjectForm() {
         className="full-image"
         src="https://res.cloudinary.com/djbmfd9y6/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1673556330/Camiontito/IMG_20220514_150555_ed0ev6.jpg"
       />
-      <Wave children={info} />
+      <Wave className='wave-project' children={info} />
 
       {projects?.map((item) => (
         <ProjectItem key={item.id} item={item} />
