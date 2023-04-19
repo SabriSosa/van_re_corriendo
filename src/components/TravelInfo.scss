@@ -1,6 +1,6 @@
 .container-travel {
   padding: 0px !important;
-  margin-bottom: 3px;
+  margin-bottom: -18px;
 }
 .travel-information {
   background-color: #74a9db;
@@ -48,7 +48,7 @@
 
 #wave1 {
   transform: rotate(180deg);
-  transition: 0.3s;  
+  transition: 0.3s;
 }
 #wave2 {
   transform: rotate(0deg);
@@ -58,6 +58,6 @@ path {
   transform: translate(0, 0px);
   opacity: 1;
 }
-.wave-container{
+.wave-container {
   padding: 0 !important;
 }

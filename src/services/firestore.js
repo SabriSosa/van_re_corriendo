@@ -30,7 +30,7 @@ export const auth = getAuth(app);
 
 export const getPosts = () => {
   const sectionsCollectionRef = collection(db, "post");
-  const q = query(sectionsCollectionRef, orderBy("id", "asc"));
+  const q = query(sectionsCollectionRef, orderBy("id", "desc"));
   return getDocs(q);
 };
 

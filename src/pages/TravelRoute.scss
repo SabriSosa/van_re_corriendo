@@ -66,5 +66,7 @@
     z-index: 99;
     background-color: white;
   }
-  
+  .text-center{
+    min-height: calc(100vh - 34px);
+  }
 }
