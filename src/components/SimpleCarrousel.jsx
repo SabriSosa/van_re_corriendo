@@ -34,7 +34,7 @@ export default function SimpleCarrousel({
       }
       activeIndex={index}
       onSelect={handleSelect}
-      interval={3000}
+      interval={null}
     >
       {images.map((image) => (
         <Carousel.Item id={image} key={image}>
@@ -42,7 +42,7 @@ export default function SimpleCarrousel({
             <AdvancedVideo
               className="d-block w-100"
               controls = {true}
-              autoPlay
+              //autoPlay
               cldVid={cld
                 .video(`${prefix}/${image}`)
                 .addTransformation("ar_3:4,c_crop")}

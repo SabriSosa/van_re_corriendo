@@ -6,6 +6,7 @@ import Wave from "../components/Wave";
 import ProjectItem from "../components/ProjectItem";
 import * as FirestoreService from "../services/firestore";
 import { useEffect, useState } from "react";
+import ScrollToTop from "react-scroll-to-top";
 
 function ProjectForm() {
   const [projects, setProjects] = useState();
@@ -68,7 +69,7 @@ function ProjectForm() {
   return (
     <Container className="project">
       <TitleComp title1="Construccion" title2="" />
-
+      <ScrollToTop smooth color="rgba(116, 169, 219, 1)" /> 
       <p>
         Si sos de las personas que les encanta viajar, te imaginas levantándote
         todos los días en un lugar diferente? Conocer distintas personas y

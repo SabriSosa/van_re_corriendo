@@ -30,6 +30,7 @@
     "react-openlayers": "^0.3.0",
     "react-router-dom": "^6.4.5",
     "react-scripts": "5.0.1",
+    "react-scroll-to-top": "^3.0.0",
     "react-share": "^4.4.1",
     "reactfire": "^4.2.2",
     "web-vitals": "^2.1.4"
