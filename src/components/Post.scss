@@ -2,6 +2,7 @@
   border: none !important;
   display: flex !important;
   flex-direction: row !important;
+  margin: 20px 0;
 
   .card-title {
     text-align: center;
@@ -30,5 +31,28 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5;
-  text-align: center;
+  text-align: justify;
+}
+
+.post-mobile{
+  display: none;
+}
+
+@media only screen 
+and (max-device-width: 480px) 
+and (orientation: portrait) {
+  
+  .post-pc{
+    display: none;
+  }
+
+  .post-mobile{
+    display: inline;
+    margin-top: 10px;
+  }
+
+  .title-destination{
+    text-align: center;
+  }
+
 }

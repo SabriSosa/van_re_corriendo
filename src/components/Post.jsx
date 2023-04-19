@@ -28,7 +28,7 @@ export default function Post({ post, setModalShow, setSelectedPost }) {
               images={post.images}
             />
           </div>
-          <Card.Body>
+          <Card.Body className="post-pc">
             <Card.Title className="title-destination">{post.title}</Card.Title>
             <Container fluid className="description-destination">
               <div
@@ -50,6 +50,26 @@ export default function Post({ post, setModalShow, setSelectedPost }) {
           </Card.Body>
         </div>
       </Card>
+      <Card.Body className="post-mobile">
+            <Card.Title className="title-destination">{post.title}</Card.Title>
+            <Container fluid className="description-destination">
+              <div
+                className="text-description"
+                dangerouslySetInnerHTML={{
+                  __html:
+                    DOMPurify.sanitize(post.description)
+                }}
+              ></div>
+
+              <Button
+                variant="primary"
+                onClick={handleClick}
+                className="see-more-button"
+              >
+                Ver Mas
+              </Button>
+            </Container>
+          </Card.Body>
     </Col>
   );
 }
