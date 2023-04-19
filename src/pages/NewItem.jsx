@@ -22,22 +22,21 @@ function NewItem() {
   const [address, setAddress] = useState();
   const [modalShow, setModalShow] = React.useState(false);
 
-
   useEffect(() => {
     async function fetchData() {
       let _id;
       const querySnapshot = await FirestoreService.getMaxId("post");
-  
+
       querySnapshot.forEach(async (doc) => {
         const data = doc.data();
         _id = data.id + 1;
       });
-    
+
       setIdItem(_id);
     }
     fetchData();
-  }, []); 
-  
+  }, []);
+
   const uploadPhoto = (files, id, folder) => {
     const url = `https://api.Cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`;
 
@@ -192,7 +191,7 @@ function NewItem() {
           <Form.Group as={Col} controlId="id">
             <Form.Label>Id</Form.Label>
             <Form.Control
-              value={idItem || ''}
+              value={idItem || ""}
               type="text"
               name="idItem"
               readOnly
@@ -234,11 +233,21 @@ function NewItem() {
           <Row>
             <Form.Group as={Col} controlId="latitude">
               <Form.Label>Latitude</Form.Label>
-              <Form.Control type="text" value={coord?.lat || ''} readOnly disabled />
+              <Form.Control
+                type="text"
+                value={coord?.lat || ""}
+                readOnly
+                disabled
+              />
             </Form.Group>
             <Form.Group as={Col} controlId="longitude">
               <Form.Label>Longitude</Form.Label>
-              <Form.Control type="text" value={coord?.lon || ''} readOnly disabled />
+              <Form.Control
+                type="text"
+                value={coord?.lon || ""}
+                readOnly
+                disabled
+              />
             </Form.Group>
           </Row>
         )}

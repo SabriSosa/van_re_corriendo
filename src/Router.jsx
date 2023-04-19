@@ -7,8 +7,26 @@ import ProjectForm from "./pages/Project";
 import TravelRoute from "./pages/TravelRoute";
 import HelpUs from "./pages/HelpUs";
 import NewItem from "./pages/NewItem";
+import Login from "./pages/Login";
+import * as AuthService from './services/auth'
+
+const ProtectedRoute = ({
+  redirectPath = '/login',
+  children,
+}) => {
+  
+  const isLoggedIn = AuthService.isLoggedIn();
+
+  if (!isLoggedIn) {
+    return <Navigate to={redirectPath} replace />;
+  }
+
+  return children;
+};
 
 function Router() {
+
+
   return (
     <Routes>
       <Route path="/home" element={<Home />} />
@@ -17,7 +35,15 @@ function Router() {
       <Route path="/project" element={<ProjectForm />} />
       <Route path="/route" element={<TravelRoute/>} />
       <Route path="/help-us" element={<HelpUs/>} />
-      <Route path="/new-item" element={<NewItem/>} />
+      <Route path="/login" element={<Login/>} />
+      <Route
+          path="/new-item"
+          element={
+            <ProtectedRoute>
+              <NewItem />
+            </ProtectedRoute>
+          }
+        />
       <Route path="*" element={<Navigate to="/home" replace />} />
     </Routes>
   );

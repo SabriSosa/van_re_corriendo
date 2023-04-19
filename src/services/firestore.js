@@ -1,3 +1,4 @@
+import { getAuth } from "@firebase/auth";
 import { initializeApp } from "firebase/app";
 import {
   getFirestore,
@@ -24,11 +25,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+
+export const auth = getAuth(app);
+
 export const getPosts = () => {
   const sectionsCollectionRef = collection(db, "post");
   const q = query(sectionsCollectionRef, orderBy("id", "asc"));
   return getDocs(q);
 };
+
+
 
 export const getRoutes = () => {
   const sectionsCollectionRef = collection(db, "route");
