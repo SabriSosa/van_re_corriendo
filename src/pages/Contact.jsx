@@ -1,11 +1,11 @@
-import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import React, { useRef, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import TitleComp from "../components/generic/Title";
 import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
+import TitleComp from "../components/generic/Title";
 
 import "./Contact.scss";
 

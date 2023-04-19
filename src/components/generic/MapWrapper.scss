@@ -15,12 +15,11 @@
   left: 0.5em;
 }
 
-
-.back-button{
+.back-button {
   left: 0.5em;
   top: 0.5em;
 
-  .fa{
+  .fa {
     font-size: 20px;
   }
 }
@@ -31,11 +30,17 @@
   }
 }
 
+@media only screen and (max-device-width: 480px) and (orientation: portrait) {
+  .spinner:after {
+    top: 40% !important;
+  }
+}
+
 .spinner:after {
   content: "";
   box-sizing: border-box;
   position: absolute;
-  top: 50%;
+  top: 100%;
   left: 50%;
   width: 40px;
   height: 40px;
@@ -45,4 +50,12 @@
   border: 5px solid rgba(180, 180, 180, 0.6);
   border-top-color: rgba(0, 0, 0, 0.6);
   animation: spinner 0.6s linear infinite;
+}
+
+@media only screen and (max-device-width: 480px) and (orientation: portrait) {
+  .title-map {
+    top: 10px;
+    left: 35%;
+    color: white;
+  }
 }

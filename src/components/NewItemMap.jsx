@@ -1,16 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 
 // openlayers
+import Feature from "ol/Feature";
+import { Point } from "ol/geom";
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
-import Feature from "ol/Feature";
 import { Icon, Style } from "ol/style";
-import { Point } from "ol/geom";
 
 import MapWrapper from "./generic/MapWrapper";
-import { toLonLat } from "ol/proj";
 
-function NewItemMap({setCoord}) {
+function NewItemMap({ setCoord }) {
   const [map, setMap] = useState();
 
   let _vectorLayer;
@@ -21,14 +20,12 @@ function NewItemMap({setCoord}) {
     }
 
     const _coord = evt.coordinate;
-    
+
     const iconGeometry = new Point(evt.coordinate);
     var lat = _coord[1];
     var lon = _coord[0];
 
-    setCoord({lat: lat, lon: lon});
-
-    
+    setCoord({ lat: lat, lon: lon });
 
     var iconFeature = new Feature({
       geometry: iconGeometry,
@@ -56,7 +53,7 @@ function NewItemMap({setCoord}) {
 
   useEffect(() => {
     if (map) {
-      map.getTargetElement().classList.remove('spinner');
+      map.getTargetElement().classList.remove("spinner");
       map.on("singleclick", function (evt) {
         setPinOnMap(evt);
       });

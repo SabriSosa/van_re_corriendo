@@ -1,21 +1,16 @@
 // react
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { isMobile } from "react-device-detect";
 
 // openlayers
 import Map from "ol/Map";
 import View from "ol/View";
+import { Control, FullScreen, Zoom } from "ol/control.js";
 import TileLayer from "ol/layer/Tile";
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import XYZ from "ol/source/XYZ";
 import "./MapWrapper.scss";
-import {
-  FullScreen,
-  defaults as defaultControls,
-  Control,
-  Zoom,
-} from "ol/control.js";
 
 import { Container } from "react-bootstrap";
 import { useNavigate } from "react-router";
@@ -46,6 +41,7 @@ function MapWrapper({ setMap }) {
 
     return BackButton;
   };
+
   useEffect(() => {
     // create and add vector source layer
     const initalFeaturesLayer = new VectorLayer({
@@ -90,8 +86,7 @@ function MapWrapper({ setMap }) {
         initialMap.addControl(createBackButton());
       }
 
-      initialMap.getTargetElement().classList.add('spinner');
-
+      initialMap.getTargetElement().classList.add("spinner");
 
       mapRef.current = initialMap;
       setMap(initialMap);

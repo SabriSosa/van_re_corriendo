@@ -1,16 +1,15 @@
-import { Col } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import { getDateString, initialDate } from "./auxiliary";
 import "./SideBarItem.scss";
+import { getDateString, initialDate } from "./auxiliary";
 
 function SideBarItem({ item, selectedPlace, setSelectedPlace }) {
   const days = (date_1, date_2) => {
     let difference = date_1.getTime() - date_2.getTime();
     let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-    return TotalDays ;
+    return TotalDays;
   };
 
-  const dayOfTravel = days(new Date(1000 * item.date.seconds), initialDate) ;
+  const dayOfTravel = days(new Date(1000 * item.date.seconds), initialDate);
   return (
     <Card
       id={item.id}
@@ -25,9 +24,7 @@ function SideBarItem({ item, selectedPlace, setSelectedPlace }) {
       />
       <Card.ImgOverlay>
         <Card.Title className="title-side-bar">{item.city}</Card.Title>
-        <h6 className="title-side-bar-day">
-          DIA {dayOfTravel} 
-        </h6>
+        <h6 className="title-side-bar-day">DIA {dayOfTravel}</h6>
       </Card.ImgOverlay>
       <Card.Body className="side-bar-body">
         <Card.Text className="sub-title-side-bar side-bar-text">

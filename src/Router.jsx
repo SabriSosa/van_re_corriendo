@@ -1,13 +1,13 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import ContactForm from "./pages/Contact";
-import Home from "./pages/Home";
+import { Navigate, Route, Routes } from "react-router-dom";
 import AboutUs from "./pages/AboutUs";
+import ContactForm from "./pages/Contact";
+import HelpUs from "./pages/HelpUs";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import NewItem from "./pages/NewItem";
 import ProjectForm from "./pages/Project";
 import TravelRoute from "./pages/TravelRoute";
-import HelpUs from "./pages/HelpUs";
-import NewItem from "./pages/NewItem";
-import Login from "./pages/Login";
 import * as AuthService from "./services/auth";
 
 const ProtectedRoute = ({ redirectPath = "/login", children }) => {

@@ -1,13 +1,12 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import "./index.scss";
-import 'react-notifications/lib/notifications.css';
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { FirebaseAppProvider } from "reactfire";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-multi-carousel/lib/styles.css";
-
+import "react-notifications/lib/notifications.css";
+import { FirebaseAppProvider } from "reactfire";
+import App from "./App";
+import "./index.scss";
+import reportWebVitals from "./reportWebVitals";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,

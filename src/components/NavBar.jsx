@@ -1,14 +1,14 @@
+import { useState } from "react";
 import { Image } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { GrFacebookOption } from "react-icons/gr";
 import { RiInstagramLine } from "react-icons/ri";
-import "./NavBar.scss";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import "./NavBar.scss";
 
 const menu1 = [
   { title: "Inicio", action: "home" },
@@ -110,6 +110,7 @@ function NavBarMenu() {
                   target="_blank"
                   href="https://www.facebook.com/profile.php?id=100085509656617"
                   className="social-media-menu nav-link"
+                  rel="noreferrer"
                 >
                   <GrFacebookOption />
                 </a>
@@ -118,6 +119,7 @@ function NavBarMenu() {
                   target="_blank"
                   href="https://www.instagram.com/van_re_corriendo"
                   className="social-media-menu nav-link"
+                  rel="noreferrer"
                 >
                   <RiInstagramLine />
                 </a>

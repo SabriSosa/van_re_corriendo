@@ -13,8 +13,6 @@
   }
 }
 
-
-
 .card-title {
   padding: 1em;
   border: 3px solid white !important;
@@ -25,23 +23,22 @@
   text-transform: uppercase;
   margin: 20px !important;
   border-bottom: 1px solid rgb(217, 217, 217);
-
 }
 
 .card-text {
   margin-top: 10px;
 }
 
-
-
-#wave1{
-    transform:rotate(180deg); transition: 0.3s
+#wave1 {
+  transform: rotate(180deg);
+  transition: 0.3s;
 }
-#wave2{
-    transform:rotate(0deg); transition: 0.3s
+#wave2 {
+  transform: rotate(0deg);
+  transition: 0.3s;
 }
 
-path{
-    transform:translate(0, 0px);
-    opacity:1;
+path {
+  transform: translate(0, 0px);
+  opacity: 1;
 }

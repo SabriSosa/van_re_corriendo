@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Container, Row, Col, Card } from "react-bootstrap";
-import { BiMap, BiCalendarAlt, BiWorld } from "react-icons/bi";
+import { Card, Col, Container, Row } from "react-bootstrap";
+import { BiCalendarAlt, BiMap, BiWorld } from "react-icons/bi";
 import { GiPathDistance } from "react-icons/gi";
 
 import "./TravelInfo.scss";
@@ -26,7 +26,7 @@ function TravelInfo() {
             <Card.Subtitle as="h3" className="">
               Donde estamos
             </Card.Subtitle>
-            <Container className="divider"/>
+            <Container className="divider" />
             <Card.Text as="h3">{country}</Card.Text>
           </Card>
         </Col>
@@ -38,7 +38,7 @@ function TravelInfo() {
             <Card.Subtitle as="h3" className="">
               Dias de viaje
             </Card.Subtitle>
-            <Container className="divider"/>
+            <Container className="divider" />
             <Card.Text as="h3">{difference}</Card.Text>
           </Card>
         </Col>
@@ -50,7 +50,7 @@ function TravelInfo() {
             <Card.Subtitle as="h3" className="">
               KMS Recorridos
             </Card.Subtitle>
-            <Container className="divider"/>
+            <Container className="divider" />
             <Card.Text as="h3">{kms}</Card.Text>
           </Card>
         </Col>
@@ -62,7 +62,7 @@ function TravelInfo() {
             <Card.Subtitle as="h3" className="">
               Paises visitados
             </Card.Subtitle>
-            <Container className="divider"/>
+            <Container className="divider" />
             <Card.Text as="h3">{countries}</Card.Text>
           </Card>
         </Col>

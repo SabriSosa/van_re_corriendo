@@ -1,12 +1,12 @@
-import React from "react";
 import { getFirestore } from "firebase/firestore";
+import React from "react";
 
+import { BrowserRouter } from "react-router-dom";
 import { FirestoreProvider, useFirebaseApp } from "reactfire";
-import NavBarMenu from "./components/NavBar";
 import "./App.scss";
 import Router from "./Router";
-import { BrowserRouter } from "react-router-dom";
 import Footer from "./components/Footer";
+import NavBarMenu from "./components/NavBar";
 
 function App() {
   const firestoreInstance = getFirestore(useFirebaseApp());

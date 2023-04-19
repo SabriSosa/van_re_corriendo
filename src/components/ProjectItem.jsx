@@ -1,6 +1,6 @@
 import React from "react";
-import "./ProjectItem.scss";
 import { Container } from "react-bootstrap";
+import "./ProjectItem.scss";
 import SimpleCarrousel from "./SimpleCarrousel";
 
 function ProjectItem({ item }) {
@@ -18,9 +18,9 @@ function ProjectItem({ item }) {
   }
 
   return (
-    <Container key = {id} id={id} fluid className="container-project">
+    <Container key={id} id={id} fluid className="container-project">
       <Container fluid className="item-project">
-        <h3 >{title}</h3>
+        <h3>{title}</h3>
         <p>{description}</p>
       </Container>
       <SimpleCarrousel

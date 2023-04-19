@@ -1,7 +1,7 @@
+import { useState } from "react";
 import { Container } from "react-bootstrap";
 import Carousel from "react-multi-carousel";
 import "./Carousel.scss";
-import { useState } from "react";
 import TitleComp from "./generic/Title";
 
 const responsive = {
@@ -55,27 +55,31 @@ function SimpleCarousel() {
 
   return (
     <Container fluid>
-     <TitleComp title1="Nuestras" title2="Postales"/>
+      <TitleComp title1="Nuestras" title2="Postales" />
       <Carousel
         ssr
         showDots={true}
         responsive={responsive}
         focusOnSelect={true}
         itemClass="image-item"
-        beforeChange={(nextSlide) => {console.log("next 2", nextSlide); setNextSlide(nextSlide)}}
+        beforeChange={(nextSlide) => {
+          console.log("next 2", nextSlide);
+          setNextSlide(nextSlide);
+        }}
         autoPlay={false}
         // autoPlaySpeed={2000}
         infinite={true}
         pauseOnHover
         slidesToSlide={1}
-
       >
         {images.slice(0, 20).map((image, index) => {
           return (
             <Container
-              id = {index}
+              id={index}
               key={index}
-              className={`image-carousel ${index === nextSlide ? 'is-selected': ''}`}
+              className={`image-carousel ${
+                index === nextSlide ? "is-selected" : ""
+              }`}
               style={{ backgroundImage: `url(${image})` }}
             >
               <div className="text-info-carousel">

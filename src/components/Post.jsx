@@ -1,10 +1,10 @@
+import DOMPurify from "dompurify";
 import React from "react";
+import { Container } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import "./Post.scss";
-import Button from "react-bootstrap/Button";
-import DOMPurify from "dompurify";
-import { Container } from "react-bootstrap";
 import SimpleCarrousel from "./SimpleCarrousel";
 import SocialMedia from "./SocialMedia";
 
@@ -15,25 +15,27 @@ export default function Post({ post, setModalShow, setSelectedPost }) {
   };
 
   const body = (id) => {
-    return ( <Card.Body className={`post-${id}`}>
-    <Card.Title className="title-destination">{post.title}</Card.Title>
-    <Container fluid className="description-destination">
-      <div
-        className="text-description"
-        dangerouslySetInnerHTML={{
-          __html: DOMPurify.sanitize(post.description),
-        }}
-      ></div>
+    return (
+      <Card.Body className={`post-${id}`}>
+        <Card.Title className="title-destination">{post.title}</Card.Title>
+        <Container fluid className="description-destination">
+          <div
+            className="text-description"
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(post.description),
+            }}
+          ></div>
 
-      <Button
-        variant="primary"
-        onClick={handleClick}
-        className="see-more-button"
-      >
-        Ver Mas
-      </Button>
-    </Container>
-  </Card.Body>)
+          <Button
+            variant="primary"
+            onClick={handleClick}
+            className="see-more-button"
+          >
+            Ver Mas
+          </Button>
+        </Container>
+      </Card.Body>
+    );
   };
 
   return (

@@ -7,7 +7,6 @@ import TitleComp from "../components/generic/Title";
 import "./AboutUs.scss";
 
 function AboutUs() {
-  
   return (
     <Container className="aboutUs">
       <TitleComp title1="Quienes" title2="Somos" />

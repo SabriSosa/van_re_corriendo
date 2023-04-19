@@ -1,12 +1,11 @@
-import { Container } from "react-bootstrap";
-import { Image, Button } from "react-bootstrap";
-import "./Project.scss";
-import TitleComp from "../components/generic/Title";
-import Wave from "../components/Wave";
-import ProjectItem from "../components/ProjectItem";
-import * as FirestoreService from "../services/firestore";
 import { useEffect, useState } from "react";
+import { Button, Container, Image } from "react-bootstrap";
 import ScrollToTop from "react-scroll-to-top";
+import ProjectItem from "../components/ProjectItem";
+import Wave from "../components/Wave";
+import TitleComp from "../components/generic/Title";
+import * as FirestoreService from "../services/firestore";
+import "./Project.scss";
 
 function ProjectForm() {
   const [projects, setProjects] = useState();
@@ -69,7 +68,7 @@ function ProjectForm() {
   return (
     <Container className="project">
       <TitleComp title1="Construccion" title2="" />
-      <ScrollToTop smooth color="rgba(116, 169, 219, 1)" /> 
+      <ScrollToTop smooth color="rgba(116, 169, 219, 1)" />
       <p>
         Si sos de las personas que les encanta viajar, te imaginas levantándote
         todos los días en un lugar diferente? Conocer distintas personas y
@@ -101,7 +100,7 @@ function ProjectForm() {
         className="full-image"
         src="https://res.cloudinary.com/djbmfd9y6/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1673556330/Camiontito/IMG_20220514_150555_ed0ev6.jpg"
       />
-      <Wave className='wave-project' children={info} />
+      <Wave className="wave-project" children={info} />
 
       {projects?.map((item) => (
         <ProjectItem key={item.id} item={item} />

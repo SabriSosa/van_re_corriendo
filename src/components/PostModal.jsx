@@ -1,9 +1,9 @@
 import DOMPurify from "dompurify";
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-import { getCity, getDateString } from "./auxiliary";
 import "./PostModal.scss";
 import SimpleCarrousel from "./SimpleCarrousel";
+import { getCity, getDateString } from "./auxiliary";
 import CustomModal from "./generic/CustomModal";
 
 export default function PostModal({ show, onHide, selectedPost }) {

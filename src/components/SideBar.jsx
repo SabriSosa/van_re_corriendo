@@ -1,10 +1,10 @@
 import { Container } from "react-bootstrap";
 import SideBarItem from "./SideBarItem";
 
-import "./SideBar.scss";
 import { useEffect } from "react";
+import "./SideBar.scss";
 
-function SideBar({ routes, selectedPlace , setSelectedPlace}) {
+function SideBar({ routes, selectedPlace, setSelectedPlace }) {
   useEffect(() => {
     if (selectedPlace) {
       const _selectedPlace = document.getElementById(selectedPlace);
@@ -26,7 +26,6 @@ function SideBar({ routes, selectedPlace , setSelectedPlace}) {
             item={item}
             selectedPlace={selectedPlace}
             setSelectedPlace={setSelectedPlace}
-
           />
         ))}
       </Container>

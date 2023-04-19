@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import { Col, Container, Row, Spinner } from "react-bootstrap";
+import { Container, Spinner } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import * as AuthService from "../services/auth";
 
-import "./Login.scss";
-import {
-  NotificationContainer,
-  NotificationManager,
-} from "react-notifications";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "@firebase/auth";
-import { auth } from "../services/firestore";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
 import { useNavigate } from "react-router";
+import { auth } from "../services/firestore";
+import "./Login.scss";
 
 function Login() {
   const [waiting, setWaiting] = useState(false);
@@ -43,6 +43,7 @@ function Login() {
         } else {
           await AuthService.loggedIn(user);
           navigate("/new-item");
+          setWaiting(false);
         }
       })
       .catch((error) => {

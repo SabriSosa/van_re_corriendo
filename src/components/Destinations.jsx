@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { Container, Spinner } from "react-bootstrap";
+import * as FirestoreService from "../services/firestore";
 import "./Destinations.scss";
-import TitleComp from "./generic/Title";
+import PaginationPost from "./Pagination";
 import Post from "./Post";
 import PostModal from "./PostModal";
-import PaginationPost from "./Pagination";
-import * as FirestoreService from "../services/firestore";
+import TitleComp from "./generic/Title";
 
 export default function Destinations() {
   const [posts, setPosts] = React.useState([]);

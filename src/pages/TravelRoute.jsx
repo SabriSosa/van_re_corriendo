@@ -1,13 +1,11 @@
 // react
-import React, { useState, useEffect } from "react";
-import { Button, Col, Container, Row, Spinner } from "react-bootstrap";
-import TravelMap from "../components/TravelMap";
+import React, { useEffect, useState } from "react";
+import { Container, Spinner } from "react-bootstrap";
+import { isMobile } from "react-device-detect";
 import Sidebar from "../components/SideBar";
+import TravelMap from "../components/TravelMap";
 import TitleComp from "../components/generic/Title";
 import * as FirestoreService from "../services/firestore";
-import {isMobile} from 'react-device-detect';
-import { useNavigate } from "react-router";
-
 
 import "./TravelRoute.scss";
 
@@ -15,9 +13,6 @@ function TravelRoute() {
   const [coordinates, setCoordinates] = useState([]);
   const [routes, setRoutes] = useState([]);
   const [selectedPlace, setSelectedPlace] = useState(1);
-
-  let navigate = useNavigate();
-
 
   const getRoutes = async () => {
     const querySnapshot = await FirestoreService.getRoutes();
@@ -52,10 +47,8 @@ function TravelRoute() {
     );
   }
 
-
   return (
     <Container fluid className="travel-route-container">
-
       {!isMobile && <TitleComp title1="Recorrido" title2="" />}
       <Container fluid className="travel-route">
         <Container id="sidebar-wrapper" className="sidebar">

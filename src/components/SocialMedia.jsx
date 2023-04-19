@@ -1,14 +1,14 @@
 import {
-  FacebookShareButton,
-  LinkedinShareButton,
-  PinterestShareButton,
-  TwitterShareButton,
-  WhatsappShareButton,
-  TwitterIcon,
   FacebookIcon,
-  PinterestIcon,
-  WhatsappIcon,
+  FacebookShareButton,
   LinkedinIcon,
+  LinkedinShareButton,
+  PinterestIcon,
+  PinterestShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
 } from "react-share";
 
 import { RiInstagramLine } from "react-icons/ri";

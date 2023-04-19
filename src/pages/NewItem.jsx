@@ -1,19 +1,19 @@
+import { format } from "date-fns";
 import React, { useState } from "react";
 import { Col, Container, Row, Spinner } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import * as FirestoreService from "../services/firestore";
 import NewItemMap from "../components/NewItemMap";
 import CustomModal from "../components/generic/CustomModal";
-import { format } from "date-fns";
+import * as FirestoreService from "../services/firestore";
 
-import "./NewItem.scss";
-import { getAddress, getDateFormat } from "../components/auxiliary";
+import { useEffect } from "react";
 import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
-import { useEffect } from "react";
+import { getAddress, getDateFormat } from "../components/auxiliary";
+import "./NewItem.scss";
 
 function NewItem() {
   const [waiting, setWaiting] = useState(false);
@@ -56,8 +56,8 @@ function NewItem() {
           return response.text();
         })
         .then((data) => {
-          console.log(JSON.parse(data));
-          var str = JSON.stringify(JSON.parse(data), null, 4);
+          const str = JSON.stringify(JSON.parse(data), null, 4);
+          console.log(str);
         })
         .catch((err) => console.log("Error: ", err));
     }
@@ -78,8 +78,8 @@ function NewItem() {
       state,
     } = event.target;
 
-    const img = type.value == 1 ? date.value : id.value;
-    const folder = type.value == 1 ? "Posts" : "Routes";
+    const img = type.value === 1 ? date.value : id.value;
+    const folder = type.value === 1 ? "Posts" : "Routes";
 
     const images = [];
     const files = formFileMultiple.files;
@@ -104,7 +104,7 @@ function NewItem() {
     }
 
     const querySnapshot =
-      type.value == 1
+      type.value === 1
         ? await FirestoreService.createPost({ ...values })
         : await FirestoreService.createRoute({
             ...values,
@@ -129,7 +129,7 @@ function NewItem() {
 
   const handleOnChange = async (evt) => {
     const { value } = evt.target;
-    const item = value == 1 ? "post" : "route";
+    const item = value === 1 ? "post" : "route";
 
     let _id;
     const querySnapshot = await FirestoreService.getMaxId(item);

@@ -8,7 +8,7 @@ function Home() {
   return (
     <Container fluid className="main-container">
       <Destinations />
-      <TravelInfo />     
+      <TravelInfo />
     </Container>
   );
 }

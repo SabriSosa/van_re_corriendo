@@ -34,31 +34,27 @@
   text-align: center;
 }
 
-.post-mobile{
+.post-mobile {
   display: none;
 }
 
-@media only screen 
-and (max-device-width: 480px) 
-and (orientation: portrait) {
-  
-  .post-pc{
+@media only screen and (max-device-width: 480px) and (orientation: portrait) {
+  .post-pc {
     display: none;
   }
 
-  .post-mobile{
+  .post-mobile {
     display: inline;
     margin-top: 10px;
   }
 
-  .title-destination{
+  .title-destination {
     text-align: center;
   }
-
 }
 @media only screen and (max-device-width: 480px) and (orientation: portrait) {
   .text-description {
     text-align: justify;
+    margin-top: 10px;
   }
 }
-

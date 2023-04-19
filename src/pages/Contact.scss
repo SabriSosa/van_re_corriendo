@@ -1,16 +1,13 @@
-@media only screen 
-and (max-device-width: 480px) 
-and (orientation: portrait) {
-  
-.form-contact {
-  padding: 5% !important;
+@media only screen and (max-device-width: 480px) and (orientation: portrait) {
+  .form-contact {
+    padding: 5% !important;
+  }
+
+  .text-contact {
+    padding: 5% !important;
+    text-align: justify;
+  }
 }
-
-.text-contact {
-  padding: 5% !important;
-  text-align: justify;
-
-}}
 
 .submit-button {
   background-color: #74a9db !important;

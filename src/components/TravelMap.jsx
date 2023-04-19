@@ -1,18 +1,16 @@
 // react
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
+import { isMobile } from "react-device-detect";
 
 // openlayers
-import Map from "ol/Map";
-import View from "ol/View";
-import TileLayer from "ol/layer/Tile";
-import VectorLayer from "ol/layer/Vector";
-import VectorSource from "ol/source/Vector";
-import XYZ from "ol/source/XYZ";
 import Feature from "ol/Feature";
+import { Control } from "ol/control.js";
 import Polyline from "ol/format/Polyline";
-import { Circle as CircleStyle, Fill, Icon, Stroke, Style } from "ol/style";
 import { Point } from "ol/geom";
 import { Select } from "ol/interaction";
+import VectorLayer from "ol/layer/Vector";
+import VectorSource from "ol/source/Vector";
+import { Circle as CircleStyle, Fill, Icon, Stroke, Style } from "ol/style";
 import MapWrapper from "./generic/MapWrapper";
 
 function TravelMap({ routes, coordinates, selectedPlace, setSelectedPlace }) {
@@ -20,9 +18,20 @@ function TravelMap({ routes, coordinates, selectedPlace, setSelectedPlace }) {
   const [vSource, setvSource] = useState();
   const [selectInteraction, setSelectInteraction] = useState();
 
+  const createText = () => {
+    let element = document.createElement("h1");
+    element.className = "ol-control title-map";
+
+    element.innerHTML = "Recorrido";
+
+    const Title = new Control({
+      element: element,
+    });
+
+    return Title;
+  };
+
   let selectStyle = function (feature) {
-
-
     setSelectedPlace(feature.get("id"));
     const img = feature.get("image").replace(/white/g, "dodgerblue");
 
@@ -41,25 +50,25 @@ function TravelMap({ routes, coordinates, selectedPlace, setSelectedPlace }) {
 
   useEffect(() => {
     if (selectedPlace && vSource) {
-      map.getTargetElement().classList.add('spinner');
+      map.getTargetElement().classList.add("spinner");
       const __feature = vSource?.getFeatureById(selectedPlace);
       var featuresCollection = selectInteraction.getFeatures();
       featuresCollection.pop();
       featuresCollection.push(__feature);
-      map.getView().fit(__feature.getGeometry(), {size:map.getSize(), maxZoom:8, duration:500});
+      map.getView().fit(__feature.getGeometry(), {
+        size: map.getSize(),
+        maxZoom: 8,
+        duration: 500,
+      });
 
       setTimeout(() => {
-        map.getTargetElement().classList.remove('spinner');
-
+        map.getTargetElement().classList.remove("spinner");
       }, 800);
-
-
     }
   }, [selectedPlace, vSource]);
 
   useEffect(() => {
     if (map && coordinates) {
-
       fetch(
         "https://router.project-osrm.org/route/v1/driving/" +
           coordinates.join(";") +
@@ -135,9 +144,7 @@ function TravelMap({ routes, coordinates, selectedPlace, setSelectedPlace }) {
           setvSource(_vSource);
 
           map.addLayer(vectorLayer);
-          map.getTargetElement().classList.remove('spinner');
-
-          // map.getView().fit(routeFeature.getGeometry());
+          map.getTargetElement().classList.remove("spinner");
         });
       });
     }
@@ -150,8 +157,15 @@ function TravelMap({ routes, coordinates, selectedPlace, setSelectedPlace }) {
       });
 
       setSelectInteraction(_selectInteraction);
-
       map.addInteraction(_selectInteraction);
+
+      if (isMobile) {
+        var domElement = document.createElement("div");
+        domElement.className = "myclass";
+        domElement.innerHTML = "content";
+
+        map.addControl(createText());
+      }
     }
   }, [map]);
 
