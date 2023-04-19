@@ -41,6 +41,7 @@ export default function SimpleCarrousel({
           {video ? (
             <AdvancedVideo
               className="d-block w-100"
+              controls = {true}
               autoPlay
               cldVid={cld
                 .video(`${prefix}/${image}`)

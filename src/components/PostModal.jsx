@@ -26,8 +26,12 @@ export default function PostModal({ show, onHide, selectedPost }) {
   const title = (
     <div>
       {selectedPost?.title}
-      <h5 id="subtitle">{selectedPost && getDateString(selectedPost?.date)}</h5>
-      <h6> {postCity} </h6>
+      <Container className="subtitle-post">
+        <h6 className="subtitle" id="subtitle">
+          {selectedPost && getDateString(selectedPost?.date)}
+        </h6>
+        -<h6 className="address"> {postCity} </h6>
+      </Container>
     </div>
   );
 
@@ -36,6 +40,7 @@ export default function PostModal({ show, onHide, selectedPost }) {
       <SimpleCarrousel
         prefix="Camiontito/Posts"
         images={selectedPost?.images}
+        id="post-carrousel"
       />
       <Container
         dangerouslySetInnerHTML={{

@@ -18,7 +18,7 @@ function ProjectItem({ item }) {
   }
 
   return (
-    <Container fluid className="container-project">
+    <Container key = {id} fluid className="container-project">
       <Container fluid className="item-project">
         <h3 id={id}>{title}</h3>
         <p>{description}</p>

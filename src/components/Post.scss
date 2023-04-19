@@ -56,3 +56,8 @@ and (orientation: portrait) {
   }
 
 }
+@media only screen and (max-device-width: 480px) and (orientation: portrait) {
+  .text-description {
+    text-align: justify;
+  }
+}

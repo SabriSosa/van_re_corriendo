@@ -7,7 +7,8 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { GrFacebookOption } from "react-icons/gr";
 import { RiInstagramLine } from "react-icons/ri";
 import "./NavBar.scss";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const menu1 = [
   { title: "Inicio", action: "home" },
@@ -20,18 +21,22 @@ const menu1 = [
   //     { title: "Chile", action: "chile" },
   //   ],
   // },
- 
+
   { title: "Contacto", action: "contact" },
   { title: "Ayudanos", action: "help-us" },
 ];
 const menu2 = [
   { title: "Construcción", action: "project" },
   { title: "Recorrido", action: "route" },
- 
-  
 ];
 
 function NavBarMenu() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const handleClose = () => setMenuOpen(false);
   return (
     <Container fluid className="navbar-container">
       <Navbar
@@ -46,12 +51,17 @@ function NavBarMenu() {
             <Link to="/home" className="logo-link-mobile nav-link">
               <Image src="https://res.cloudinary.com/djbmfd9y6/image/upload/c_scale,h_50/v1670534765/Camiontito/logo_t5a3np.png" />
             </Link>
-            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand`} />
+            <Navbar.Toggle
+              aria-controls={`offcanvasNavbar-expand`}
+              onClick={toggleMenu}
+            />
           </Container>
           <Navbar.Offcanvas
             id={`offcanvasNavbar-expand`}
             aria-labelledby={`offcanvasNavbarLabel-expand`}
             placement="start"
+            show={menuOpen}
+            onHide={handleClose}
           >
             <Offcanvas.Header closeButton></Offcanvas.Header>
             <Offcanvas.Body>
@@ -66,22 +76,37 @@ function NavBarMenu() {
                       ))}
                     </NavDropdown>
                   ) : (
-                    <Link key={menu.title} to={menu.action} className="nav-link">
+                    <Link
+                      onClick={toggleMenu}
+                      key={menu.title}
+                      to={menu.action}
+                      className="nav-link"
+                    >
                       {menu.title}
                     </Link>
                   )
                 )}
-                <Link to="/home" className="logo-link-menu nav-link">
+                <Link
+                  onClick={toggleMenu}
+                  to="/home"
+                  className="logo-link-menu nav-link"
+                >
                   <Image src="https://res.cloudinary.com/djbmfd9y6/image/upload/c_scale,h_150/v1670534765/Camiontito/logo_t5a3np.png" />
                 </Link>
 
                 {menu2.map((menu) => (
-                  <Link key={menu.title} to={menu.action} className="nav-link">
+                  <Link
+                    onClick={toggleMenu}
+                    key={menu.title}
+                    to={menu.action}
+                    className="nav-link"
+                  >
                     {menu.title}
                   </Link>
                 ))}
 
                 <Link
+                  onClick={toggleMenu}
                   target="_blank"
                   to="https://www.facebook.com/profile.php?id=100085509656617"
                   className="social-media-menu nav-link"
@@ -89,6 +114,7 @@ function NavBarMenu() {
                   <GrFacebookOption />
                 </Link>
                 <Link
+                  onClick={toggleMenu}
                   target="_blank"
                   to="https://www.instagram.com/van_re_corriendo"
                   className="social-media-menu nav-link"

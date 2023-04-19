@@ -33,7 +33,7 @@ function ProjectForm() {
   const info = (
     <section className="cards">
       {sections.map((section) => (
-        <article className="card">
+        <article className="card " key={section.title}>
           <Button
             variant="outline-light"
             onClick={() => onClick(`#${section.action}`)}
@@ -103,9 +103,7 @@ function ProjectForm() {
       <Wave children={info} />
 
       {projects?.map((item) => (
-        <ProjectItem
-          item = {item}
-        />
+        <ProjectItem key={item.id} item={item} />
       ))}
     </Container>
   );
