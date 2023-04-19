@@ -89,6 +89,10 @@ function MapWrapper({ setMap }) {
       } else {
         initialMap.addControl(createBackButton());
       }
+
+      initialMap.getTargetElement().classList.add('spinner');
+
+
       mapRef.current = initialMap;
       setMap(initialMap);
     }

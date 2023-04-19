@@ -15,13 +15,14 @@ import { Point } from "ol/geom";
 import { Select } from "ol/interaction";
 import MapWrapper from "./generic/MapWrapper";
 
-
 function TravelMap({ routes, coordinates, selectedPlace, setSelectedPlace }) {
   const [map, setMap] = useState();
   const [vSource, setvSource] = useState();
   const [selectInteraction, setSelectInteraction] = useState();
 
   let selectStyle = function (feature) {
+
+
     setSelectedPlace(feature.get("id"));
     const img = feature.get("image").replace(/white/g, "dodgerblue");
 
@@ -34,20 +35,31 @@ function TravelMap({ routes, coordinates, selectedPlace, setSelectedPlace }) {
         zIndex: 1,
       }),
     ];
+
     return styles;
   };
 
   useEffect(() => {
     if (selectedPlace && vSource) {
+      map.getTargetElement().classList.add('spinner');
       const __feature = vSource?.getFeatureById(selectedPlace);
       var featuresCollection = selectInteraction.getFeatures();
       featuresCollection.pop();
       featuresCollection.push(__feature);
+      map.getView().fit(__feature.getGeometry(), {size:map.getSize(), maxZoom:8, duration:500});
+
+      setTimeout(() => {
+        map.getTargetElement().classList.remove('spinner');
+
+      }, 800);
+
+
     }
   }, [selectedPlace, vSource]);
 
   useEffect(() => {
     if (map && coordinates) {
+
       fetch(
         "https://router.project-osrm.org/route/v1/driving/" +
           coordinates.join(";") +
@@ -123,6 +135,8 @@ function TravelMap({ routes, coordinates, selectedPlace, setSelectedPlace }) {
           setvSource(_vSource);
 
           map.addLayer(vectorLayer);
+          map.getTargetElement().classList.remove('spinner');
+
           // map.getView().fit(routeFeature.getGeometry());
         });
       });

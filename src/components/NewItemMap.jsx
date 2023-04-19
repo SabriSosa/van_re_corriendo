@@ -56,6 +56,7 @@ function NewItemMap({setCoord}) {
 
   useEffect(() => {
     if (map) {
+      map.getTargetElement().classList.remove('spinner');
       map.on("singleclick", function (evt) {
         setPinOnMap(evt);
       });
