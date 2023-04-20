@@ -64,8 +64,8 @@ export default function Destinations() {
   const totalPages = Math.ceil(totalRows / rowsPerPage);
 
   return (
-    <Container className="container-destinations">
-      <TitleComp title1="Destinos" />
+    <Container className="container-destinations" id="destinos">
+      <TitleComp title1="Destinos"/>
       <PostModal selectedPost={selectedPost} show={modalShow} onHide={onHide} />
       <PaginationPost
         data={postComponents}

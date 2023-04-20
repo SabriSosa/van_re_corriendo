@@ -15,8 +15,14 @@ export default function PaginationPost({ data, rowsPerPage, totalPages = 1 }) {
       const firstIndex = pageIndex * rowsPerPage;
       const lastIndex = pageIndex * rowsPerPage + rowsPerPage;
       showData(data.slice(firstIndex, lastIndex));
+      scroll();
     }
   };
+
+  function scroll(){
+    const scrollTo = document.getElementById("destinos");
+    scrollTo.scrollIntoView({behavior: 'smooth'}, true);
+  }
 
   let items = [];
   for (let number = 1; number <= totalPages; number++) {
