@@ -3,121 +3,58 @@ import React from "react";
 import { Container, Image } from "react-bootstrap";
 import { MdPerson } from "react-icons/md";
 import TitleComp from "../components/generic/Title";
+import * as FirestoreService from "../services/firestore";
 
+import { useEffect, useState } from "react";
+import CustomSpinner from "../components/generic/CustomSpinner";
+import HtmlContainer from "../components/generic/HtmlContainer";
 import "./AboutUs.scss";
 
 function AboutUs() {
+  const [texts, setTexts] = useState([]);
+  const [waiting, setWaiting] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      const _texts = await FirestoreService.getTexts([
+        "about.us",
+        "about.us.sabri",
+        "about.us.robert",
+      ]);
+      setTexts(_texts.map((elem) => elem.description));
+      setWaiting(false);
+    }
+    fetchData();
+  }, []);
+
+  if (waiting) {
+    return <CustomSpinner />;
+  }
+
+  const person = (title, img, _text) => {
+    return (
+      <div>
+        <h2 className="title-about">
+          {title}
+          <MdPerson className="title-icon" />
+        </h2>
+        <div>
+          <Image
+            className="person"
+            src={`https://res.cloudinary.com/djbmfd9y6/image/upload/w_200,c_fill,ar_1:1,g_auto,r_max/v1673907436/Camiontito/${img}.jpg`}
+          />
+          <HtmlContainer text={_text} className="about-us" />
+        </div>
+      </div>
+    );
+  };
+
   return (
     <Container className="aboutUs">
       <TitleComp title1="Quienes" title2="Somos" />
-      <p>
-      Pensamos que nuestro 2020 iba a comenzar de una manera distinta. Habíamos tomado la gran decisión de mudarnos del país y comenzar todo desde cero, pero la pandemia como a todos nos hizo cambiar de planes. Luego de meses y meses de ideas, proyectos, idas y vueltas, sin bajar los brazos, tomamos una gran decisión.
-      Si no podíamos viajar y comenzar con un nuevo hogar: ¿Por que no construirmos nuestra propia casa sobre ruedas y nos la llavamos de viaje?
-      Asi comienza nuestra gran aventura que va a formar parte de una nueva vida.
-      Nos esperan grandes desafíos y un montón de nuevas experiencias... 
-      Somos Robert y Sabri y queremos contarles quienes somos y de que se trata nuestro viaje 
-      </p>
-
-      <h2 className="title-about">
-        SABRI
-        <MdPerson className="title-icon" />
-      </h2>
-      <div>
-        <Image
-          className="person"
-          src="https://res.cloudinary.com/djbmfd9y6/image/upload/w_200,c_fill,ar_1:1,g_auto,r_max/v1673907436/Camiontito/IMG_20220929_173749_jwpzkt.jpg"
-        />
-
-        <p>
-          Lorem Ipsum es simplemente el texto de relleno de las imprentas y
-          archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de
-          las industrias desde el año 1500, cuando un impresor (N. del T.
-          persona que se dedica a la imprenta) desconocido usó una galería de
-          textos y los mezcló de tal manera que logró hacer un libro de textos
-          especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como
-          texto de relleno en documentos electrónicos, quedando esencialmente
-          igual al original. Fue popularizado en los 60s con la creación de las
-          hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más
-          recientemente con software de autoedición, como por ejemplo Aldus
-          PageMaker, el cual incluye versiones de Lorem Ipsum.
-        </p>
-        <p>
-          Lorem Ipsum es simplemente el texto de relleno de las imprentas y
-          archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de
-          las industrias desde el año 1500, cuando un impresor (N. del T.
-          persona que se dedica a la imprenta) desconocido usó una galería de
-          textos y los mezcló de tal manera que logró hacer un libro de textos
-          especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como
-          texto de relleno en documentos electrónicos, quedando esencialmente
-          igual al original. Fue popularizado en los 60s con la creación de las
-          hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más
-          recientemente con software de autoedición, como por ejemplo Aldus
-          PageMaker, el cual incluye versiones de Lorem Ipsum.
-        </p>
-        <p>
-          Lorem Ipsum es simplemente el texto de relleno de las imprentas y
-          archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de
-          las industrias desde el año 1500, cuando un impresor (N. del T.
-          persona que se dedica a la imprenta) desconocido usó una galería de
-          textos y los mezcló de tal manera que logró hacer un libro de textos
-          especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como
-          texto de relleno en documentos electrónicos, quedando esencialmente
-          igual al original. Fue popularizado en los 60s con la creación de las
-          hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más
-          recientemente con software de autoedición, como por ejemplo Aldus
-          PageMaker, el cual incluye versiones de Lorem Ipsum.
-        </p>
-      </div>
-      <h2 className="title-about">
-        ROBERT
-        <MdPerson className="title-icon" />
-      </h2>
-      <div>
-        <Image
-          className="person"
-          src="https://res.cloudinary.com/djbmfd9y6/image/upload/w_200,c_fill,ar_1:1,g_auto,r_max/v1679080143/Camiontito/robert-photo.jpg"
-        />
-
-        <p>
-          Lorem Ipsum es simplemente el texto de relleno de las imprentas y
-          archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de
-          las industrias desde el año 1500, cuando un impresor (N. del T.
-          persona que se dedica a la imprenta) desconocido usó una galería de
-          textos y los mezcló de tal manera que logró hacer un libro de textos
-          especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como
-          texto de relleno en documentos electrónicos, quedando esencialmente
-          igual al original. Fue popularizado en los 60s con la creación de las
-          hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más
-          recientemente con software de autoedición, como por ejemplo Aldus
-          PageMaker, el cual incluye versiones de Lorem Ipsum.
-        </p>
-        <p>
-          Lorem Ipsum es simplemente el texto de relleno de las imprentas y
-          archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de
-          las industrias desde el año 1500, cuando un impresor (N. del T.
-          persona que se dedica a la imprenta) desconocido usó una galería de
-          textos y los mezcló de tal manera que logró hacer un libro de textos
-          especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como
-          texto de relleno en documentos electrónicos, quedando esencialmente
-          igual al original. Fue popularizado en los 60s con la creación de las
-          hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más
-          recientemente con software de autoedición, como por ejemplo Aldus
-          PageMaker, el cual incluye versiones de Lorem Ipsum.
-        </p>
-        <p>
-          Lorem Ipsum es simplemente el texto de relleno de las imprentas y
-          archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de
-          las industrias desde el año 1500, cuando un impresor (N. del T.
-          persona que se dedica a la imprenta) desconocido usó una galería de
-          textos y los mezcló de tal manera que logró hacer un libro de textos
-          especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como
-          texto de relleno en documentos electrónicos, quedando esencialmente
-          igual al original. Fue popularizado en los 60s con la creación de las
-          hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más
-          recientemente con software de autoedición, como por ejemplo Aldus
-          PageMaker, el cual incluye versiones de Lorem Ipsum.
-        </p>
-      </div>
+      <HtmlContainer text={texts[0]} className="about-us" />
+      {person("SABRI", "IMG_20220929_173749_jwpzkt", texts[1])}
+      {person("ROBERT", "robert-photo", texts[2])}
     </Container>
   );
 }

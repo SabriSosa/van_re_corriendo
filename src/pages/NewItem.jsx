@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import React, { useState } from "react";
-import { Col, Container, Row, Spinner } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import NewItemMap from "../components/NewItemMap";
@@ -13,6 +13,7 @@ import {
   NotificationManager,
 } from "react-notifications";
 import { getAddress, getDateFormat } from "../components/auxiliary";
+import CustomSpinner from "../components/generic/CustomSpinner";
 import "./NewItem.scss";
 
 function NewItem() {
@@ -24,14 +25,7 @@ function NewItem() {
 
   useEffect(() => {
     async function fetchData() {
-      let _id;
-      const querySnapshot = await FirestoreService.getMaxId("post");
-
-      querySnapshot.forEach(async (doc) => {
-        const data = doc.data();
-        _id = data.id + 1;
-      });
-
+      const _id = await FirestoreService.getMaxId("post");
       setIdItem(_id);
     }
     fetchData();
@@ -103,15 +97,14 @@ function NewItem() {
       uploadPhoto(formFileMultiple.files, img, folder);
     }
 
-    const querySnapshot =
-      type.value === 1
-        ? await FirestoreService.createPost({ ...values })
-        : await FirestoreService.createRoute({
-            ...values,
-            city: city?.value,
-            state: state?.value,
-            country: country?.value,
-          });
+    type.value === 1
+      ? await FirestoreService.createPost({ ...values })
+      : await FirestoreService.createRoute({
+          ...values,
+          city: city?.value,
+          state: state?.value,
+          country: country?.value,
+        });
 
     setWaiting(false);
     setCoord({});
@@ -120,25 +113,13 @@ function NewItem() {
   };
 
   if (waiting) {
-    return (
-      <Container className="text-center">
-        <Spinner animation="border" style={{ width: "4rem", height: "4rem" }} />
-      </Container>
-    );
+    return <CustomSpinner />;
   }
 
   const handleOnChange = async (evt) => {
     const { value } = evt.target;
-    const item = value === 1 ? "post" : "route";
-
-    let _id;
-    const querySnapshot = await FirestoreService.getMaxId(item);
-
-    querySnapshot.forEach(async (doc) => {
-      const data = doc.data();
-      _id = data.id + 1;
-    });
-
+    const item = value == 1 ? "post" : "route";
+    const _id = await FirestoreService.getMaxId(item);
     setIdItem(_id);
   };
 

@@ -1,31 +1,23 @@
-import React, { useEffect } from "react";
-import { Container, Spinner } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
 import * as FirestoreService from "../services/firestore";
 import "./Destinations.scss";
 import PaginationPost from "./Pagination";
 import Post from "./Post";
 import PostModal from "./PostModal";
+import CustomSpinner from "./generic/CustomSpinner";
 import TitleComp from "./generic/Title";
 
 export default function Destinations() {
-  const [posts, setPosts] = React.useState([]);
-  const [modalShow, setModalShow] = React.useState(false);
-  const [selectedPost, setSelectedPost] = React.useState();
+  const [posts, setPosts] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
+  const [selectedPost, setSelectedPost] = useState();
+  const [waiting, setWaiting] = useState(false);
 
   const getPosts = async () => {
-    const querySnapshot = await FirestoreService.getPosts();
-
-    // reset the todo items value
-    setPosts([]);
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      setPosts((prev) => [
-        ...prev,
-        {
-          ...data,
-        },
-      ]);
-    });
+    const _posts = await FirestoreService.getPosts();
+    setPosts(_posts);
+    setWaiting(false);
   };
 
   useEffect(() => {
@@ -33,11 +25,7 @@ export default function Destinations() {
   }, []);
 
   if (posts.length < 1) {
-    return (
-      <Container className="text-center">
-        <Spinner animation="border" style={{ width: "4rem", height: "4rem" }} />
-      </Container>
-    );
+    return <CustomSpinner />;
   }
 
   const onHide = () => {
@@ -62,6 +50,10 @@ export default function Destinations() {
   const rowsPerPage = 6;
 
   const totalPages = Math.ceil(totalRows / rowsPerPage);
+
+  if (waiting) {
+    return <CustomSpinner />;
+  }
 
   return (
     <Container className="container-destinations" id="destinos">

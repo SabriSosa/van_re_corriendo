@@ -1,4 +1,3 @@
-import DOMPurify from "dompurify";
 import React from "react";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
@@ -7,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import "./Post.scss";
 import SimpleCarrousel from "./SimpleCarrousel";
 import SocialMedia from "./SocialMedia";
+import HtmlContainer from "./generic/HtmlContainer";
 
 export default function Post({ post, setModalShow, setSelectedPost }) {
   const handleClick = () => {
@@ -19,13 +19,7 @@ export default function Post({ post, setModalShow, setSelectedPost }) {
       <Card.Body className={`post-${id}`}>
         <Card.Title className="title-destination">{post.title}</Card.Title>
         <Container fluid className="description-destination">
-          <div
-            className="text-description"
-            dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(post.description),
-            }}
-          ></div>
-
+          <HtmlContainer text={post?.description} className="text-description" />
           <Button
             variant="primary"
             onClick={handleClick}

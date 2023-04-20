@@ -1,12 +1,13 @@
 // react
 import React, { useEffect, useState } from "react";
-import { Container, Spinner } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { isMobile } from "react-device-detect";
 import Sidebar from "../components/SideBar";
 import TravelMap from "../components/TravelMap";
 import TitleComp from "../components/generic/Title";
 import * as FirestoreService from "../services/firestore";
 
+import CustomSpinner from "../components/generic/CustomSpinner";
 import "./TravelRoute.scss";
 
 function TravelRoute() {
@@ -15,24 +16,10 @@ function TravelRoute() {
   const [selectedPlace, setSelectedPlace] = useState(1);
 
   const getRoutes = async () => {
-    const querySnapshot = await FirestoreService.getRoutes();
-    // reset the todo items value
+    const routes = await FirestoreService.getRoutes();
     setCoordinates([]);
-    setRoutes([]);
-
-    querySnapshot.forEach(async (doc) => {
-      const data = doc.data();
-      setRoutes((prev) => [
-        ...prev,
-        {
-          ...data,
-        },
-      ]);
-      setCoordinates((prev) => [
-        ...prev,
-        [data.location._long, data.location._lat],
-      ]);
-    });
+    setRoutes(routes);
+    setCoordinates(routes.map((r) => [r.location._long, r.location._lat]));
   };
 
   useEffect(() => {
@@ -40,13 +27,8 @@ function TravelRoute() {
   }, []);
 
   if (routes.length < 1) {
-    return (
-      <Container className="text-center">
-        <Spinner animation="border" style={{ width: "4rem", height: "4rem" }} />
-      </Container>
-    );
+    return <CustomSpinner />;
   }
-
   return (
     <Container fluid className="travel-route-container">
       {!isMobile && <TitleComp title1="Recorrido" title2="" />}

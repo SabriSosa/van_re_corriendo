@@ -6,21 +6,34 @@ import {
   NotificationManager,
 } from "react-notifications";
 import TitleComp from "../components/generic/Title";
+import * as FirestoreService from "../services/firestore";
 
+import { useEffect } from "react";
 import "./Contact.scss";
+import CustomSpinner from "../components/generic/CustomSpinner";
 
 const ContactForm = () => {
   const form = useRef();
-
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [message, setMessage] = useState();
+  const [text, setText] = useState("");
+  const [waiting, setWaiting] = useState(true);
 
   const resetForm = () => {
     setName("");
     setEmail("");
     setMessage("");
   };
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await FirestoreService.getText("contact");
+      setText(response.description);
+      setWaiting(false);
+    }
+    fetchData();
+  }, []);
 
   //https://dashboard.emailjs.com/sign-in
   //user: sabrina.sosa.nicolais@gmail.com
@@ -49,17 +62,15 @@ const ContactForm = () => {
     resetForm();
   };
 
+  if (waiting) {
+    return <CustomSpinner />;
+  }
+
   return (
     <Container>
       <NotificationContainer />
       <TitleComp title1="Contacto" />
-      <p className="text-contact">
-        Ahora es el momento donde podés hacernos todas las preguntas que quieras
-        y sacarte todas esas dudas que tienes en mente. Si quieres saber más
-        sobre la construcción del motorhome, sobre los lugares que visitamos, si
-        quieres saber nuestra opinión, o simplemente quieres conocernos un poco
-        mas no dudes en escribirnos.
-      </p>
+      <p className="text-contact">{text}</p>
 
       <Form className="form-contact" onSubmit={sendEmail} ref={form}>
         <Form.Group className="mb-3" controlId="name">

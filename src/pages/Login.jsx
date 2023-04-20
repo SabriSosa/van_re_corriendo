@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Spinner } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import * as AuthService from "../services/auth";
@@ -13,6 +13,7 @@ import {
   NotificationManager,
 } from "react-notifications";
 import { useNavigate } from "react-router";
+import CustomSpinner from "../components/generic/CustomSpinner";
 import { auth } from "../services/firestore";
 import "./Login.scss";
 
@@ -22,7 +23,7 @@ function Login() {
   const navigate = useNavigate();
 
   const changeAuthMode = () => {
-    setAuthMode(authMode === "signin" ? "signup" : "signin");
+    setAuthMode(authMode == "signin" ? "signup" : "signin");
   };
 
   const handleSubmit = async (event) => {
@@ -30,7 +31,7 @@ function Login() {
     const { email, password } = event.target;
 
     const _fn =
-      authMode === "signin"
+      authMode == "signin"
         ? signInWithEmailAndPassword
         : createUserWithEmailAndPassword;
 
@@ -38,7 +39,7 @@ function Login() {
       .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;
-        if (authMode === "signup") {
+        if (authMode == "signup") {
           NotificationManager.success("Se ha creado el usuario correctamente");
         } else {
           await AuthService.loggedIn(user);
@@ -55,11 +56,7 @@ function Login() {
   };
 
   if (waiting) {
-    return (
-      <Container className="text-center">
-        <Spinner animation="border" style={{ width: "4rem", height: "4rem" }} />
-      </Container>
-    );
+    return <CustomSpinner />;
   }
 
   return (
@@ -67,15 +64,15 @@ function Login() {
       <NotificationContainer />
       <Form onSubmit={handleSubmit} className="login-form">
         <h3 className="login-title">
-          {authMode === "signin" ? "Sign In" : "Sign Un"}
+          {authMode == "signin" ? "Sign In" : "Sign Un"}
         </h3>
         {/* <div className="text-center">
-          {authMode === "signin"
+          {authMode == "signin"
             ? "Not registered yet? "
             : "Already registered? "}
 
           <span className="link-primary" onClick={changeAuthMode}>
-            {authMode === "signin" ? "Sign Up" : "Sign In"}
+            {authMode == "signin" ? "Sign Up" : "Sign In"}
           </span>
         </div> */}
         <Form.Group className="mb-3 login-group" controlId="email">
@@ -89,7 +86,7 @@ function Login() {
         </Form.Group>
         <Container className="mb-3 login-btn">
           <Button variant="primary" type="submit" className="new-item-button">
-            {authMode === "signin" ? "Sign In" : "Sign Up"}
+            {authMode == "signin" ? "Sign In" : "Sign Up"}
           </Button>
         </Container>
       </Form>

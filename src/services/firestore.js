@@ -10,6 +10,7 @@ import {
   orderBy,
   query,
   serverTimestamp,
+  where,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -27,27 +28,37 @@ const db = getFirestore(app);
 
 export const auth = getAuth(app);
 
-export const getPosts = () => {
-  const sectionsCollectionRef = collection(db, "post");
-  const q = query(sectionsCollectionRef, orderBy("id", "desc"));
-  return getDocs(q);
+const _getDocs = async (q) => {
+  const querySnapshot = await getDocs(q);
+
+  const data = [];
+  querySnapshot.forEach((doc) => {
+    data.push(doc.data());
+  });
+
+  return data;
 };
 
-export const getRoutes = () => {
+export const getPosts = async () => {
+  const sectionsCollectionRef = collection(db, "post");
+  const q = query(sectionsCollectionRef, orderBy("id", "asc"));
+  return _getDocs(q);
+};
+
+export const getRoutes = async () => {
   const sectionsCollectionRef = collection(db, "route");
   const q = query(sectionsCollectionRef, orderBy("id", "asc"));
-  return getDocs(q);
+  return _getDocs(q);
 };
 
-export const getProjects = () => {
+export const getProjects = async () => {
   const sectionsCollectionRef = collection(db, "project");
   const q = query(sectionsCollectionRef, orderBy("order", "asc"));
-  return getDocs(q);
+  return _getDocs(q);
 };
 
 export const createRoute = async ({ lon, lat, ...rest }) => {
   const routesColRef = collection(db, "route");
-
   return addDoc(routesColRef, {
     created: serverTimestamp(),
     location: new GeoPoint(lat, lon),
@@ -63,10 +74,36 @@ export const createPost = async ({ lon, lat, ...rest }) => {
   });
 };
 
-export const getMaxId = (id) => {
+export const getMaxId = async (id) => {
   const colRef = collection(db, id);
   const q = query(colRef, orderBy("id", "desc"), limit(1));
-  return getDocs(q);
+  const querySnapshot = await getDocs(q);
+  const data = [];
+  querySnapshot.forEach((doc) => {
+    data.push(doc.data());
+  });
+
+  return data[0].id + 1;
+};
+
+export const getText = async (id) => {
+  const textCollection = collection(db, "text");
+  const q = query(textCollection, where("id", "==", id));
+
+  const querySnapshot = await getDocs(q);
+
+  const data = [];
+  querySnapshot.forEach((doc) => {
+    data.push(doc.data());
+  });
+
+  return data[0];
+};
+
+export const getTexts = async (ids) => {
+  const textCollection = collection(db, "text");
+  const q = query(textCollection, where("id", "in", ids));
+  return _getDocs(q);
 };
 
 //https://github.com/Tammibriggs/firebase-with-react-hooks

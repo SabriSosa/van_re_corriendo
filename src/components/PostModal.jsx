@@ -1,10 +1,10 @@
-import DOMPurify from "dompurify";
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import "./PostModal.scss";
 import SimpleCarrousel from "./SimpleCarrousel";
 import { getCity, getDateString } from "./auxiliary";
 import CustomModal from "./generic/CustomModal";
+import HtmlContainer from "./generic/HtmlContainer";
 
 export default function PostModal({ show, onHide, selectedPost }) {
   const [postCity, setPostCity] = useState();
@@ -42,10 +42,8 @@ export default function PostModal({ show, onHide, selectedPost }) {
         images={selectedPost?.images}
         id="post-carrousel"
       />
-      <Container
-        dangerouslySetInnerHTML={{
-          __html: DOMPurify.sanitize(selectedPost?.description),
-        }}
+      <HtmlContainer
+        text={selectedPost?.description}
         className="description-modal"
       />
     </Container>
