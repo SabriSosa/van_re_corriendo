@@ -42,40 +42,44 @@
   position: relative;
   padding: 0px !important;
   width: 100% !important;
+
   background: linear-gradient(black 5%, transparent 50%, transparent 0%),
-    url("https://res.cloudinary.com/djbmfd9y6/image/upload/v1678993437/Camiontito/fondo-mobile.png")
+    url("https://res.cloudinary.com/djbmfd9y6/image/upload/v1678990866/Camiontito/fondo_landscape.png")
       no-repeat fixed;
   background-size: contain;
-  height: 30vh;
+  height: 40vh;
 
-  @media screen and (orientation: landscape) {
+  @media (max-width: 768px)  and (orientation: portrait) {
     background: linear-gradient(black 5%, transparent 50%, transparent 0%),
-      url("https://res.cloudinary.com/djbmfd9y6/image/upload/v1678990866/Camiontito/fondo_landscape.png")
+      url("https://res.cloudinary.com/djbmfd9y6/image/upload/v1678993437/Camiontito/fondo-mobile.png")
         no-repeat fixed;
     background-size: contain;
-    height: 70vh;
-  }
-
-  //Pantallas pequeñas (móviles en landscape de más de 576px)
-  @media (min-width: 576px) and (orientation: portrait) {
     height: 30vh;
   }
 
-  //Pantallas medianas (tablets de más de 768px)
-  @media (min-width: 768px) and (orientation: portrait) {
-    height: 30vh;
+  //Pantallas pequeñas (móviles en portrait de más de 576px)
+  @media (min-width: 576px) and (orientation: portrait ){
+    height: 35vh;
+  }
+
+  //Pantallas medianas (tablets de portrait más de 768px)
+  @media (min-width: 768px) and (orientation: portrait ){
+    height: 25vh;
+  }
+
+  //Pantallas medianas (tablets de landscape más de 768px)
+  @media (min-width: 768px) and (orientation: landscape ){
+    height: 48vh;
   }
 
   //Pantallas grandes (desktops de más de 992px)
-  @media (min-width: 992px) and (orientation: portrait) {
-    height: 50vh;
+  @media (min-width: 992px) {
+    height: 40vh;
   }
 
   //Pantallas muy grandes (desktops de más de 1200px)
-  @media (min-width: 1200px) and (orientation: portrait) {
-    height: 90vh;
-
-    background-size: cover;
+  @media (min-width: 1200px) {
+    height: 48vh;
   }
 }
 
