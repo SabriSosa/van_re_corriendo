@@ -10,11 +10,8 @@ function ProjectItem({ item }) {
     id = "",
     description = "",
     isVideo = false,
-
     images,
   } = item;
-
-  console.log("images", images);
 
   return (
     <Container key={id} id={id} fluid className="container-project">
