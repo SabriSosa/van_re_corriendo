@@ -6,29 +6,27 @@ import SimpleCarrousel from "./SimpleCarrousel";
 
 function ProjectItem({ item }) {
   const {
-    count = 1,
     title = "",
     id = "",
     description = "",
-    video = false,
+    isVideo = false,
+
+    images,
   } = item;
 
-  const images = [];
-  for (let i = 1; i <= count; i++) {
-    images.push(`${id}${i}`);
-  }
+  console.log("images", images);
 
   return (
     <Container key={id} id={id} fluid className="container-project">
       <Container fluid className="item-project">
         <h3>{title}</h3>
-        <ReadMore text= {description} />
+        <ReadMore text={description} />
       </Container>
       <SimpleCarrousel
         id="project-carrousel"
         images={images}
-        prefix="Construccion-Camiontito"
-        video={video}
+        prefix="Camiontito/Building"
+        isVideo={isVideo}
       />
     </Container>
   );

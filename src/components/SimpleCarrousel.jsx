@@ -9,7 +9,7 @@ export default function SimpleCarrousel({
   id = "",
   images = [],
   prefix = "",
-  video = false,
+  isVideo = false,
   padding = false,
 }) {
   const [index, setIndex] = useState(0);
@@ -38,7 +38,7 @@ export default function SimpleCarrousel({
     >
       {images.map((image) => (
         <Carousel.Item id={image} key={image}>
-          {video ? (
+          {isVideo ? (
             <AdvancedVideo
               className="d-block w-100 carrousel-video"
               controls={true}

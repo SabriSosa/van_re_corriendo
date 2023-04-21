@@ -60,3 +60,29 @@ export const getDateFormat = (date) => {
   const _entryDate = new Date(_year, _month, _date);
   return _entryDate;
 };
+
+export const uploadPhoto = (files, id, folder) => {
+  const url = `https://api.Cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`;
+
+  const formData = new FormData();
+  for (let i = 0; i < files.length; i++) {
+    let file = files[i];
+    formData.append("file", file);
+    formData.append("upload_preset", "van_re_corriendo");
+    formData.append("folder", "Camiontito");
+    formData.append("public_id", `/${folder}/${id}_${i + 1}`);
+
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        return response.text();
+      })
+      .then((data) => {
+        const str = JSON.stringify(JSON.parse(data), null, 4);
+        console.log(str);
+      })
+      .catch((err) => console.log("Error: ", err));
+  }
+};

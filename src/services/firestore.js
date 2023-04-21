@@ -53,7 +53,7 @@ export const getRoutes = async () => {
 
 export const getProjects = async () => {
   const sectionsCollectionRef = collection(db, "project");
-  const q = query(sectionsCollectionRef, orderBy("order", "asc"));
+  const q = query(sectionsCollectionRef, orderBy("id", "asc"));
   return _getDocs(q);
 };
 
@@ -71,6 +71,14 @@ export const createPost = async ({ lon, lat, ...rest }) => {
     created: serverTimestamp(),
     location: new GeoPoint(lat, lon),
     ...rest,
+  });
+};
+
+export const createProject = async ( values ) => {
+  const postsColRef = collection(db, "project");
+  return addDoc(postsColRef, {
+    created: serverTimestamp(),
+    ...values,
   });
 };
 
