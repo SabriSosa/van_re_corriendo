@@ -3,6 +3,7 @@
     .sidebar {
       padding-right: 0 !important;
       padding-left: 0 !important;
+      padding-right: 0 !important;
     }
     .mapwrapper {
       padding-left: 0 !important;
@@ -69,4 +70,8 @@
   .text-center {
     min-height: calc(100vh);
   }
+}
+
+.travel-route-container {
+  padding: 0px !important;
 }
