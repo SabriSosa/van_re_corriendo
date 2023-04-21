@@ -8,10 +8,10 @@ import TitleComp from "../components/generic/Title";
 import * as FirestoreService from "../services/firestore";
 import "./Project.scss";
 import CustomSpinner from "../components/generic/CustomSpinner";
+import { t } from "@lingui/macro";
 
 function ProjectForm() {
   const [projects, setProjects] = useState();
-  const [text, setText] = useState("");
   const [waiting, setWaiting] = useState(true);
 
   const onClick = (prop) => {
@@ -58,8 +58,6 @@ function ProjectForm() {
 
   const getProjects = async () => {
     const projects = await FirestoreService.getProjects();
-    const response = await FirestoreService.getText("project");
-    setText(response.description);
     setProjects(projects);
     setWaiting(false);
   };
@@ -73,10 +71,10 @@ function ProjectForm() {
   }
 
   return (
-    <Container fluid className="project-container">
+    <Container className="project-container">
       <TitleComp title1="Construccion" title2="" />
       <ScrollToTop smooth color="rgba(116, 169, 219, 1)" />
-      <HtmlContainer text={text} />
+      <HtmlContainer text={t`project.intro`} />
 
       <Image
         className="full-image"

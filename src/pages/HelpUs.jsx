@@ -1,39 +1,20 @@
+import { t } from "@lingui/macro";
 import React from "react";
 
 import { Container } from "react-bootstrap";
 import TitleComp from "../components/generic/Title";
-import * as FirestoreService from "../services/firestore";
 
-import { useEffect, useState } from "react";
-import CustomSpinner from "../components/generic/CustomSpinner";
 import HtmlContainer from "../components/generic/HtmlContainer";
 import "./HelpUs.scss";
 
 function HelpUs() {
-  const [text, setText] = useState("");
-  const [waiting, setWaiting] = useState(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      let response;
-      response = await FirestoreService.getText("help.us");
-      setText(response.description);
-      setWaiting(false);
-    }
-    fetchData();
-  }, []);
-
-  if (waiting) {
-    return <CustomSpinner />;
-  }
-
   return (
     <Container className="help-us-container">
-      <TitleComp title1="Ayudanos" />
-      <HtmlContainer text={text} />
+      <TitleComp title1={t`help.us.title`} />
+      <HtmlContainer text={t`help.us.intro`} />
       <Container fluid>
         <p>
-          O escribirnos desde las redes sociales:
+          {t`help.us.social`}
           <a
             target="_blank"
             className="social"
