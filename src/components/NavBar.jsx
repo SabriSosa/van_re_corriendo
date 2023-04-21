@@ -109,7 +109,7 @@ function NavBarMenu() {
                   onClick={handleClose}
                   target="_blank"
                   href="https://www.facebook.com/profile.php?id=100085509656617"
-                  className="social-media-menu nav-link"
+                  className="social-media-menu nav-link fb"
                   rel="noreferrer"
                 >
                   <GrFacebookOption />
@@ -118,7 +118,7 @@ function NavBarMenu() {
                   onClick={handleClose}
                   target="_blank"
                   href="https://www.instagram.com/van_re_corriendo"
-                  className="social-media-menu nav-link"
+                  className="social-media-menu nav-link ig"
                   rel="noreferrer"
                 >
                   <RiInstagramLine />

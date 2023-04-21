@@ -25,11 +25,11 @@ function HelpUs() {
               alt="fb-logo"
               src="https://res.cloudinary.com/djbmfd9y6/image/upload/c_scale,w_150/v1681856889/Camiontito/fb-logo.png"
             />
-          </a>
+          </a>  
           <a
             target="_blank"
             className="social"
-            href="https://www.instagram.com/direct/t/340282366841710300949128174428524375496"
+            href="https://www.instagram.com/van_re_corriendo/"
             rel="noreferrer"
           >
             <img

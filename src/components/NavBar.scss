@@ -8,14 +8,23 @@
   @media (max-width: 991px) {
     color: black !important;
   }
-}
 
+  @media (max-width: 1200px) {
+    font-size: calc(0.1vw + 1.15em) !important;
+  }
+}
 .social-media-menu {
   @media (max-width: 991px) {
     display: none !important ;
   }
+}
+.social-media-menu.fb{
   margin: 0 10px;
 }
+.social-media-menu.ig{
+  margin-right: 30px;
+}
+
 .offcanvas-header {
   justify-content: end !important;
 }
@@ -49,7 +58,7 @@
   background-size: contain;
   height: 40vh;
 
-  @media (max-width: 768px)  and (orientation: portrait) {
+  @media (max-width: 576px)  and (orientation: portrait) {
     background: linear-gradient(black 5%, transparent 50%, transparent 0%),
       url("https://res.cloudinary.com/djbmfd9y6/image/upload/v1678993437/Camiontito/fondo-mobile.png")
         no-repeat fixed;
@@ -116,6 +125,7 @@
 
 .offcanvas-container {
   flex-wrap: wrap !important;
+  padding: 0% !important;
 }
 
 .logo-link-menu {
