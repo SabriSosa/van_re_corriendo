@@ -56,7 +56,7 @@ export default function Destinations() {
   }
 
   return (
-    <Container className="container-destinations" id="destinos">
+    <Container fluid className="container-destinations" id="destinos">
       <TitleComp title1="Destinos"/>
       <PostModal selectedPost={selectedPost} show={modalShow} onHide={onHide} />
       <PaginationPost

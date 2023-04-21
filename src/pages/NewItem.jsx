@@ -150,7 +150,7 @@ function NewItem() {
   const city =
     address?.city || address?.county || address?.village || address?.town;
   return (
-    <Container>
+    <Container fluid className="new-item-container">
       <NotificationContainer />
 
       <CustomModal

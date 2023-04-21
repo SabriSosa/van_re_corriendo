@@ -6,7 +6,7 @@ import TravelInfo from "../components/TravelInfo";
 
 function Home() {
   return (
-    <Container fluid className="main-container">
+    <Container fluid className="home-container">
       <Destinations />
       <TravelInfo />
     </Container>

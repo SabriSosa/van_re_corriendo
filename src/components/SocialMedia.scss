@@ -6,6 +6,10 @@
   .vertical-line {
     border-left: 1px solid #74a9db;
     height: 80px;
+
+    @media (max-width: 480px) or (orientation: landscape) {
+      height: 50px;
+    }
   }
 
   .diamond-shape {

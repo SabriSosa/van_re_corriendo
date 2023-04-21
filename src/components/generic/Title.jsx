@@ -3,7 +3,7 @@ import "./Title.scss";
 
 function TitleComp({ title1 = "", title2 = "" }) {
   return (
-    <Container>
+    <Container className="title-component">
       <div className="title-content">
         <h2>
           {title1} <strong> {title2}</strong>

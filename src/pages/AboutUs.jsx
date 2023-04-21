@@ -1,13 +1,11 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
 import { Container, Image } from "react-bootstrap";
+import { isMobile } from "react-device-detect";
 import { MdPerson } from "react-icons/md";
-import TitleComp from "../components/generic/Title";
-import * as FirestoreService from "../services/firestore";
-
-import { useEffect, useState } from "react";
 import CustomSpinner from "../components/generic/CustomSpinner";
 import HtmlContainer from "../components/generic/HtmlContainer";
+import TitleComp from "../components/generic/Title";
+import * as FirestoreService from "../services/firestore";
 import "./AboutUs.scss";
 
 function AboutUs() {
@@ -33,26 +31,28 @@ function AboutUs() {
 
   const person = (title, img, _text) => {
     return (
-      <div>
-        <h2 className="title-about">
-          {title}
-          <MdPerson className="title-icon" />
-        </h2>
+      <Container className="person-container">
+          <h2 className="title-about">
+            {title}
+            <MdPerson className="title-icon" />
+          </h2>
         <div>
           <Image
             className="person"
-            src={`https://res.cloudinary.com/djbmfd9y6/image/upload/w_200,c_fill,ar_1:1,g_auto,r_max/v1673907436/Camiontito/${img}.jpg`}
+            src={`https://res.cloudinary.com/djbmfd9y6/image/upload/w_${
+              isMobile ? "150" : "200"
+            },c_fill,ar_1:1,g_auto,r_max/v1673907436/Camiontito/${img}.jpg`}
           />
-          <HtmlContainer text={_text} className="about-us" />
+          <HtmlContainer text={_text} className="about-us-html" />
         </div>
-      </div>
+      </Container>
     );
   };
 
   return (
-    <Container className="aboutUs">
+    <Container className="about-us-container">
       <TitleComp title1="Quienes" title2="Somos" />
-      <HtmlContainer text={texts[0]} className="about-us" />
+      <HtmlContainer text={texts[0]} className="about-us-html" />
       {person("SABRI", "IMG_20220929_173749_jwpzkt", texts[1])}
       {person("ROBERT", "robert-photo", texts[2])}
     </Container>

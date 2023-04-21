@@ -28,15 +28,15 @@ function HelpUs() {
   }
 
   return (
-    <Container className="helpUs">
+    <Container className="help-us-container">
       <TitleComp title1="Ayudanos" />
       <HtmlContainer text={text} />
-      <Container>
+      <Container fluid>
         <p>
           O escribirnos desde las redes sociales:
           <a
             target="_blank"
-            class="social"
+            className="social"
             href="https://www.messenger.com/t/100085509656617"
             rel="noreferrer"
           >
@@ -47,7 +47,7 @@ function HelpUs() {
           </a>
           <a
             target="_blank"
-            class="social"
+            className="social"
             href="https://www.instagram.com/direct/t/340282366841710300949128174428524375496"
             rel="noreferrer"
           >

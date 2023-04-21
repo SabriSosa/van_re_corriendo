@@ -3,10 +3,14 @@
   display: flex !important;
   flex-direction: row !important;
   margin: 20px 0;
+}
 
-  .card-title {
-    text-align: center;
-  }
+.title-destination-post {
+  min-height: 50px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 .post-carrousel {
   .carousel-item {
@@ -26,7 +30,7 @@
   text-align: center;
 }
 
-.text-description {
+.text-description-post {
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -48,13 +52,7 @@
     margin-top: 10px;
   }
 
-  .title-destination {
-    text-align: center;
-  }
-}
-@media only screen and (max-device-width: 480px) and (orientation: portrait) {
-  .text-description {
-    text-align: justify;
+  .text-description-post {
     margin-top: 10px;
   }
 }

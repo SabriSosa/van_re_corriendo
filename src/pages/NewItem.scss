@@ -1,16 +1,18 @@
-.new-item-modal {
-  .modal-dialog {
-    max-width: 61% !important;
+.new-item-container {
+  .new-item-modal {
+    .modal-dialog {
+      max-width: 61% !important;
+    }
+
+    .map {
+      height: 500px !important;
+      padding: 0px !important;
+    }
   }
 
-  .map {
-    height: 500px !important;
-    padding: 0px !important;
+  .new-item-button {
+    background-color: #74a9db !important;
+    border-color: #74a9db !important;
+    margin-top: 15px;
   }
-}
-
-.new-item-button {
-  background-color: #74a9db !important;
-  border-color: #74a9db !important;
-  margin-top: 15px;
 }

@@ -73,7 +73,7 @@ function ProjectForm() {
   }
 
   return (
-    <Container className="project">
+    <Container fluid className="project-container">
       <TitleComp title1="Construccion" title2="" />
       <ScrollToTop smooth color="rgba(116, 169, 219, 1)" />
       <HtmlContainer text={text} />

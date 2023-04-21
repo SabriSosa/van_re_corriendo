@@ -40,7 +40,7 @@ export default function SimpleCarrousel({
         <Carousel.Item id={image} key={image}>
           {video ? (
             <AdvancedVideo
-              className="d-block w-100"
+              className="d-block w-100 carrousel-video"
               controls={true}
               //autoPlay
               cldVid={cld
@@ -49,7 +49,7 @@ export default function SimpleCarrousel({
             />
           ) : (
             <AdvancedImage
-              className="d-block w-100"
+              className="d-block w-100 carrousel-img"
               cldImg={cld
                 .image(`${prefix}/${image}`)
                 .addTransformation("ar_3:4,c_crop")}

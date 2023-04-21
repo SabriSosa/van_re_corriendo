@@ -67,7 +67,7 @@ const ContactForm = () => {
   }
 
   return (
-    <Container>
+    <Container className="contact-container">
       <NotificationContainer />
       <TitleComp title1="Contacto" />
       <p className="text-contact">{text}</p>

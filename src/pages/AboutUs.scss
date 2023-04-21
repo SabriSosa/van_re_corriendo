@@ -1,4 +1,4 @@
-.aboutUs {
+.about-us-container {
   span {
     margin: 25px;
   }
@@ -21,8 +21,15 @@
     }
   }
 }
-
 .person {
   float: right;
   margin: 10px;
+}
+
+.person-container {
+  padding: 0px;
+}
+
+.about-us-html {
+  margin-bottom: 20px;
 }

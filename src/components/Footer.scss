@@ -1,20 +1,14 @@
 footer {
-  bottom: 0;
+  max-height: 30vh;
   background-color: #74a9db;
   text-align: center;
   padding: 8px;
-  display: flex;
-  position: relative;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  margin-top: auto;
+  
   .footer-image {
-    max-width: 12%;
+    max-width: 10%;
     cursor: pointer;
-
     @media (max-width: 480px) and (orientation: portrait) {
       max-width: 25%;
     }

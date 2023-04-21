@@ -37,8 +37,8 @@ export default function PaginationPost({ data, rowsPerPage, totalPages = 1 }) {
     );
   }
   return (
-    <Container>
-      <Row xs={1} md={3} className="g-4 destinations">
+    <Container fluid className="container-posts">
+      <Row className="destinations">
         {showedData.map((data) => data)}
       </Row>
       <Pagination className="pagination-destinations">

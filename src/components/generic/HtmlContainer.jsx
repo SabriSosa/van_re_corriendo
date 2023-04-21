@@ -3,7 +3,7 @@ import DOMPurify from "dompurify";
 
 function HtmlContainer({ text, className }) {
   return (
-    <Container
+    <Container fluid
       dangerouslySetInnerHTML={{
         __html: DOMPurify.sanitize(text),
       }}
