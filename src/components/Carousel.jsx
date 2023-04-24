@@ -63,7 +63,6 @@ function SimpleCarousel() {
         focusOnSelect={true}
         itemClass="image-item"
         beforeChange={(nextSlide) => {
-          console.log("next 2", nextSlide);
           setNextSlide(nextSlide);
         }}
         autoPlay={false}

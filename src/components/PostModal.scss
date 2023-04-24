@@ -2,11 +2,12 @@
 .container-modal {
   @media (min-width: 992px) or (orientation: "landscape") {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
+
     //Text and Description
     .description-modal {
-      max-height: calc(100vh - 100px);
+      max-height: calc(100vh - 50px);
       overflow-y: auto;
       flex: 1 1 0px;
       text-align: start;
@@ -23,7 +24,7 @@
 
 .subtitle-post {
   display: flex;
-
+  color: gray;
   align-items: flex-end;
   padding: 0px !important;
 }
@@ -49,5 +50,17 @@
   .description-modal {
     text-align: justify !important;
     padding: 0 !important;
+  }
+}
+@media only screen and (orientation: landscape) {
+  .subtitle,
+  .address {
+    font-size: 0.6em;
+  }
+}
+
+.post-modal {
+  .modal-title {
+    font-size: 1.3rem;
   }
 }

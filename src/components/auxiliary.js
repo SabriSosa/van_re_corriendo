@@ -86,3 +86,10 @@ export const uploadPhoto = (files, id, folder) => {
       .catch((err) => console.log("Error: ", err));
   }
 };
+
+export const isLandscape = () => {
+  return window.orientation === 90 || window.orientation === -90;
+};
+export const isPortrait = () => {
+  return window.innerHeight > window.innerWidth;
+};

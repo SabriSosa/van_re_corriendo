@@ -1,16 +1,15 @@
 // react
-import React, { useEffect, useState } from "react";
-import { isMobile } from "react-device-detect";
-
+import { Control } from "ol/control.js";
 // openlayers
 import Feature from "ol/Feature";
-import { Control } from "ol/control.js";
 import Polyline from "ol/format/Polyline";
 import { Point } from "ol/geom";
 import { Select } from "ol/interaction";
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import { Circle as CircleStyle, Fill, Icon, Stroke, Style } from "ol/style";
+import React, { useEffect, useState } from "react";
+import { isMobile } from "react-device-detect";
 import MapWrapper from "./generic/MapWrapper";
 
 function TravelMap({ routes, coordinates, selectedPlace, setSelectedPlace }) {
@@ -169,7 +168,7 @@ function TravelMap({ routes, coordinates, selectedPlace, setSelectedPlace }) {
     }
   }, [map]);
 
-  return <MapWrapper setMap={setMap} className = "mapwrapper" />;
+  return <MapWrapper setMap={setMap} className="mapwrapper" />;
 }
 
 export default TravelMap;

@@ -1,13 +1,15 @@
 .modal-header {
   border-bottom: none;
+  padding-top: 5px;
+
 }
 
 .modal-dialog {
-  max-width: 61% !important;
-
+  margin-top: 5px;
+  margin-bottom: 0px;
   @media only screen and (max-device-width: 480px) and (orientation: portrait) {
-    max-width: 90% !important;
-  }
+    max-width: 100% !important;
+  };
 }
 
 .modal-backdrop {
@@ -19,7 +21,6 @@
   flex-direction: column;
 }
 
-
 .modal-body {
-    padding: 0px !important;
-  }
+  padding: 0px !important;
+}

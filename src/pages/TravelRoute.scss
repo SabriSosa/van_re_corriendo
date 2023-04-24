@@ -1,20 +1,23 @@
 .travel-route-container {
+
+  @media only screen  and (max-device-width: 1200px){
+    padding: 0px !important;
+
+  }
   .sidebar-map {
     display: flex;
     flex-direction: row;
+    padding: 0px !important;
     .mapwrapper {
       flex: 85;
       padding-left: 0 !important;
-      padding-bottom: 20px !important;
-
-      .container-fluid {
-        padding-left: 0 !important;
-      }
+      height: calc(100vh);
+      padding-right: 0px !important;
     }
   }
 }
 
-@media only screen and (max-device-width: 480px) and (orientation: portrait) {
+@media only screen and (max-device-width: 480px) {
   .sidebar-map {
     flex-direction: column-reverse !important;
     padding: 0px !important;
@@ -22,10 +25,8 @@
 
   .mapwrapper {
     flex: none !important;
+    height: calc(100vh - 250px);
     padding-right: 0 !important;
-    .container-fluid {
-      padding-right: 0 !important;
-    }
   }
 
   .travel-route-container {
@@ -41,3 +42,5 @@
     min-height: calc(100vh);
   }
 }
+
+

@@ -5,6 +5,7 @@ import Destinations from "../components/Destinations";
 import TravelInfo from "../components/TravelInfo";
 
 function Home() {
+
   return (
     <Container fluid className="home-container">
       <Destinations />

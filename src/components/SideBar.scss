@@ -4,6 +4,13 @@
   padding-top: 10px;
   flex: 15;
 
+  @media only screen and (max-device-width: 1200px) {
+    max-height: calc(100vh);
+    flex: 25 1;
+
+  }
+
+
   @media only screen and (max-device-width: 480px) and (orientation: portrait) {
     // display: flex;
     position: fixed;
@@ -15,5 +22,6 @@
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
+
   }
 }

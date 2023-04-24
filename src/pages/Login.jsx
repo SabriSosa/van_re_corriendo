@@ -1,19 +1,18 @@
-import React, { useState } from "react";
-import { Container } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import * as AuthService from "../services/auth";
-
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "@firebase/auth";
+import React, { useState } from "react";
+import { Container } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
 import { useNavigate } from "react-router";
 import CustomSpinner from "../components/generic/CustomSpinner";
+import * as AuthService from "../services/auth";
 import { auth } from "../services/firestore";
 import "./Login.scss";
 
