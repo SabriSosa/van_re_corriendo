@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
+import "./CustomModal.scss";
 
 export default function CustomModal({ id, show, onHide, body, title }) {
   return (
@@ -20,7 +21,7 @@ export default function CustomModal({ id, show, onHide, body, title }) {
           {title}
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>{body}</Modal.Body>
+      <Modal.Body className={`modal-body-${id}`}>{body}</Modal.Body>
     </Modal>
   );
 }

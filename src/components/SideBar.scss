@@ -1,20 +1,19 @@
-.side-bar-container {
+.sidebar-container {
   max-height: calc(100vh - 100px);
   overflow-y: auto;
   padding-top: 10px;
+  flex: 15;
 
-  @media only screen and (max-device-width: 960px) and (orientation: portrait) {
+  @media only screen and (max-device-width: 480px) and (orientation: portrait) {
+    // display: flex;
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    background-color: white;
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-
-    .side-bar-card {
-      display: inline-block;
-      margin: 2px 5px 15px 5px;
-
-      .side-bar-body {
-        padding: 10px 5px 20px 5px !important;
-      }
-    }
   }
 }

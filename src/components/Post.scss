@@ -12,13 +12,6 @@
   align-items: center;
   justify-content: space-around;
 }
-.post-carrousel {
-  .carousel-item {
-    @media (min-width: 992px) or (orientation: landscape) {
-      padding: 2% 20% !important;
-    }
-  }
-}
 
 .see-more-button {
   background-color: #74a9db !important;

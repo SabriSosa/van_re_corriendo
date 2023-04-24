@@ -6,7 +6,7 @@
     justify-content: flex-start;
     //Text and Description
     .description-modal {
-      max-height: calc(100vh - 200px);
+      max-height: calc(100vh - 100px);
       overflow-y: auto;
       flex: 1 1 0px;
       text-align: start;
@@ -17,27 +17,8 @@
   }
 }
 
-.post-modal {
-  .modal-dialog {
-    max-width: 61% !important;
-
-    @media only screen and (max-device-width: 480px) and (orientation: portrait) {
-      max-width: 100% !important;
-    }
-  }
-}
-
 .modal-header-post {
   padding-bottom: 0px !important;
-}
-
-.modal-header-title {
-  display: flex;
-  flex-direction: column;
-}
-
-.modal-backdrop {
-  opacity: 0.9 !important;
 }
 
 .subtitle-post {

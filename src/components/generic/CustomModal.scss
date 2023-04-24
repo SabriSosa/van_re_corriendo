@@ -1,0 +1,25 @@
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-dialog {
+  max-width: 61% !important;
+
+  @media only screen and (max-device-width: 480px) and (orientation: portrait) {
+    max-width: 90% !important;
+  }
+}
+
+.modal-backdrop {
+  opacity: 0.9 !important;
+}
+
+.modal-header-title {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.modal-body {
+    padding: 0px !important;
+  }

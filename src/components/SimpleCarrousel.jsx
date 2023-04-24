@@ -10,7 +10,7 @@ export default function SimpleCarrousel({
   images = [],
   prefix = "",
   isVideo = false,
-  padding = false,
+  transformation = "ar_3:4,c_crop",
 }) {
   const [index, setIndex] = useState(0);
 
@@ -45,14 +45,14 @@ export default function SimpleCarrousel({
               //autoPlay
               cldVid={cld
                 .video(`${prefix}/${image}`)
-                .addTransformation("ar_3:4,c_crop")}
+                .addTransformation(transformation)}
             />
           ) : (
             <AdvancedImage
-              className="d-block w-100 carrousel-img"
+              className="carrousel-img img-fluid img-thumbnail"
               cldImg={cld
                 .image(`${prefix}/${image}`)
-                .addTransformation("ar_3:4,c_crop")}
+                .addTransformation(transformation)}
             />
           )}
         </Carousel.Item>
