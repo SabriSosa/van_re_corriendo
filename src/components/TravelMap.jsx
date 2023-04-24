@@ -57,7 +57,7 @@ function TravelMap({ routes, coordinates, selectedPlace, setSelectedPlace }) {
       featuresCollection.push(__feature);
       map.getView().fit(__feature.getGeometry(), {
         size: map.getSize(),
-        maxZoom: 8,
+        maxZoom: 6,
         duration: 500,
       });
 
@@ -169,7 +169,7 @@ function TravelMap({ routes, coordinates, selectedPlace, setSelectedPlace }) {
     }
   }, [map]);
 
-  return <MapWrapper setMap={setMap} />;
+  return <MapWrapper setMap={setMap} className = "mapwrapper" />;
 }
 
 export default TravelMap;

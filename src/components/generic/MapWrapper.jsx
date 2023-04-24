@@ -1,21 +1,19 @@
 // react
-import React, { useEffect, useRef } from "react";
-import { isMobile } from "react-device-detect";
-
-// openlayers
-import Map from "ol/Map";
-import View from "ol/View";
 import { Control, FullScreen, Zoom } from "ol/control.js";
 import TileLayer from "ol/layer/Tile";
 import VectorLayer from "ol/layer/Vector";
+// openlayers
+import Map from "ol/Map";
 import VectorSource from "ol/source/Vector";
 import XYZ from "ol/source/XYZ";
+import View from "ol/View";
+import React, { useEffect, useRef } from "react";
+import { Container } from "react-bootstrap";
+import { isMobile } from "react-device-detect";
+import { useNavigate } from "react-router";
 import "./MapWrapper.scss";
 
-import { Container } from "react-bootstrap";
-import { useNavigate } from "react-router";
-
-function MapWrapper({ setMap }) {
+function MapWrapper({ setMap, className }) {
   const mapElement = useRef();
   const mapRef = useRef();
 
@@ -94,9 +92,12 @@ function MapWrapper({ setMap }) {
   }, [mapElement, mapRef]);
 
   return (
-    <Container fluid>
-      <div ref={mapElement} className="map"></div>
-    </Container>
+    <Container
+      fluid
+      id="map-wrapper"
+      ref={mapElement}
+      className={`map ${className}`}
+    ></Container>
   );
 }
 
