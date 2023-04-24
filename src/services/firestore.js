@@ -4,6 +4,8 @@ import {
   GeoPoint,
   addDoc,
   collection,
+  doc,
+  getDoc,
   getDocs,
   getFirestore,
   limit,
@@ -74,7 +76,7 @@ export const createPost = async ({ lon, lat, ...rest }) => {
   });
 };
 
-export const createProject = async ( values ) => {
+export const createProject = async (values) => {
   const postsColRef = collection(db, "project");
   return addDoc(postsColRef, {
     created: serverTimestamp(),
@@ -95,23 +97,20 @@ export const getMaxId = async (id) => {
 };
 
 export const getText = async (id) => {
-  const textCollection = collection(db, "text");
-  const q = query(textCollection, where("id", "==", id));
+  const d = await getDoc(doc(db, "text", id));
+  return d.data();
 
-  const querySnapshot = await getDocs(q);
-
-  const data = [];
-  querySnapshot.forEach((doc) => {
-    data.push(doc.data());
-  });
-
-  return data[0];
 };
 
 export const getTexts = async (ids) => {
   const textCollection = collection(db, "text");
   const q = query(textCollection, where("id", "in", ids));
   return _getDocs(q);
+};
+
+export const getPost = async (id) => {
+  const d = await getDoc(doc(db, "post", id));
+  return d.data();
 };
 
 //https://github.com/Tammibriggs/firebase-with-react-hooks

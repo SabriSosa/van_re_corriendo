@@ -3,8 +3,6 @@ import {
   FacebookShareButton,
   LinkedinIcon,
   LinkedinShareButton,
-  PinterestIcon,
-  PinterestShareButton,
   TwitterIcon,
   TwitterShareButton,
   WhatsappIcon,
@@ -26,13 +24,15 @@ export default function SocialMedia({ post }) {
       <div className="vertical-line"></div>
       <TwitterShareButton
         className="social-media"
-        url={"http://localhost:3000/home"}
+        title={post.title}
+        hashtags={["vanrecorriendo", "newpost"]}
+        url={`${"https://vanrecorriendo.com/home"}/${post.id}`}
       >
         <TwitterIcon className="social-media-icon tw" size={25} round={true} />
       </TwitterShareButton>
       <FacebookShareButton
         className="social-media"
-        url={"http://localhost:3000/home"}
+        url={`${"https://vanrecorriendo.com/home"}/${post.id}`}
       >
         <FacebookIcon
           className="social-media-icon face"
@@ -40,25 +40,14 @@ export default function SocialMedia({ post }) {
           round={true}
         />
       </FacebookShareButton>
-      <PinterestShareButton
-        className="social-media"
-        url={"http://localhost:3000/home"}
-      >
-        <PinterestIcon
-          className="social-media-icon pint"
-          size={25}
-          round={true}
-        />
-      </PinterestShareButton>
-      <WhatsappShareButton
-        className="social-media"
-        url={"http://localhost:3000/home"}
+      <a className="social-media"
+      href={`https://api.whatsapp.com/send?text=Nuevo post de @vanrecorriendo "${post.title}"%0ahttps://vanrecorriendo.com/home/${post.id}`}
       >
         <WhatsappIcon className="social-media-icon wp" size={25} round={true} />
-      </WhatsappShareButton>
+      </a>
       <LinkedinShareButton
         className="social-media"
-        url={"http://localhost:3000/home"}
+        url={`${"https://vanrecorriendo.com/home"}/${post.id}`}
       >
         <LinkedinIcon
           className="social-media-icon link"
@@ -67,7 +56,10 @@ export default function SocialMedia({ post }) {
         />
       </LinkedinShareButton>
 
-      <RiInstagramLine className="social-media insta" />
+      <a href="https://msng.link/o/?vanrecorriendo=ig">
+        <RiInstagramLine className="social-media insta" />
+      </a>
+      
     </section>
   );
 }

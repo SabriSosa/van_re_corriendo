@@ -7,6 +7,7 @@ import Post from "./Post";
 import PostModal from "./PostModal";
 import CustomSpinner from "./generic/CustomSpinner";
 import TitleComp from "./generic/Title";
+import { useParams } from "react-router-dom";
 
 export default function Destinations() {
   const [posts, setPosts] = useState([]);
@@ -19,6 +20,23 @@ export default function Destinations() {
     setPosts(_posts);
     setWaiting(false);
   };
+
+  const getPost = async (postId) => {
+    const _post = await FirestoreService.getPost(postId);
+
+    console.log('postid', postId);
+    console.log('post', _post);
+
+    setSelectedPost(_post);
+    setModalShow(true);
+
+  };
+
+  const { postId } = useParams();
+
+  useEffect(() => {
+    getPost(postId);
+  }, [postId]);
 
   useEffect(() => {
     getPosts();

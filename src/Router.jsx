@@ -24,6 +24,7 @@ function Router() {
   return (
     <Routes>
       <Route path="/home" element={<Home />} />
+      <Route path="/home/:postId" element={<Home />} />
       <Route path="/contact" element={<ContactForm />} />
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/project" element={<ProjectForm />} />
