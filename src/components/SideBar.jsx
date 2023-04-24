@@ -26,12 +26,12 @@ function SideBar({ routes, selectedPlace, setSelectedPlace }) {
   }, [selectedPlace]);
 
   const body = (
-    <Container fluid className="container-modal">
+    <Container fluid className="container-modal-sidebar">
       <SimpleCarrousel
         prefix="Camiontito/Routes"
         images={selectedItem?.images}
         id="sidebar-carrousel"
-        transformation=""
+        transformation="ar_1:1,c_crop"
       />
     </Container>
   );
