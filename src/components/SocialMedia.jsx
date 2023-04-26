@@ -5,8 +5,7 @@ import {
   LinkedinShareButton,
   TwitterIcon,
   TwitterShareButton,
-  WhatsappIcon,
-  WhatsappShareButton,
+  WhatsappIcon
 } from "react-share";
 
 import { RiInstagramLine } from "react-icons/ri";

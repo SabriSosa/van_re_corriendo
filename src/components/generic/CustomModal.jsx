@@ -1,17 +1,21 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
-import { isDesktop, isTablet } from "react-device-detect";
 import "./CustomModal.scss";
 
-export default function CustomModal({ id, show, onHide, body, title }) {
-  const size = isDesktop ? "lg" : isTablet ? "md" : "sm";
-
+export default function CustomModal({
+  id,
+  show,
+  onHide,
+  body,
+  title,
+  size = "lg",
+}) {
   return (
     <Modal
+      size={size}
       show={show}
       onHide={onHide}
       className={`${id}-modal`}
-      size={size}
       aria-labelledby="contained-modal-title-vcenter"
       key={`${id}-modal`}
       centered

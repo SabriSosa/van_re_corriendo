@@ -131,7 +131,7 @@ function NewItem() {
   };
 
   const body = (
-    <Container fluid className="mb-3">
+    <Container fluid className="modal-body-new-item">
       <NewItemMap setCoord={setCoord} />
       <div>
         {t`new.item.coord`}: {coord?.lat} {coord?.lon}

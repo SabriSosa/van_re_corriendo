@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
+import { isDesktop, isTablet } from "react-device-detect";
 import "./PostModal.scss";
 import SimpleCarrousel from "./SimpleCarrousel";
 import { getCity, getDateString } from "./auxiliary";

@@ -9,6 +9,8 @@ import { Icon, Style } from "ol/style";
 
 import MapWrapper from "./generic/MapWrapper";
 
+import "./NewItemMap.scss";
+
 function NewItemMap({ setCoord }) {
   const [map, setMap] = useState();
 
@@ -60,7 +62,7 @@ function NewItemMap({ setCoord }) {
     }
   }, [map]);
 
-  return <MapWrapper setMap={setMap} />;
+  return <MapWrapper setMap={setMap} className="new-item-map" />;
 }
 
 export default NewItemMap;

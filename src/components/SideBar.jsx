@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import CustomModal from "./generic/CustomModal";
+import { isDesktop, isTablet } from "react-device-detect";
 import "./SideBar.scss";
 import SideBarItem from "./SideBarItem";
 import SimpleCarrousel from "./SimpleCarrousel";
+import CustomModal from "./generic/CustomModal";
 
 function SideBar({ routes, selectedPlace, setSelectedPlace }) {
   const [modalShow, setModalShow] = useState(false);
@@ -40,6 +41,7 @@ function SideBar({ routes, selectedPlace, setSelectedPlace }) {
     routes && (
       <Container className="sidebar-container">
         <CustomModal
+          size={isDesktop ? "lg" : isTablet ? "md" : "sm"}
           id="travel-map"
           show={modalShow}
           body={body}
