@@ -1,9 +1,11 @@
+
+import { t } from "@lingui/macro";
 import { useState } from "react";
 import { Image } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { GrFacebookOption } from "react-icons/gr";
 import { RiInstagramLine } from "react-icons/ri";
@@ -11,23 +13,14 @@ import { Link } from "react-router-dom";
 import "./NavBar.scss";
 
 const menu1 = [
-  { title: "Inicio", action: "home" },
-  { title: "Nosotros", action: "about-us" },
-  // {
-  //   title: "Destinos",
-  //   action: "places",
-  //   submenu: [
-  //     { title: "Argentina", action: "argentina" },
-  //     { title: "Chile", action: "chile" },
-  //   ],
-  // },
-
-  { title: "Contacto", action: "contact" },
-  { title: "Ayudanos", action: "help-us" },
+  { title: t`menu.home`, action: "home" },
+  { title: t`menu.about.us`, action: "about-us" },
+  { title: t`menu.contact`, action: "contact" },
+  { title: t`menu.help.us`, action: "help-us" },
 ];
 const menu2 = [
-  { title: "Construcción", action: "project" },
-  { title: "Recorrido", action: "route" },
+  { title: t`menu.project`, action: "project" },
+  { title: t`menu.route`, action: "route" },
 ];
 
 function NavBarMenu() {

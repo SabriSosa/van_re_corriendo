@@ -17,7 +17,10 @@ i18n.activate("es");
 //const userLang = navigator.language || navigator.userLanguage;
 
 function App() {
-  const excludedRoutes = isDesktop ? [] : ["/route"];
+  let excludedRoutes = ["/not-found"];
+  if (!isDesktop) {
+    excludedRoutes.push("/routes");
+  }
   const location = useLocation();
 
   return (
