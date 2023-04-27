@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
-import { isDesktop, isTablet } from "react-device-detect";
 import "./PostModal.scss";
 import SimpleCarrousel from "./SimpleCarrousel";
 import { getCity, getDateString } from "./auxiliary";
@@ -9,6 +8,26 @@ import HtmlContainer from "./generic/HtmlContainer";
 
 export default function PostModal({ show, onHide, selectedPost }) {
   const [postCity, setPostCity] = useState();
+
+  function resize() {
+    /* set max-height by code */
+    const container = document.getElementById(selectedPost?.id);
+    if (container) {
+      var colHeight = container
+        .querySelector(".post-carrousel")
+        ?.getBoundingClientRect().height;
+      const description = container.querySelector(".description-modal");
+      if (description) {
+        description.style.maxHeight = colHeight + "px";
+        document
+          .getElementsByClassName("post-modal")[0]
+          .classList.remove("hidden-modal");
+      }
+    }
+  }
+
+  resize();
+  window.onresize = resize;
 
   React.useEffect(() => {
     if (selectedPost)
@@ -37,7 +56,7 @@ export default function PostModal({ show, onHide, selectedPost }) {
   );
 
   const body = (
-    <Container fluid className="container-modal">
+    <Container fluid className="container-modal" id={selectedPost?.id}>
       <SimpleCarrousel
         prefix="Camiontito/Posts"
         images={selectedPost?.images}
@@ -56,6 +75,7 @@ export default function PostModal({ show, onHide, selectedPost }) {
       title={title}
       body={body}
       show={show}
+      className="hidden-modal"
       onHide={handleOnHide}
     />
   );

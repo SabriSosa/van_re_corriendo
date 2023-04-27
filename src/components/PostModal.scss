@@ -7,7 +7,7 @@
 
     //Text and Description
     .description-modal {
-      max-height: calc(100vh - 50px);
+      // max-height: calc(100vh - 50px);
       overflow-y: auto;
       flex: 1 1 0px;
       text-align: start;
@@ -15,6 +15,18 @@
         margin-bottom: 20px;
       }
     }
+  }
+  padding-bottom: 8px;
+}
+.description-modal {
+  @media (min-width: 768px) and (orientation: "landscape") {
+    // max-height: calc(100vh - 300px) !important;
+  }
+  @media (min-width: 992px) and (orientation: "landscape") {
+    // max-height: calc(100vh - 200px) !important;
+  }
+  @media (min-width: 1200px) {
+    // max-height: calc(100vh - 300px);
   }
 }
 
@@ -63,4 +75,8 @@
   .modal-title {
     font-size: 1.3rem;
   }
+}
+
+.hidden-modal {
+  visibility: hidden !important;
 }

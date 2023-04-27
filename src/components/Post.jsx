@@ -19,7 +19,10 @@ export default function Post({ post, setModalShow, setSelectedPost }) {
       <Card.Body className={`post-${id}`}>
         <Card.Title className="title-destination-post">{post.title}</Card.Title>
         <Container fluid className="description-destination">
-          <HtmlContainer text={post?.description} className="text-description-post" />
+          <HtmlContainer
+            text={post?.description}
+            className="text-description-post"
+          />
           <Button
             variant="primary"
             onClick={handleClick}
@@ -33,7 +36,7 @@ export default function Post({ post, setModalShow, setSelectedPost }) {
   };
 
   return (
-    <Col lg={4} md={6} xs={12} id={post.title}>
+    <Col lg={4} md={6} sm={6} xs={12} id={post.title}>
       <Card className="card-post">
         <SocialMedia post={post} />
         <div>

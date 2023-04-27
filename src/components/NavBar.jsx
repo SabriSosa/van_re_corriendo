@@ -59,7 +59,7 @@ function NavBarMenu() {
           <Navbar.Offcanvas
             id={`offcanvasNavbar-expand`}
             aria-labelledby={`offcanvasNavbarLabel-expand`}
-            placement="start"
+            placement="end"
             show={menuOpen}
             onHide={handleClose}
           >

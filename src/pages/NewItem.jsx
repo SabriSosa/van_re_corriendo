@@ -8,6 +8,7 @@ import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
+import NewItemMap from "../components/NewItemMap";
 import {
   getAddress,
   getDateFormat,
@@ -15,7 +16,6 @@ import {
 } from "../components/auxiliary";
 import CustomModal from "../components/generic/CustomModal";
 import CustomSpinner from "../components/generic/CustomSpinner";
-import NewItemMap from "../components/NewItemMap";
 import * as FirestoreService from "../services/firestore";
 import "./NewItem.scss";
 

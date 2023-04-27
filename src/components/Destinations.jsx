@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import * as FirestoreService from "../services/firestore";
 import "./Destinations.scss";
 import PaginationPost from "./Pagination";
@@ -7,7 +8,6 @@ import Post from "./Post";
 import PostModal from "./PostModal";
 import CustomSpinner from "./generic/CustomSpinner";
 import TitleComp from "./generic/Title";
-import { useParams } from "react-router-dom";
 
 export default function Destinations() {
   const [posts, setPosts] = useState([]);
@@ -24,18 +24,16 @@ export default function Destinations() {
   const getPost = async (postId) => {
     const _post = await FirestoreService.getPost(postId);
 
-    console.log('postid', postId);
-    console.log('post', _post);
-
     setSelectedPost(_post);
     setModalShow(true);
-
   };
 
   const { postId } = useParams();
 
   useEffect(() => {
-    getPost(postId);
+    if (postId) {
+      getPost(postId);
+    }
   }, [postId]);
 
   useEffect(() => {
@@ -75,7 +73,7 @@ export default function Destinations() {
 
   return (
     <Container fluid className="container-destinations" id="destinos">
-      <TitleComp title1="Destinos"/>
+      <TitleComp title1="Destinos" />
       <PostModal selectedPost={selectedPost} show={modalShow} onHide={onHide} />
       <PaginationPost
         data={postComponents}
