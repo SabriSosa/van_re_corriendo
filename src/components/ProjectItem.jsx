@@ -11,10 +11,11 @@ function ProjectItem({ item }) {
     description = "",
     isVideo = false,
     images,
+    reference,
   } = item;
 
   return (
-    <Container key={id} id={id} fluid className="container-project">
+    <Container key={id} id={reference} fluid className="container-project">
       <Container fluid className="item-project">
         <h3>{title}</h3>
         <ReadMore text={description} />

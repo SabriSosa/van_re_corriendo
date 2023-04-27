@@ -1,53 +1,56 @@
+import { t, Trans } from "@lingui/macro";
 import { useEffect, useState } from "react";
 import { Button, Container, Image } from "react-bootstrap";
 import ScrollToTop from "react-scroll-to-top";
-import ProjectItem from "../components/ProjectItem";
-import Wave from "../components/Wave";
+import CustomSpinner from "../components/generic/CustomSpinner";
 import HtmlContainer from "../components/generic/HtmlContainer";
 import TitleComp from "../components/generic/Title";
+import ProjectItem from "../components/ProjectItem";
+import Wave from "../components/Wave";
 import * as FirestoreService from "../services/firestore";
 import "./Project.scss";
-import CustomSpinner from "../components/generic/CustomSpinner";
-import { t } from "@lingui/macro";
 
 function ProjectForm() {
   const [projects, setProjects] = useState();
   const [waiting, setWaiting] = useState(true);
 
   const onClick = (prop) => {
-    window.location.href = prop;
+    console.log("propp", prop);
+    const _selectedPlace = document.getElementById(prop);
+    _selectedPlace.scrollIntoView({
+      block: "center",
+      inline: "center",
+      behavior: "smooth",
+    });
   };
 
   useEffect(() => {
-    async function fetchData() {
-    
-    }
+    async function fetchData() {}
     fetchData();
   }, []);
 
   const sections = [
-    { title: "Diseño", action: "design" },
-    { title: "Aislación", action: "isolation" },
-    { title: "Electricidad", action: "electric" },
-    { title: "Revestimiento", action: "coating" },
-    { title: "Baño", action: "bathroom" },
-    { title: "Sofa Cama", action: "bed" },
-    { title: "Almacenamiento", action: "storage" },
-    { title: "Aguas Blancas", action: "white-water" },
-    { title: "Aguas Grises", action: "gray" },
-    { title: "Aguas Negras", action: "black-water" },
-    { title: "Cocina", action: "kitchen" },
-    { title: "Energia Solar", action: "solar" },
-    { title: "Calefacion", action: "hot-cool" },
+    { title: <Trans>project.design</Trans>, action: "design" },
+    { title: <Trans>project.isolation</Trans>, action: "isolation" },
+    { title: <Trans>project.electric</Trans>, action: "electric" },
+    { title: <Trans>project.coating</Trans>, action: "coating" },
+    { title: <Trans>project.bathroom</Trans>, action: "bathroom" },
+    { title: <Trans>project.bed</Trans>, action: "bed" },
+    { title: <Trans>project.storage</Trans>, action: "storage" },
+    { title: <Trans>project.white-water</Trans>, action: "white-water" },
+    { title: <Trans>project.gray</Trans>, action: "gray" },
+    { title: <Trans>project.black-water</Trans>, action: "black-water" },
+    { title: <Trans>project.kitchen</Trans>, action: "kitchen" },
+    { title: <Trans>project.solar</Trans>, action: "solar" },
+    { title: <Trans>project.hot-cool</Trans>, action: "hot-cool" },
   ];
-
   const info = (
     <section className="cards">
       {sections.map((section) => (
         <article className="card " key={section.title}>
           <Button
             variant="outline-light"
-            onClick={() => onClick(`#${section.action}`)}
+            onClick={() => onClick(section.action)}
           >
             {section.title}
           </Button>

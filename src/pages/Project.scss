@@ -52,14 +52,23 @@
 }
 
 .project-carrousel {
+  @media (min-width: 1200px) {
+    .carousel-control-prev {
+      left: 5vw;
+    }
+    .carousel-control-next {
+      right: 5vw;
+    }
+  }
+
   .carousel-item {
     padding: 5% 15% !important;
 
-    @media (min-width: 992px){
+    @media (min-width: 992px) {
       padding: 5% 15% !important;
     }
 
-    @media (min-width: 1200px){
+    @media (min-width: 1200px) {
       padding: 5% 25% !important;
     }
   }

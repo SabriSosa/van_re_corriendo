@@ -1,5 +1,4 @@
-
-import { t } from "@lingui/macro";
+import { Trans } from "@lingui/macro";
 import { useState } from "react";
 import { Image } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
@@ -13,14 +12,14 @@ import { Link } from "react-router-dom";
 import "./NavBar.scss";
 
 const menu1 = [
-  { title: t`menu.home`, action: "home" },
-  { title: t`menu.about.us`, action: "about-us" },
-  { title: t`menu.contact`, action: "contact" },
-  { title: t`menu.help.us`, action: "help-us" },
+  { title: <Trans>menu.home</Trans>, action: "home" },
+  { title: <Trans>menu.about.us</Trans>, action: "about-us" },
+  { title: <Trans>menu.contact</Trans>, action: "contact" },
+  { title: <Trans>menu.help.us</Trans>, action: "help-us" },
 ];
 const menu2 = [
-  { title: t`menu.project`, action: "project" },
-  { title: t`menu.route`, action: "route" },
+  { title: <Trans>menu.project</Trans>, action: "project" },
+  { title: <Trans>menu.route</Trans>, action: "route" },
 ];
 
 function NavBarMenu() {
@@ -61,7 +60,11 @@ function NavBarMenu() {
               <Nav className="navbar-body justify-content-center flex-grow-1 pe-3">
                 {menu1.map((menu) =>
                   menu.submenu ? (
-                    <NavDropdown key={menu.title} title={menu.title}>
+                    <NavDropdown
+                      key={menu.action}
+                      title={menu.title}
+                      id={menu.action}
+                    >
                       {menu.submenu.map((sub) => (
                         <NavDropdown.Item key={sub.title} to={sub.action}>
                           {sub.title}
@@ -71,7 +74,8 @@ function NavBarMenu() {
                   ) : (
                     <Link
                       onClick={handleClose}
-                      key={menu.title}
+                      key={menu.action}
+                      id={menu.action}
                       to={menu.action}
                       className="nav-link"
                     >
@@ -90,7 +94,8 @@ function NavBarMenu() {
                 {menu2.map((menu) => (
                   <Link
                     onClick={handleClose}
-                    key={menu.title}
+                    key={menu.action}
+                    id={menu.action}
                     to={menu.action}
                     className="nav-link"
                   >

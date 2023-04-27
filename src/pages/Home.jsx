@@ -1,15 +1,12 @@
 import React from "react";
-
 import { Container } from "react-bootstrap";
 import Destinations from "../components/Destinations";
 import TravelInfo from "../components/TravelInfo";
-import './Home.scss';
+import "./Home.scss";
 
 function Home() {
   return (
     <Container fluid className="home-container">
-  
-      <div id="container-e0e31f127aef04efe6b452d69aafaa84" className="advertisment"></div>
       <ins
         className="adsbygoogle"
         style={{

@@ -9,20 +9,15 @@
   }
 
 
-  @media (min-width: 1200px) {
-    .carousel-control-prev {
-      left: 5vw;
-    }
-   
-    .carousel-control-next {
-      right: 5vw;
-    }
-  }
+
   .carousel-control-prev-icon,
   .carousel-control-next-icon {
     opacity: 1;
     background-color: #74a9db;
     opacity: 1;
+    @media (max-width: 1200px) {
+      display: none;
+    }
   }
 }
 
