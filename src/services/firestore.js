@@ -53,6 +53,8 @@ export const getRoutes = async () => {
   return _getDocs(q);
 };
 
+
+
 export const getProjects = async () => {
   const sectionsCollectionRef = collection(db, "project");
   const q = query(sectionsCollectionRef, orderBy("id", "asc"));
@@ -60,6 +62,15 @@ export const getProjects = async () => {
 };
 
 export const createRoute = async ({ lon, lat, ...rest }) => {
+  const routesColRef = collection(db, "route");
+  return addDoc(routesColRef, {
+    created: serverTimestamp(),
+    location: new GeoPoint(lat, lon),
+    ...rest,
+  });
+};
+
+export const updateRoute = async ({ lon, lat, ...rest }) => {
   const routesColRef = collection(db, "route");
   return addDoc(routesColRef, {
     created: serverTimestamp(),
@@ -76,7 +87,24 @@ export const createPost = async ({ lon, lat, ...rest }) => {
   });
 };
 
+export const updatePost = async ({ lon, lat, ...rest }) => {
+  const postsColRef = collection(db, "post");
+  return addDoc(postsColRef, {
+    created: serverTimestamp(),
+    location: new GeoPoint(lat, lon),
+    ...rest,
+  });
+};
+
 export const createProject = async (values) => {
+  const postsColRef = collection(db, "project");
+  return addDoc(postsColRef, {
+    created: serverTimestamp(),
+    ...values,
+  });
+};
+
+export const updateProject = async (values) => {
   const postsColRef = collection(db, "project");
   return addDoc(postsColRef, {
     created: serverTimestamp(),

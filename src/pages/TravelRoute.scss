@@ -1,8 +1,6 @@
 .travel-route-container {
-
-  @media only screen  and (max-device-width: 1200px){
+  @media only screen and (max-device-width: 1200px) {
     padding: 0px !important;
-
   }
   .sidebar-map {
     display: flex;
@@ -43,4 +41,11 @@
   }
 }
 
-
+.image-test {
+  border-radius: 50%;
+  border: solid 1px white;
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  object-fit: cover;
+}

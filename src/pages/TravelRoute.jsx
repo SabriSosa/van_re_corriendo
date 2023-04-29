@@ -2,30 +2,33 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { isMobile } from "react-device-detect";
-import CustomSpinner from "../components/generic/CustomSpinner";
-import TitleComp from "../components/generic/Title";
+import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "../components/SideBar";
 import TravelMap from "../components/TravelMap";
-import * as FirestoreService from "../services/firestore";
+import CustomSpinner from "../components/generic/CustomSpinner";
+import TitleComp from "../components/generic/Title";
+import {
+  fetchRoutes,
+  selectAllCoordinates,
+  selectAllRoutes,
+} from "../slices/routeSlice";
 import "./TravelRoute.scss";
 
 function TravelRoute() {
-  const [coordinates, setCoordinates] = useState([]);
-  const [routes, setRoutes] = useState([]);
   const [selectedPlace, setSelectedPlace] = useState(1);
 
-  const getRoutes = async () => {
-    const routes = await FirestoreService.getRoutes();
-    setCoordinates([]);
-    setRoutes(routes);
-    setCoordinates(routes.map((r) => [r.location._long, r.location._lat]));
-  };
+  const dispatch = useDispatch();
+  const routes = useSelector(selectAllRoutes);
+  const coordinates = useSelector(selectAllCoordinates);
+  const routeStatus = useSelector((state) => state.routes.status);
 
   useEffect(() => {
-    getRoutes();
-  }, []);
+    if (routeStatus === "initial") {
+      dispatch(fetchRoutes());
+    }
+  }, [routeStatus, dispatch]);
 
-  if (routes.length < 1) {
+  if (routeStatus === "loading") {
     return <CustomSpinner />;
   }
   return (

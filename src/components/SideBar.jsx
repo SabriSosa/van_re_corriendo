@@ -18,7 +18,7 @@ function SideBar({ routes, selectedPlace, setSelectedPlace }) {
   useEffect(() => {
     if (selectedPlace) {
       const _selectedPlace = document.getElementById(selectedPlace);
-      _selectedPlace.scrollIntoView({
+      _selectedPlace?.scrollIntoView({
         block: "center",
         inline: "center",
         behavior: "smooth",

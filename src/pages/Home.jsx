@@ -21,6 +21,7 @@ function Home() {
         data-ad-format="auto"
         data-full-width-responsive="true"
       ></ins>
+      
       <Destinations />
       <TravelInfo />
     </Container>

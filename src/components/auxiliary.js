@@ -35,19 +35,29 @@ export function getCity(lat, lng, setItem) {
     }
   }
 }
+export const getAddressString = (address) => {
+  const city =
+    address?.city || address?.village || address?.town || address?.county;
+
+  return city + ", " + address.state + ", " + address.country;
+};
 
 export const getAddress = async (lat, lng) => {
+  const key = "pk.463c606657acae1bc8f276a073302727"; //https://es.locationiq.com/ //sign in with Google Sabri
   const response = await fetch(
-    `http://nominatim.openstreetmap.org/reverse?format=json&lon=${lng}&lat=${lat}`
+    `https://us1.locationiq.com/v1/reverse.php?key=${key}&format=json&lon=${lng}&lat=${lat}`
   );
   const data = await response.json();
   if (data) return data.address;
 };
 
 export const getDateString = (date) => {
-  return `${new Date(1000 * date.seconds).getDate()}/${
-    new Date(1000 * date.seconds).getMonth() + 1
-  }/${new Date(1000 * date.seconds).getFullYear()}`;
+  const _date = new Date(date);
+  return `${_date.getDate()}/${_date.getMonth() + 1}/${_date.getFullYear()}`;
+};
+
+export const getDateFromDB = (date) => {
+  return new Date(1000 * date.seconds).toDateString();
 };
 
 export const initialDate = new Date("2022-08-10");
@@ -92,4 +102,23 @@ export const isLandscape = () => {
 };
 export const isPortrait = () => {
   return window.innerHeight > window.innerWidth;
+};
+
+export const getBase64FromUrl = async (urls) => {
+  const images = await Promise.all(
+    urls.map(async (url) => {
+      const data = await fetch(url);
+      const blob = await data.blob();
+
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(blob);
+        reader.onloadend = () => {
+          const base64data = reader.result;
+          resolve(base64data);
+        };
+      });
+    })
+  );
+  return images;
 };

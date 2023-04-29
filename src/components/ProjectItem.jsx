@@ -1,8 +1,8 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import ReadMore from "./generic/ReadMore";
 import "./ProjectItem.scss";
 import SimpleCarrousel from "./SimpleCarrousel";
+import ReadMore from "./generic/ReadMore";
 
 function ProjectItem({ item }) {
   const {
@@ -25,6 +25,7 @@ function ProjectItem({ item }) {
         images={images}
         prefix="Camiontito/Building"
         isVideo={isVideo}
+        transformation="w_800,ar_3:4,c_fill"
       />
     </Container>
   );

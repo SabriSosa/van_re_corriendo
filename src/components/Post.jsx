@@ -3,14 +3,18 @@ import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
+import { useDispatch } from "react-redux";
+import { setSelectedPost } from "../slices/postSlice";
 import "./Post.scss";
 import SimpleCarrousel from "./SimpleCarrousel";
 import SocialMedia from "./SocialMedia";
 import HtmlContainer from "./generic/HtmlContainer";
 
-export default function Post({ post, setModalShow, setSelectedPost }) {
+export default function Post({ post, setModalShow }) {
+  const dispatch = useDispatch();
+
   const handleClick = () => {
-    setSelectedPost(post);
+    dispatch(setSelectedPost({ postId: post.id }));
     setModalShow(true);
   };
 
@@ -42,10 +46,11 @@ export default function Post({ post, setModalShow, setSelectedPost }) {
         <div>
           <div className="img-hover-zoom img-hover-zoom--basic">
             <SimpleCarrousel
+              prefix="Camiontito/Posts"
               id="post-carrousel"
               key={post.title}
-              prefix="Camiontito/Posts"
               images={post.images}
+              transformation="w_800,ar_3:4,c_fill"
             />
           </div>
           {body("pc")}

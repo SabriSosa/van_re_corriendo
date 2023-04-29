@@ -1,17 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { selectedPost } from "../slices/postSlice";
 import "./PostModal.scss";
 import SimpleCarrousel from "./SimpleCarrousel";
-import { getCity, getDateString } from "./auxiliary";
+import { getAddress, getAddressString, getDateString } from "./auxiliary";
 import CustomModal from "./generic/CustomModal";
 import HtmlContainer from "./generic/HtmlContainer";
 
-export default function PostModal({ show, onHide, selectedPost }) {
+export default function PostModal({ show, onHide }) {
   const [postCity, setPostCity] = useState();
+
+  const _selectedPost = useSelector(selectedPost);
+
+  useEffect(() => {
+    if (_selectedPost) {
+      getCity();
+    }
+  }, [_selectedPost]);
+
+  if (!_selectedPost) return null;
 
   function resize() {
     /* set max-height by code */
-    const container = document.getElementById(selectedPost?.id);
+    const container = document.getElementById(_selectedPost?.id);
     if (container) {
       var colHeight = container
         .querySelector(".post-carrousel")
@@ -29,14 +41,13 @@ export default function PostModal({ show, onHide, selectedPost }) {
   resize();
   window.onresize = resize;
 
-  React.useEffect(() => {
-    if (selectedPost)
-      getCity(
-        selectedPost?.location._lat,
-        selectedPost?.location._long,
-        setPostCity
-      );
-  }, [selectedPost]);
+  const getCity = async () => {
+    const address = await getAddress(
+      _selectedPost?.latitude,
+      _selectedPost?.longitude
+    );
+    setPostCity(getAddressString(address));
+  };
 
   const handleOnHide = () => {
     setPostCity(null);
@@ -45,10 +56,10 @@ export default function PostModal({ show, onHide, selectedPost }) {
 
   const title = (
     <div>
-      {selectedPost?.title}
+      {_selectedPost?.title}
       <Container className="subtitle-post">
         <h6 className="subtitle" id="subtitle">
-          {selectedPost && getDateString(selectedPost?.date)}
+          {_selectedPost && getDateString(_selectedPost?.date)}
         </h6>
         -<h6 className="address"> {postCity} </h6>
       </Container>
@@ -56,14 +67,15 @@ export default function PostModal({ show, onHide, selectedPost }) {
   );
 
   const body = (
-    <Container fluid className="container-modal" id={selectedPost?.id}>
+    <Container fluid className="container-modal" id={_selectedPost?.id}>
       <SimpleCarrousel
+        images={_selectedPost?.images}
         prefix="Camiontito/Posts"
-        images={selectedPost?.images}
         id="post-carrousel"
+        transformation="w_800,ar_3:4,c_fill"
       />
       <HtmlContainer
-        text={selectedPost?.description}
+        text={_selectedPost?.description}
         className="description-modal"
       />
     </Container>

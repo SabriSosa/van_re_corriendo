@@ -15,7 +15,6 @@ function ProjectForm() {
   const [waiting, setWaiting] = useState(true);
 
   const onClick = (prop) => {
-    console.log("propp", prop);
     const _selectedPlace = document.getElementById(prop);
     _selectedPlace.scrollIntoView({
       block: "center",

@@ -4,9 +4,9 @@ import TileLayer from "ol/layer/Tile";
 import VectorLayer from "ol/layer/Vector";
 // openlayers
 import Map from "ol/Map";
+import View from "ol/View";
 import VectorSource from "ol/source/Vector";
 import XYZ from "ol/source/XYZ";
-import View from "ol/View";
 import React, { useEffect, useRef } from "react";
 import { Container } from "react-bootstrap";
 import { isMobile } from "react-device-detect";

@@ -17,10 +17,35 @@ function TravelMap({ routes, coordinates, selectedPlace, setSelectedPlace }) {
   const [vSource, setvSource] = useState();
   const [selectInteraction, setSelectInteraction] = useState();
 
+  const createCanvas = (img, borderColor) => {
+    const image = new Image();
+    image.src = img;
+    const canvas = document.createElement("canvas");
+    const circleCtx = canvas.getContext("2d");
+
+    canvas.width = 100;
+    canvas.height = 100;
+    circleCtx.beginPath();
+
+    circleCtx.arc(50, 50, 40, 0, 2 * Math.PI, true);
+    circleCtx.fill();
+    circleCtx.lineWidth = 8;
+
+    circleCtx.strokeStyle = borderColor;
+
+    circleCtx.stroke();
+    circleCtx.clip();
+
+    circleCtx.drawImage(image, 0, 0, 100, 100);
+    circleCtx.restore();
+    circleCtx.closePath();
+
+    return canvas;
+  };
+
   const createText = () => {
     let element = document.createElement("h1");
     element.className = "ol-control title-map";
-
     element.innerHTML = "Recorrido";
 
     const Title = new Control({
@@ -32,13 +57,14 @@ function TravelMap({ routes, coordinates, selectedPlace, setSelectedPlace }) {
 
   let selectStyle = function (feature) {
     setSelectedPlace(feature.get("id"));
-    const img = feature.get("image").replace(/white/g, "dodgerblue");
+    const canvas = createCanvas(feature.get("image"), "dodgerblue");
 
     let styles = [
       new Style({
         image: new Icon({
-          src: img,
-          scale: 0.9,
+          scale: 1.1,
+          img: canvas,
+          imgSize: canvas ? [canvas.width, canvas.height] : undefined,
         }),
         zIndex: 1,
       }),
@@ -74,7 +100,7 @@ function TravelMap({ routes, coordinates, selectedPlace, setSelectedPlace }) {
           "?overview=full&geometries=polyline6"
       ).then(function (response) {
         response.json().then(function (result) {
-          const polyline = result.routes[0].geometry;
+          const polyline = result?.routes[0].geometry;
 
           const route = new Polyline({
             factor: 1e6,
@@ -113,17 +139,20 @@ function TravelMap({ routes, coordinates, selectedPlace, setSelectedPlace }) {
 
           for (let i = 0; i < routes?.length; i++) {
             const route = routes[i];
-            const coord = [route.location._long, route.location._lat];
+            const coord = [route.longitude, route.latitude];
             const _feature = new Feature({
               geometry: new Point(coord),
               id: route.id,
-              image: `https://res.cloudinary.com/djbmfd9y6/image/upload/w_100,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_white/Camiontito/Routes/${route.id}_1.png`,
+              image: route.imageRoute,
             });
+            const canvas = createCanvas(route.imageRoute, "white");
 
             const style = new Style({
               image: new Icon({
-                scale: 0.4,
-                src: `https://res.cloudinary.com/djbmfd9y6/image/upload/w_100,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_white/Camiontito/Routes/${route.id}_1.png`,
+                scale: 0.8,
+                img: canvas,
+                imgSize: canvas ? [canvas.width, canvas.height] : undefined,
+                // src: `https://res.cloudinary.com/djbmfd9y6/image/upload/w_100,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_white/Camiontito/Routes/${route.id}_1.png`,
               }),
             });
 
