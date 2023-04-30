@@ -5,6 +5,7 @@ import * as FirestoreService from "../services/firestore";
 const initialState = {
   routes: [],
   coordinates: [],
+  selectedPlace: null,
   status: "initial",
   error: null,
 };
@@ -18,7 +19,7 @@ export const fetchRoutes = createAsyncThunk("routes/fetchRoutes", async () => {
         latitude: location._lat,
         longitude: location._long,
         date: getDateFromDB(date),
-        imageRoute: `https://res.cloudinary.com/djbmfd9y6/image/upload/v1/Camiontito/Routes/${images[0]}`,
+        imageRoute: `https://res.cloudinary.com/djbmfd9y6/image/upload/c_fill,h_200,w_200/Camiontito/Routes/${images[0]}`,
         images: images,
 
         ...rest,
@@ -48,7 +49,15 @@ export const updateRoute = createAsyncThunk(
 export const routesSlice = createSlice({
   name: "routes",
   initialState,
-  reducers: {},
+  reducers: {
+    setselectedPlace(state, action) {
+      const { routeId } = action.payload;
+      const existingRoute = state.routes.find((route) => route.id == routeId);
+      if (existingRoute) {
+        state.selectedPlace = existingRoute;
+      }
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchRoutes.pending, (state, action) => {
@@ -76,12 +85,17 @@ export const routesSlice = createSlice({
   },
 });
 
+// Actions
+export const { setselectedPlace } = routesSlice.actions;
 export const { routeAdded, routeUpdated, reactionAdded } = routesSlice.actions;
 
-export default routesSlice.reducer;
+//Selectors
+export const selectSelectedPlace = (state) => state.routes.selectedPlace;
 
 export const selectAllRoutes = (state) => state.routes.routes;
 export const selectAllCoordinates = (state) => state.routes.coordinates;
 
 export const selectRouteById = (state, routeId) =>
   state.routes.routes.find((route) => route.id == routeId);
+
+export default routesSlice.reducer;

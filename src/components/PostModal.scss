@@ -76,7 +76,8 @@
     font-size: 1.3rem;
   }
 }
-
-.hidden-modal {
-  visibility: hidden !important;
+@media only screen and (orientation: landscape) {
+  .hidden-modal {
+    visibility: hidden !important;
+  }
 }

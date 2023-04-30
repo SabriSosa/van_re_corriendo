@@ -10,12 +10,16 @@ import VectorSource from "ol/source/Vector";
 import { Circle as CircleStyle, Fill, Icon, Stroke, Style } from "ol/style";
 import React, { useEffect, useState } from "react";
 import { isMobile } from "react-device-detect";
+import { useDispatch, useSelector } from "react-redux";
+import { selectSelectedPlace, setselectedPlace } from "../slices/routeSlice";
 import MapWrapper from "./generic/MapWrapper";
 
-function TravelMap({ routes, coordinates, selectedPlace, setSelectedPlace }) {
+function TravelMap({ routes, coordinates }) {
   const [map, setMap] = useState();
   const [vSource, setvSource] = useState();
   const [selectInteraction, setSelectInteraction] = useState();
+  const dispatch = useDispatch();
+  const selectedPlace = useSelector(selectSelectedPlace);
 
   const createCanvas = (img, borderColor) => {
     const image = new Image();
@@ -56,7 +60,7 @@ function TravelMap({ routes, coordinates, selectedPlace, setSelectedPlace }) {
   };
 
   let selectStyle = function (feature) {
-    setSelectedPlace(feature.get("id"));
+    dispatch(setselectedPlace({ routeId: feature.get("id") }));
     const canvas = createCanvas(feature.get("image"), "dodgerblue");
 
     let styles = [
@@ -76,7 +80,7 @@ function TravelMap({ routes, coordinates, selectedPlace, setSelectedPlace }) {
   useEffect(() => {
     if (selectedPlace && vSource) {
       map.getTargetElement().classList.add("spinner");
-      const __feature = vSource?.getFeatureById(selectedPlace);
+      const __feature = vSource?.getFeatureById(selectedPlace.id);
       var featuresCollection = selectInteraction.getFeatures();
       featuresCollection.pop();
       featuresCollection.push(__feature);

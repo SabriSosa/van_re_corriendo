@@ -70,7 +70,7 @@ export const { setSelectedPost } = postsSlice.actions;
 
 //Selectors
 export const selectAllPosts = (state) => state.posts.posts;
-export const selectedPost = (state) => state.posts.selectedPost;
+export const selectSelectedPost = (state) => state.posts.selectedPost;
 export const selectStatusPosts = (state) => state.posts.status;
 
 //Reducer

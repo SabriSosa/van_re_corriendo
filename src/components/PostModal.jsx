@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
+import { useMobileOrientation } from "react-device-detect";
 import { useSelector } from "react-redux";
-import { selectedPost } from "../slices/postSlice";
+import { selectSelectedPost } from "../slices/postSlice";
 import "./PostModal.scss";
 import SimpleCarrousel from "./SimpleCarrousel";
 import { getAddress, getAddressString, getDateString } from "./auxiliary";
@@ -11,29 +12,31 @@ import HtmlContainer from "./generic/HtmlContainer";
 export default function PostModal({ show, onHide }) {
   const [postCity, setPostCity] = useState();
 
-  const _selectedPost = useSelector(selectedPost);
+  const selectedPost = useSelector(selectSelectedPost);
 
   useEffect(() => {
-    if (_selectedPost) {
+    if (selectedPost) {
       getCity();
     }
-  }, [_selectedPost]);
+  }, [selectedPost]);
 
-  if (!_selectedPost) return null;
+  const { isLandscape } = useMobileOrientation();
 
   function resize() {
-    /* set max-height by code */
-    const container = document.getElementById(_selectedPost?.id);
-    if (container) {
-      var colHeight = container
-        .querySelector(".post-carrousel")
-        ?.getBoundingClientRect().height;
-      const description = container.querySelector(".description-modal");
-      if (description) {
-        description.style.maxHeight = colHeight + "px";
-        document
-          .getElementsByClassName("post-modal")[0]
-          .classList.remove("hidden-modal");
+    if (isLandscape) {
+      /* set max-height by code */
+      const container = document.getElementById(selectedPost?.id);
+      if (container) {
+        var colHeight = container
+          .querySelector(".post-carrousel")
+          ?.getBoundingClientRect().height;
+        const description = container.querySelector(".description-modal");
+        if (description) {
+          description.style.maxHeight = colHeight + "px";
+          document
+            .getElementsByClassName("post-modal")[0]
+            .classList.remove("hidden-modal");
+        }
       }
     }
   }
@@ -43,8 +46,8 @@ export default function PostModal({ show, onHide }) {
 
   const getCity = async () => {
     const address = await getAddress(
-      _selectedPost?.latitude,
-      _selectedPost?.longitude
+      selectedPost?.latitude,
+      selectedPost?.longitude
     );
     setPostCity(getAddressString(address));
   };
@@ -56,10 +59,10 @@ export default function PostModal({ show, onHide }) {
 
   const title = (
     <div>
-      {_selectedPost?.title}
+      {selectedPost?.title}
       <Container className="subtitle-post">
         <h6 className="subtitle" id="subtitle">
-          {_selectedPost && getDateString(_selectedPost?.date)}
+          {selectedPost && getDateString(selectedPost?.date)}
         </h6>
         -<h6 className="address"> {postCity} </h6>
       </Container>
@@ -67,15 +70,16 @@ export default function PostModal({ show, onHide }) {
   );
 
   const body = (
-    <Container fluid className="container-modal" id={_selectedPost?.id}>
+    <Container fluid className="container-modal" id={selectedPost?.id}>
       <SimpleCarrousel
-        images={_selectedPost?.images}
+        images={selectedPost?.images}
+        isVideo={selectedPost?.isVideo}
         prefix="Camiontito/Posts"
         id="post-carrousel"
         transformation="w_800,ar_3:4,c_fill"
       />
       <HtmlContainer
-        text={_selectedPost?.description}
+        text={selectedPost?.description}
         className="description-modal"
       />
     </Container>

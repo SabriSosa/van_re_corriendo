@@ -15,7 +15,7 @@ import {
 import "./TravelRoute.scss";
 
 function TravelRoute() {
-  const [selectedPlace, setSelectedPlace] = useState(1);
+  const [selectSelectedPlace, setSelectedPlace] = useState(1);
 
   const dispatch = useDispatch();
   const routes = useSelector(selectAllRoutes);
@@ -37,13 +37,13 @@ function TravelRoute() {
       <Container fluid className="sidebar-map">
         <Sidebar
           routes={routes}
-          selectedPlace={selectedPlace}
+          selectSelectedPlace={selectSelectedPlace}
           setSelectedPlace={setSelectedPlace}
         />
         <TravelMap
           routes={routes}
           coordinates={coordinates}
-          selectedPlace={selectedPlace}
+          selectSelectedPlace={selectSelectedPlace}
           setSelectedPlace={setSelectedPlace}
         />
       </Container>

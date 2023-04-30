@@ -1,12 +1,16 @@
 import Card from "react-bootstrap/Card";
+import { useSelector } from "react-redux";
+import { selectSelectedPlace } from "../slices/routeSlice";
 import "./SideBarItem.scss";
 import { getDateString, initialDate } from "./auxiliary";
 
-function SideBarItem({ item, selectedPlace, handleSelectItem }) {
+function SideBarItem({ item, handleSelectItem }) {
   const days = (date_1, date_2) => {
     const diffTime = Math.abs(date_2 - date_1);
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   };
+
+  const selectedPlace = useSelector(selectSelectedPlace);
 
   const handelOnClick = () => {
     handleSelectItem(item);
@@ -17,11 +21,15 @@ function SideBarItem({ item, selectedPlace, handleSelectItem }) {
     <Card
       id={item.id}
       className={`sidebar-card ${
-        selectedPlace === item.id ? "card-active" : ""
+        selectedPlace?.id === item.id ? "card-active" : ""
       }`}
       onClick={handelOnClick}
     >
-      <Card.Img src={item.imageRoute} alt="Card image" className="img-sidebar" />
+      <Card.Img
+        src={item.imageRoute}
+        alt="Card image"
+        className="img-sidebar"
+      />
       <Card.ImgOverlay className="img-overlay-sidebar">
         <Card.Title className="title-sidebar">{item.city}</Card.Title>
         <h6 className="title-sidebar-day">DIA {dayOfTravel}</h6>

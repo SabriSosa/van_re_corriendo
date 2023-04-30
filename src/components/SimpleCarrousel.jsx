@@ -40,7 +40,7 @@ export default function SimpleCarrousel({
         <Carousel.Item id={image} key={image}>
           {isVideo ? (
             <AdvancedVideo
-              className="d-block w-100 carrousel-video"
+              className="carrousel-img img-fluid img-thumbnail"
               controls={true}
               //autoPlay
               cldVid={cld

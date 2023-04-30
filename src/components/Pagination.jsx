@@ -3,20 +3,20 @@ import { Container, Pagination } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 
 import { useSelector } from "react-redux";
-import { selectedPost } from "../slices/postSlice";
+import { selectSelectedPost } from "../slices/postSlice";
 import "./Pagination.scss";
 
 export default function PaginationPost({ data, rowsPerPage, totalPages = 1 }) {
   const [currentPage, setCurrentPage] = React.useState(1);
   const [showedData, showData] = React.useState(data.slice(0, rowsPerPage));
-  const _selectedPost = useSelector(selectedPost);
+  const selectedPost = useSelector(selectSelectedPost);
 
   useEffect(() => {
-    if (_selectedPost) {
-      const current = Math.ceil(_selectedPost.id / rowsPerPage);
+    if (selectedPost) {
+      const current = Math.ceil(selectedPost.id / rowsPerPage);
       handleClick(current);
     }
-  }, [_selectedPost]);
+  }, [selectedPost]);
 
   const handleClick = (page) => {
     if (page >= 1 && page <= totalPages) {

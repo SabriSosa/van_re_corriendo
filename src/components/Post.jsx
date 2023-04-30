@@ -43,16 +43,15 @@ export default function Post({ post, setModalShow }) {
     <Col lg={4} md={6} sm={6} xs={12} id={post.title}>
       <Card className="card-post">
         <SocialMedia post={post} />
-        <div>
-          <div className="img-hover-zoom img-hover-zoom--basic">
-            <SimpleCarrousel
-              prefix="Camiontito/Posts"
-              id="post-carrousel"
-              key={post.title}
-              images={post.images}
-              transformation="w_800,ar_3:4,c_fill"
-            />
-          </div>
+        <div className="img-hover-zoom img-hover-zoom--basic">
+          <SimpleCarrousel
+            prefix="Camiontito/Posts"
+            id="post-carrousel"
+            key={post.title}
+            images={post.images}
+            isVideo={post.isVideo}
+            transformation="w_800,ar_3:4,c_fill"
+          />
           {body("pc")}
         </div>
       </Card>

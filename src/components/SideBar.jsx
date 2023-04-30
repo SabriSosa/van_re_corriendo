@@ -1,24 +1,28 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { isDesktop, isTablet } from "react-device-detect";
+import { useDispatch, useSelector } from "react-redux";
+import { selectSelectedPlace, setselectedPlace } from "../slices/routeSlice";
 import "./SideBar.scss";
 import SideBarItem from "./SideBarItem";
 import SimpleCarrousel from "./SimpleCarrousel";
 import CustomModal from "./generic/CustomModal";
 
-function SideBar({ routes, selectedPlace, setSelectedPlace }) {
+function SideBar({ routes }) {
   const [modalShow, setModalShow] = useState(false);
   const [selectedItem, setSelectedItem] = useState();
+  const dispatch = useDispatch();
+  const selectedPlace = useSelector(selectSelectedPlace);
 
   const handleSelectItem = (item) => {
-    setSelectedPlace(item?.id);
+    dispatch(setselectedPlace({ routeId: item.id }));
     setSelectedItem(item);
     setModalShow(true);
   };
   useEffect(() => {
     if (selectedPlace) {
-      const _selectedPlace = document.getElementById(selectedPlace);
-      _selectedPlace?.scrollIntoView({
+      const selectedPlaceElem = document.getElementById(selectedPlace.id);
+      selectedPlaceElem?.scrollIntoView({
         block: "center",
         inline: "center",
         behavior: "smooth",
@@ -52,7 +56,7 @@ function SideBar({ routes, selectedPlace, setSelectedPlace }) {
             id={item.id}
             key={item.id}
             item={item}
-            selectedPlace={selectedPlace}
+            selectSelectedPlace={selectedPlace}
             handleSelectItem={handleSelectItem}
           />
         ))}
