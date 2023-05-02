@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { isDesktop, isTablet } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
+import { setLoading } from "../slices/genericSlice";
 import { selectSelectedPlace, setselectedPlace } from "../slices/routeSlice";
 import "./SideBar.scss";
 import SideBarItem from "./SideBarItem";
@@ -18,6 +19,7 @@ function SideBar({ routes }) {
     dispatch(setselectedPlace({ routeId: item.id }));
     setSelectedItem(item);
     setModalShow(true);
+    dispatch(setLoading({ loading: true }));
   };
   useEffect(() => {
     if (selectedPlace) {
@@ -49,6 +51,7 @@ function SideBar({ routes }) {
           id="travel-map"
           show={modalShow}
           body={body}
+          title={`${selectedItem?.city}, ${selectedItem?.state}, ${selectedItem?.country}`}
           onHide={() => setModalShow(false)}
         />
         {routes.map((item) => (

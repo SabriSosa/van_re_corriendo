@@ -3,6 +3,8 @@ import { Cloudinary } from "@cloudinary/url-gen";
 import { useState } from "react";
 import { Carousel } from "react-bootstrap";
 
+import { useDispatch } from "react-redux";
+import { setLoading } from "../slices/genericSlice";
 import "./SimpleCarrousel.scss";
 
 export default function SimpleCarrousel({
@@ -13,6 +15,8 @@ export default function SimpleCarrousel({
   transformation = "ar_3:4,c_crop",
 }) {
   const [index, setIndex] = useState(0);
+
+  const dispatch = useDispatch();
 
   const cld = new Cloudinary({
     cloud: {
@@ -49,6 +53,7 @@ export default function SimpleCarrousel({
             />
           ) : (
             <AdvancedImage
+              onLoad={() => dispatch(setLoading({ loading: false }))}
               className="carrousel-img img-fluid img-thumbnail"
               cldImg={cld
                 .image(`${prefix}/${image}`)

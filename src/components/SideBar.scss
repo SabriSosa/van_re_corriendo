@@ -25,3 +25,26 @@
     white-space: nowrap;
   }
 }
+
+.modal-header-travel-map {
+  padding-top: 15px;
+}
+
+.modal-title-travel-map {
+  font-size: x-small;
+
+  //Pantallas medianas (tablets de portrait más de 768px)
+  @media (min-width: 768px) {
+    font-size: small;
+  }
+
+  //tablet portrait
+  @media (min-width: 992px) {
+    font-size: large;
+  }
+
+  //Pantallas muy grandes (desktops de más de 1200px)
+  @media (min-width: 1200px) {
+    font-size: large;
+  }
+}
