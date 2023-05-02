@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getDateFromDB } from "../components/auxiliary";
 import * as FirestoreService from "../services/firestore";
 
 const initialState = {
@@ -11,16 +10,7 @@ const initialState = {
 export const fetchProjects = createAsyncThunk(
   "projects/fetchProjects",
   async () => {
-    const response = await FirestoreService.getProjects();
-
-    return response.map(({ date, location, ...rest }) => {
-      return {
-        latitude: location._lat,
-        longitude: location._long,
-        date: getDateFromDB(date),
-        ...rest,
-      };
-    });
+    return await FirestoreService.getProjects();
   }
 );
 
@@ -69,3 +59,5 @@ export const selectAllProjects = (state) => state.projects.projects;
 
 export const selectProjectById = (state, projectId) =>
   state.projects.projects.find((project) => project.id === projectId);
+
+export const selectStatusProject = (state) => state.projects.status;

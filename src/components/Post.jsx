@@ -50,7 +50,7 @@ export default function Post({ post, setModalShow }) {
             key={post.title}
             images={post.images}
             isVideo={post.isVideo}
-            transformation="w_800,ar_3:4,c_fill"
+            transformation="ar_3:4,c_fill"
           />
           {body("pc")}
         </div>

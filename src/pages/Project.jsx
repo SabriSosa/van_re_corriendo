@@ -7,12 +7,32 @@ import HtmlContainer from "../components/generic/HtmlContainer";
 import TitleComp from "../components/generic/Title";
 import ProjectItem from "../components/ProjectItem";
 import Wave from "../components/Wave";
-import * as FirestoreService from "../services/firestore";
+//import * as FirestoreService from "../services/firestore";
+import {
+  fetchProjects,
+  selectAllProjects,
+  selectStatusProject,
+} from "../slices/projectSlice";
 import "./Project.scss";
+import { useDispatch, useSelector } from "react-redux";
 
 function ProjectForm() {
-  const [projects, setProjects] = useState();
-  const [waiting, setWaiting] = useState(true);
+  //const [projects, setProjects] = useState();
+  //const [waiting, setWaiting] = useState(true);
+
+  const dispatch = useDispatch();
+  const projects = useSelector(selectAllProjects);  
+  const statusProject = useSelector(selectStatusProject);
+
+  useEffect(() => {
+    if (statusProject === "initial") {
+      dispatch(fetchProjects());
+    }
+  }, [statusProject, dispatch]);
+
+  if (statusProject === "loading") {
+    return <CustomSpinner />;
+  }
 
   const onClick = (prop) => {
     const selectedPlaceElem = document.getElementById(prop);
@@ -23,10 +43,10 @@ function ProjectForm() {
     });
   };
 
-  useEffect(() => {
-    async function fetchData() {}
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   async function fetchData() {}
+  //   fetchData();
+  // }, []);
 
   const sections = [
     { title: <Trans>project.design</Trans>, action: "design" },
@@ -58,19 +78,19 @@ function ProjectForm() {
     </section>
   );
 
-  const getProjects = async () => {
-    const projects = await FirestoreService.getProjects();
-    setProjects(projects);
-    setWaiting(false);
-  };
+  // const getProjects = async () => {
+  //   //const projects = await FirestoreService.getProjects();
+  //   //setProjects(projects);
+  //   setWaiting(false);
+  // };
 
-  useEffect(() => {
-    getProjects();
-  }, []);
+  // useEffect(() => {
+  //   getProjects();
+  // }, []);
 
-  if (waiting) {
-    return <CustomSpinner />;
-  }
+  // if (waiting) {
+  //   return <CustomSpinner />;
+  // }
 
   return (
     <Container className="project-container">

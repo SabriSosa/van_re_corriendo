@@ -35,6 +35,7 @@ function SideBar({ routes }) {
   const body = (
     <Container fluid className="container-modal-sidebar">
       <SimpleCarrousel
+        onLoad={() => dispatch(setLoading({ loading: false }))}
         prefix="Camiontito/Routes"
         images={selectedItem?.images}
         id="sidebar-carrousel"

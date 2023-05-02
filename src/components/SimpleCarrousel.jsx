@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Carousel } from "react-bootstrap";
 
 import { useDispatch } from "react-redux";
-import { setLoading } from "../slices/genericSlice";
 import "./SimpleCarrousel.scss";
 
 export default function SimpleCarrousel({
@@ -13,6 +12,9 @@ export default function SimpleCarrousel({
   prefix = "",
   isVideo = false,
   transformation = "ar_3:4,c_crop",
+  onLoad = () => {
+    return null;
+  },
 }) {
   const [index, setIndex] = useState(0);
 
@@ -53,7 +55,7 @@ export default function SimpleCarrousel({
             />
           ) : (
             <AdvancedImage
-              onLoad={() => dispatch(setLoading({ loading: false }))}
+              onLoad={onLoad}
               className="carrousel-img img-fluid img-thumbnail"
               cldImg={cld
                 .image(`${prefix}/${image}`)
