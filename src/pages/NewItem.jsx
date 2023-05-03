@@ -18,8 +18,10 @@ import CustomModal from "../components/generic/CustomModal";
 import CustomSpinner from "../components/generic/CustomSpinner";
 import * as FirestoreService from "../services/firestore";
 import "./NewItem.scss";
+import { useSelector } from "react-redux";
+import { selectSelectedPost } from "../slices/postSlice";
 
-function NewItem() {
+function NewItem({selectItem}) {
   const [waiting, setWaiting] = useState(false);
   const [idItem, setIdItem] = useState(0);
   const [coord, setCoord] = useState();
@@ -27,6 +29,8 @@ function NewItem() {
   const [modalShow, setModalShow] = React.useState(false);
   const [formType, setFormType] = React.useState(1);
   const [isVideo, setIsVideo] = React.useState(false);
+  const selectedPost = useSelector(selectSelectedPost);
+
 
   useEffect(() => {
     async function fetchData() {
@@ -155,7 +159,7 @@ function NewItem() {
       <NotificationContainer />
 
       <CustomModal
-        id="new-item"
+        id="new-item-location"
         show={modalShow}
         onHide={() => setModalShow(false)}
         body={body}
@@ -164,7 +168,7 @@ function NewItem() {
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="type" onChange={handleOnChange}>
           <Form.Label>{t`new.item.type`}</Form.Label>
-          <Form.Select aria-label="Default select example">
+          <Form.Select aria-label="Default select example" value = {selectItem || 1}>
             <option value="1">{t`new.item.post`}</option>
             <option value="2">{t`new.item.route`}</option>
             <option value="3">{t`new.item.project`}</option>

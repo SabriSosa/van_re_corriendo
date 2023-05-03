@@ -23,6 +23,17 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   );
 });
 
+export const getPostById = createAsyncThunk("posts/getPostById", async (id) => {
+  const response = await FirestoreService.getPost(id);
+  const { date, location, ...rest } = response;
+  return {
+    latitude: location._lat,
+    longitude: location._long,
+    date: getDateFromDB(date),
+    ...rest,
+  };
+});
+
 export const addNewPost = createAsyncThunk(
   "posts/addNewpost",
   async (initialPost) => {
@@ -57,6 +68,9 @@ export const postsSlice = createSlice({
         state.status = "succeeded";
         state.posts = state.posts.concat(action.payload);
       })
+      .addCase(getPostById.fulfilled, (state, action) => {
+        state.posts = state.posts.concat(action.payload);
+      })
       .addCase(fetchPosts.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
@@ -74,6 +88,10 @@ export const { setSelectedPost } = postsSlice.actions;
 export const selectAllPosts = (state) => state.posts.posts;
 export const selectSelectedPost = (state) => state.posts.selectedPost;
 export const selectStatusPosts = (state) => state.posts.status;
+
+export const selectPostById = (state, postId) => {
+  return state.posts.posts.find((project) => project.id == postId);
+};
 
 //Reducer
 

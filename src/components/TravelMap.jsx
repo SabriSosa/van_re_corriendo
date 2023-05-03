@@ -156,7 +156,6 @@ function TravelMap({ routes, coordinates }) {
                 scale: 0.8,
                 img: canvas,
                 imgSize: canvas ? [canvas.width, canvas.height] : undefined,
-                // src: `https://res.cloudinary.com/djbmfd9y6/image/upload/w_100,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_white/Camiontito/Routes/${route.id}_1.png`,
               }),
             });
 

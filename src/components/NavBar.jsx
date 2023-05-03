@@ -3,16 +3,16 @@ import { useState } from "react";
 import { Image } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { GrFacebookOption } from "react-icons/gr";
 import { RiInstagramLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import "./NavBar.scss";
 
-const logo150 = require('../images/logo_150.png');
-const logo50 = require('../images/logo_50.png');
+const logo150 = require("../images/logo_150.png");
+const logo50 = require("../images/logo_50.png");
 
 const menu1 = [
   { title: <Trans>menu.home</Trans>, action: "home" },
@@ -44,7 +44,7 @@ function NavBarMenu() {
         <Container fluid className="offcanvas-container">
           <Container fluid className="toggle-nav">
             <Link to="/home" className="logo-link-mobile nav-link">
-              <Image src={logo50} />
+              <Image alt="home-logo" src={logo50} />
             </Link>
             <Navbar.Toggle
               aria-controls={`offcanvasNavbar-expand`}
@@ -91,7 +91,7 @@ function NavBarMenu() {
                   to="/home"
                   className="logo-link-menu nav-link"
                 >
-                  <Image src={logo150} />
+                  <Image alt="mobile-logo" src={logo150} />
                 </Link>
 
                 {menu2.map((menu) => (

@@ -1,0 +1,18 @@
+.upload-preview {
+  height: 150px;
+  width: 150px;
+  margin: 5px;
+  margin-bottom: 20px;
+}
+
+.container-upload-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  cursor: pointer;
+}
+
+
+.upload-button{
+    margin-left: 20px;
+}

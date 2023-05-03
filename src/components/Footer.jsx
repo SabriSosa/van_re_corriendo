@@ -3,7 +3,7 @@ import { FaFacebookSquare, FaInstagram } from "react-icons/fa";
 
 import "./Footer.scss";
 
-const logo = require('../images/logo_150.png');
+const logo = require("../images/logo_150.png");
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -28,7 +28,8 @@ const Footer = () => {
           className="footer-image"
           onClick={() => goToTop()}
           src={logo}
-        />
+          alt="footer-logo"
+      />
         <div>
           <a
             target="_blank"
