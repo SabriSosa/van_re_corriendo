@@ -12,7 +12,7 @@ import "./Destinations.scss";
 import PaginationPost from "./Pagination";
 import Post from "./Post";
 import PostModal from "./PostModal";
-import CustomSpinner from "./generic/CustomSpinner";
+import TitleSpinner from "./generic/TitleSpinner";
 import TitleComp from "./generic/Title";
 
 export default function Destinations() {
@@ -38,7 +38,7 @@ export default function Destinations() {
   }, [postId, statusPosts]);
 
   if (statusPosts === "loading") {
-    return <CustomSpinner />;
+    return <TitleSpinner title='publicaciones' />;
   }
 
   const onHide = () => {
@@ -60,7 +60,7 @@ export default function Destinations() {
 
   return (
     <Container fluid className="container-destinations" id="destinos">
-      <TitleComp title1="Destinos" />
+      <TitleComp title1="Publicaciones" />
       <PostModal show={modalShow} onHide={onHide} />
       <ins
         className="adsbygoogle"

@@ -1,6 +1,8 @@
 import { Container } from "react-bootstrap";
 import "./Title.scss";
 
+const logo = require('../../images/van-logo.png');
+
 function TitleComp({ title1 = "", title2 = "" }) {
   return (
     <Container className="title-component">
@@ -10,9 +12,9 @@ function TitleComp({ title1 = "", title2 = "" }) {
         </h2>
 
         <img
-          alt= "title-icon-img"
+          alt="title-icon-img"
           className="title-icon"
-          src="https://img.icons8.com/external-microdots-premium-microdot-graphic/64/null/external-van-transportation-vol1-microdots-premium-microdot-graphic.png"
+          src={logo}
         />
       </div>
     </Container>

@@ -8,8 +8,14 @@ import "./Pagination.scss";
 
 export default function PaginationPost({ data, rowsPerPage, totalPages = 1 }) {
   const [currentPage, setCurrentPage] = React.useState(1);
-  const [showedData, showData] = React.useState(data.slice(0, rowsPerPage));
+  const [showedData, setShowedData] = React.useState(data.slice(0, rowsPerPage));
   const selectedPost = useSelector(selectSelectedPost);
+
+  useEffect(() => {
+    if (data) {
+      setShowedData(data.slice(0, rowsPerPage));
+    }
+  }, [data]);
 
   useEffect(() => {
     if (selectedPost) {
@@ -24,7 +30,7 @@ export default function PaginationPost({ data, rowsPerPage, totalPages = 1 }) {
       const pageIndex = page - 1;
       const firstIndex = pageIndex * rowsPerPage;
       const lastIndex = pageIndex * rowsPerPage + rowsPerPage;
-      showData(data.slice(firstIndex, lastIndex));
+      setShowedData(data.slice(firstIndex, lastIndex));
       scroll();
     }
   };
@@ -46,6 +52,7 @@ export default function PaginationPost({ data, rowsPerPage, totalPages = 1 }) {
       </Pagination.Item>
     );
   }
+
   return (
     <Container fluid className="container-posts">
       <Row className="destinations">{showedData.map((data) => data)}</Row>

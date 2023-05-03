@@ -35,13 +35,10 @@ const ContactForm = () => {
 
     emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY).then(
       (result) => {
-        console.log(result.text);
         NotificationManager.info(t`contact.info`);
       },
       (error) => {
         NotificationManager.error(t`contact.error`);
-
-        console.log(error.text);
       }
     );
 

@@ -8,6 +8,8 @@ import SimpleCarrousel from "./SimpleCarrousel";
 import { getDateString } from "./auxiliary";
 import CustomModal from "./generic/CustomModal";
 import HtmlContainer from "./generic/HtmlContainer";
+import "./PostModal.scss";
+import SimpleCarrousel from "./SimpleCarrousel";
 
 export default function PostModal({ show, onHide }) {
   const selectedPost = useSelector(selectSelectedPost);

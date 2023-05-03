@@ -17,7 +17,6 @@ export default function CustomModal({
   const loading = useSelector(selectLoading);
   const style = show && loading ? { visibility: "hidden" } : {};
 
-
   return (
     <div>
       {show && loading && <CustomSpinner />}

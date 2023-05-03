@@ -11,14 +11,16 @@ const initialState = {
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   const response = await FirestoreService.getPosts();
-  return response.map(({ date, location, ...rest }) => {
-    return {
-      latitude: location._lat,
-      longitude: location._long,
-      date: getDateFromDB(date),
-      ...rest,
-    };
-  });
+  return await Promise.all(
+    response.map(async ({ date, location, ...rest }) => {
+      return {
+        latitude: location._lat,
+        longitude: location._long,
+        date: getDateFromDB(date),
+        ...rest,
+      };
+    })
+  );
 });
 
 export const addNewPost = createAsyncThunk(

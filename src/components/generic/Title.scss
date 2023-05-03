@@ -9,6 +9,9 @@
   text-transform: Uppercase;
   h2 {
     margin-bottom: 10px;
+    @media (max-width: 480px) and (orientation: portrait) {
+      font-size: large;
+    }
   }
   img {
     height: 50px;

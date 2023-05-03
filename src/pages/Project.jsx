@@ -1,27 +1,24 @@
 import { t, Trans } from "@lingui/macro";
-import { useEffect, useState } from "react";
+import React, { Suspense, useEffect } from "react";
 import { Button, Container, Image } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import ScrollToTop from "react-scroll-to-top";
 import CustomSpinner from "../components/generic/CustomSpinner";
 import HtmlContainer from "../components/generic/HtmlContainer";
 import TitleComp from "../components/generic/Title";
-import ProjectItem from "../components/ProjectItem";
 import Wave from "../components/Wave";
-//import * as FirestoreService from "../services/firestore";
 import {
   fetchProjects,
   selectAllProjects,
   selectStatusProject,
 } from "../slices/projectSlice";
 import "./Project.scss";
-import { useDispatch, useSelector } from "react-redux";
+
+const ProjectItem = React.lazy(() => import("../components/ProjectItem"));
 
 function ProjectForm() {
-  //const [projects, setProjects] = useState();
-  //const [waiting, setWaiting] = useState(true);
-
   const dispatch = useDispatch();
-  const projects = useSelector(selectAllProjects);  
+  const projects = useSelector(selectAllProjects);
   const statusProject = useSelector(selectStatusProject);
 
   useEffect(() => {
@@ -42,11 +39,6 @@ function ProjectForm() {
       behavior: "smooth",
     });
   };
-
-  // useEffect(() => {
-  //   async function fetchData() {}
-  //   fetchData();
-  // }, []);
 
   const sections = [
     { title: <Trans>project.design</Trans>, action: "design" },
@@ -78,20 +70,6 @@ function ProjectForm() {
     </section>
   );
 
-  // const getProjects = async () => {
-  //   //const projects = await FirestoreService.getProjects();
-  //   //setProjects(projects);
-  //   setWaiting(false);
-  // };
-
-  // useEffect(() => {
-  //   getProjects();
-  // }, []);
-
-  // if (waiting) {
-  //   return <CustomSpinner />;
-  // }
-
   return (
     <Container className="project-container">
       <TitleComp title1="Construccion" title2="" />
@@ -105,7 +83,9 @@ function ProjectForm() {
       <Wave className="wave-project" children={info} />
 
       {projects?.map((item) => (
-        <ProjectItem key={item.id} item={item} />
+        <Suspense fallback={<div></div>}>
+          <ProjectItem key={item.id} item={item} />
+        </Suspense>
       ))}
     </Container>
   );

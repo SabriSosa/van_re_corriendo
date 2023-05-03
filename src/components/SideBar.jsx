@@ -4,10 +4,10 @@ import { isDesktop, isTablet } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoading } from "../slices/genericSlice";
 import { selectSelectedPlace, setselectedPlace } from "../slices/routeSlice";
+import CustomModal from "./generic/CustomModal";
 import "./SideBar.scss";
 import SideBarItem from "./SideBarItem";
 import SimpleCarrousel from "./SimpleCarrousel";
-import CustomModal from "./generic/CustomModal";
 
 function SideBar({ routes }) {
   const [modalShow, setModalShow] = useState(false);

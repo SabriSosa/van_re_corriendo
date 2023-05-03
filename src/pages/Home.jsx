@@ -1,8 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Container } from "react-bootstrap";
-import Destinations from "../components/Destinations";
 import TravelInfo from "../components/TravelInfo";
 import "./Home.scss";
+//import Destinations from "../components/Destinations";
+
+const Destinations = React.lazy(() => import("../components/Destinations"));
 
 function Home() {
   return (
@@ -21,8 +23,11 @@ function Home() {
         data-ad-format="auto"
         data-full-width-responsive="true"
       ></ins>
-      
-      <Destinations />
+
+      <Suspense fallback={<div></div>}>
+        <Destinations />
+      </Suspense>
+
       <TravelInfo />
     </Container>
   );

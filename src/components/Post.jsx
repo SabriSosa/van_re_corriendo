@@ -5,15 +5,15 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import { useDispatch } from "react-redux";
 import { setSelectedPost } from "../slices/postSlice";
+import HtmlContainer from "./generic/HtmlContainer";
 import "./Post.scss";
 import SimpleCarrousel from "./SimpleCarrousel";
 import SocialMedia from "./SocialMedia";
-import HtmlContainer from "./generic/HtmlContainer";
 
 export default function Post({ post, setModalShow }) {
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const handleClick = async () => {
     dispatch(setSelectedPost({ postId: post.id }));
     setModalShow(true);
   };

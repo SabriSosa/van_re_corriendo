@@ -11,6 +11,9 @@ import { RiInstagramLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import "./NavBar.scss";
 
+const logo150 = require('../images/logo_150.png');
+const logo50 = require('../images/logo_50.png');
+
 const menu1 = [
   { title: <Trans>menu.home</Trans>, action: "home" },
   { title: <Trans>menu.about.us</Trans>, action: "about-us" },
@@ -41,7 +44,7 @@ function NavBarMenu() {
         <Container fluid className="offcanvas-container">
           <Container fluid className="toggle-nav">
             <Link to="/home" className="logo-link-mobile nav-link">
-              <Image src="https://res.cloudinary.com/djbmfd9y6/image/upload/c_scale,h_50/v1670534765/Camiontito/logo_t5a3np.png" />
+              <Image src={logo50} />
             </Link>
             <Navbar.Toggle
               aria-controls={`offcanvasNavbar-expand`}
@@ -88,7 +91,7 @@ function NavBarMenu() {
                   to="/home"
                   className="logo-link-menu nav-link"
                 >
-                  <Image src="https://res.cloudinary.com/djbmfd9y6/image/upload/c_scale,h_150/v1670534765/Camiontito/logo_t5a3np.png" />
+                  <Image src={logo150} />
                 </Link>
 
                 {menu2.map((menu) => (
