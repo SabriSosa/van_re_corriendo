@@ -12,6 +12,8 @@ import {
   orderBy,
   query,
   serverTimestamp,
+  setDoc,
+  updateDoc,
   where,
 } from "firebase/firestore";
 
@@ -53,8 +55,6 @@ export const getRoutes = async () => {
   return _getDocs(q);
 };
 
-
-
 export const getProjects = async () => {
   const sectionsCollectionRef = collection(db, "project");
   const q = query(sectionsCollectionRef, orderBy("id", "asc"));
@@ -78,22 +78,33 @@ export const updateRoute = async ({ lon, lat, ...rest }) => {
     ...rest,
   });
 };
-export const createPost = async ({ lon, lat, ...rest }) => {
-  const postsColRef = collection(db, "post");
-  return addDoc(postsColRef, {
-    created: serverTimestamp(),
-    location: new GeoPoint(lat, lon),
-    ...rest,
-  });
-};
 
-export const updatePost = async ({ lon, lat, ...rest }) => {
-  const postsColRef = collection(db, "post");
-  return addDoc(postsColRef, {
+export const updatePost = async ({ longitude, latitude, ...rest }) => {
+  const data = {
     created: serverTimestamp(),
-    location: new GeoPoint(lat, lon),
+    location: new GeoPoint(latitude, longitude),
     ...rest,
+  };
+  await updateDoc(doc(db, "post", rest.id.toString()), {
+    ...data,
   });
+  return data;
+};
+export const createPost = async ({ longitude, latitude, ...rest }) => {
+  const data = {
+    created: serverTimestamp(),
+    location: new GeoPoint(latitude, longitude),
+    ...rest,
+  };
+
+  await setDoc(doc(db, "post", rest.id.toString()), data);
+  return data;
+
+  // return addDoc(postColRef, {
+  //   created: serverTimestamp(),
+  //   location: new GeoPoint(latitude, longitude),
+  //   ...rest,
+  // });
 };
 
 export const createProject = async (values) => {
@@ -127,7 +138,6 @@ export const getMaxId = async (id) => {
 export const getText = async (id) => {
   const d = await getDoc(doc(db, "text", id));
   return d.data();
-
 };
 
 export const getTexts = async (ids) => {

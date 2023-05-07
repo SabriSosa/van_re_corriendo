@@ -1,38 +1,50 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { t } from "@lingui/macro";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
-import * as Yup from "yup";
-import * as FirestoreService from "../services/firestore";
-
+import { Trans, t } from "@lingui/macro";
 import { format } from "date-fns";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
 import NewItemMap from "../components/NewItemMap";
 import { getAddress } from "../components/auxiliary";
 import CustomModal from "../components/generic/CustomModal";
-import ImageUploadPreview from "../components/generic/ImageUploadPreview";
-import { getPostById, selectPostById } from "../slices/postSlice";
+import CustomSpinner from "../components/generic/CustomSpinner";
+import { ImageUploadPreview } from "../components/generic/ImageUploadPreview";
+import * as FirestoreService from "../services/FirestoreService";
 import "./AddEdit.scss";
-function AddEdit() {
-  const { postId } = useParams();
+function AddEdit({
+  validationSchema,
+  selectedItem,
+  status,
+  fields,
+  isAddMode,
+  id,
+  onSubmitItem,
+  prefix
+}) {
   const [coord, setCoord] = useState();
-
-  const [item, setItem] = useState({});
   const [modalShow, setModalShow] = React.useState(false);
 
-  const selectedPost = useSelector((state) => selectPostById(state, postId));
-  const isAddMode = !postId;
 
-  // form validation rules
-  const validationSchema = Yup.object().shape({
-    title: Yup.string().required("Title is required"),
-    id: Yup.string().required("Id is required"),
-    description: Yup.string().required("Description is required"),
-    date: Yup.string().required("Date is required"),
-  });
-  const dispatch = useDispatch();
+  useEffect(() => {
+    async function getFields() {
+      if (!isAddMode) {
+        fields.forEach((field) => {
+          setValue(field.name, field.value);
+        });
+      } else {
+        const id = await FirestoreService.getMaxId("post");
+        setValue("date", format(new Date(), "yyyy-MM-dd"));
+        setValue("id", id);
+      }
+    }
+    getFields();
+  }, [fields]);
+
+  useEffect(() => {
+    if (selectedItem && !coord) {
+      setCoord({ lat: selectedItem.latitude, lon: selectedItem.longitude });
+    }
+  }, [selectedItem, coord]);
 
   // functions to build form returned by useForm() hook
   const {
@@ -41,89 +53,133 @@ function AddEdit() {
     reset,
     setValue,
     getValues,
-    errors,
-    formState,
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
 
   function onSubmit(data) {
-    return isAddMode ? createItem(data) : updateItem(postId, data);
+    return onSubmitItem(data);
   }
 
-  function createItem(data) {
-    console.log("createData", data);
-    // return userService
-    //   .create(data)
-    //   .then(() => {
-    //     alertService.success("User added", { keepAfterRouteChange: true });
-    //     history.push(".");
-    //   })
-    //   .catch(alertService.error);
-  }
+  // Auxiliary Functions
+  const createComponent = ({ name, label, key, ...rest }) => {
+    let fieldsNames = fields.map(({ name }) => name);
+    return (
+      fieldsNames.includes(name) && (
+        <Form.Group className="mb-3" as={Col} id={key} key={key}>
+          <Form.Label>
+            <Trans>{label}</Trans>
+          </Form.Label>
+          <Form.Control
+            name
+            {...rest}
+            {...register(`${name}`, {
+              required: "Required",
+            })}
+            disabled={true ? name === "id" : false}
+            className={`form-control ${
+              errors.hasOwnProperty(name) && errors[name] ? "is-invalid" : ""
+            }`}
+          />
+          <div className="invalid-feedback">
+            {errors.hasOwnProperty(name) && errors[name].message}
+          </div>
+        </Form.Group>
+      )
+    );
+  };
 
-  function updateItem(id, data) {
-    console.log("updateItem", data);
-    console.log("id", id);
-    // return userService
-    //   .update(id, data)
-    //   .then(() => {
-    //     alertService.success("User updated", { keepAfterRouteChange: true });
-    //     history.push("..");
-    //   })
-    //   .catch(alertService.error);
-  }
+  const createRowComponent = ({ columns, key }) => {
+    return (
+      <Row className="mb-3" id={key} key={key}>
+        {columns.map((col, idx) => {
+          return createComponent({ ...col, key: idx });
+        })}
+      </Row>
+    );
+  };
 
-  useEffect(() => {
-    async function getFields() {
-      if (!isAddMode) {
-        if (selectedPost) {
-          // get item and set form fields
-          const fields = [
-            "id",
-            "date",
-            "title",
-            "description",
-            "latitude",
-            "longitude",
-            "country",
-            "state",
-            "city",
-            "images",
-          ];
+  const fieldsComponents = [
+    {
+      component: createRowComponent({
+        columns: [
+          { name: "id", type: "number", label: t`new.item.id` },
+          { name: "date", type: "date", label: t`new.item.date` },
+        ],
+        key: 1,
+      }),
+    },
+    {
+      component: createRowComponent({
+        columns: [{ name: "title", type: "text", label: t`new.item.title` }],
+        key: 2,
+      }),
+    },
+    {
+      component: createRowComponent({
+        columns: [
+          {
+            name: "description",
+            as: "textarea",
+            rows: 4,
+            label: t`new.item.description`,
+          },
+        ],
+        key: 3,
+      }),
+    },
+    {
+      component: (
+        <Button
+          key="btn-location"
+          className="add-edit-button mb-3"
+          variant="primary"
+          onClick={() => setModalShow(true)}
+        >
+          {t`new.item.add.location`}
+        </Button>
+      ),
+    },
+    {
+      component: createRowComponent({
+        columns: [
+          { name: "latitude", type: "text", label: t`new.item.latitude` },
+          { name: "longitude", type: "text", label: t`new.item.longitude` },
+        ],
+        key: 4,
+      }),
+    },
+    {
+      component: createRowComponent({
+        columns: [
+          { name: "city", type: "text", label: t`new.item.city` },
+          { name: "state", type: "text", label: t`new.item.state` },
+          { name: "country", type: "text", label: t`new.item.country` },
+        ],
+        key: 5,
+      }),
+    },
+    {
+      component: createRowComponent({
+        columns: [
+          {
+            name: "images",
+            as: ImageUploadPreview,
+            imgId: selectedItem?.date,
+            idItem: getValues()?.id,
+            errors: errors,
+            isAddMode: isAddMode,
+            images: fields.find(({ name }) => name === "images").value,
+            setValue: setValue,
+          },
+        ],
+        key: 6,
+      }),
+    },
+  ];
 
-          const _images = selectedPost.images.map(
-            (img) =>
-              `https://res.cloudinary.com/djbmfd9y6/image/upload/ar_3:4,c_fill/Camiontito/Posts/${img}`
-          );
-          const _date = format(new Date(selectedPost.date), "yyyy-MM-dd");
-
-          fields.forEach((field) => {
-            setValue(
-              field,
-              field === "date"
-                ? _date
-                : field === "images"
-                ? _images
-                : selectedPost[field]
-            );
-          });
-          setItem({ ...selectedPost, date: _date, images: _images });
-        }
-      } else {
-        setValue("date", format(new Date(), "yyyy-MM-dd"));
-        const id = await FirestoreService.getMaxId("post");
-        setValue("id", id);
-      }
-    }
-    getFields();
-  }, [selectedPost]); // Or [] if effect doesn't need props or state
-
-  useEffect(() => {
-    if (postId && !selectedPost) {
-      dispatch(getPostById(postId));
-    }
-  }, [postId]); // Or [] if effect doesn't need props or state
+  //Location Modal
 
   const onSaveLocation = async () => {
     const _address = await getAddress(coord?.lat, coord?.lon);
@@ -137,14 +193,9 @@ function AddEdit() {
     setValue("longitude", coord?.lon);
   };
 
-  const coordinates =
-    selectedPost && !coord
-      ? { lat: selectedPost.latitude, lon: selectedPost.longitude }
-      : coord;
-
   const body = (
     <Container fluid className="modal-body-add-edit">
-      <NewItemMap setCoord={setCoord} coordinates={coordinates} />
+      <NewItemMap setCoord={setCoord} coordinates={coord} />
       <div>
         {t`new.item.coord`}: {coord?.lat} {coord?.lon}
       </div>
@@ -159,6 +210,11 @@ function AddEdit() {
       )}
     </Container>
   );
+
+  if (status === "loading") {
+    return <CustomSpinner />;
+  }
+
   return (
     <Container className="add-edit-container">
       <CustomModal
@@ -167,158 +223,27 @@ function AddEdit() {
         onHide={() => setModalShow(false)}
         body={body}
       />
+
       <Form onSubmit={handleSubmit(onSubmit)} onReset={reset}>
-        <h1>{isAddMode ? "Add Item" : "Edit Item"}</h1>
-        <Row className="mb-3">
-          <Form.Group as={Col}>
-            <Form.Label>{t`new.item.id`}</Form.Label>
-            <Form.Control
-              name="id"
-              type="text"
-              {...register("id", {
-                required: "Required",
-              })}
-              className={`form-control ${errors?.id ? "is-invalid" : ""}`}
-            />
-            <div className="invalid-feedback">{errors?.id?.message}</div>
-          </Form.Group>
-          <Form.Group as={Col}>
-            <Form.Label>{t`new.item.date`}</Form.Label>
-            <Form.Control
-              name="date"
-              type="date"
-              {...register("date", {
-                required: "Required",
-              })}
-              className={`form-control ${errors?.date ? "is-invalid" : ""}`}
-            />
-            <div className="invalid-feedback">{errors?.date?.message}</div>
-          </Form.Group>
-        </Row>
-        <Form.Group className="mb-3">
-          <Form.Label>{t`new.item.title`}</Form.Label>
-          <Form.Control
-            name="title"
-            type="text"
-            {...register("title", {
-              required: "Required",
-            })}
-            className={`form-control ${errors?.title ? "is-invalid" : ""}`}
-          />
-          <div className="invalid-feedback">{errors?.title?.message}</div>
-        </Form.Group>
+        <h1>{isAddMode ? t`add.${prefix}.title` : t`edit.${prefix}.title`}</h1>
 
-        <Form.Group className="mb-3">
-          <Form.Label>{t`new.item.description`}</Form.Label>
-          <Form.Control
-            name="description"
-            as="textarea"
-            rows={4}
-            {...register("description", {
-              required: "Required",
-            })}
-            className={`form-control ${
-              errors?.description ? "is-invalid" : ""
-            }`}
-          />
-          <div className="invalid-feedback">{errors?.description?.message}</div>
-        </Form.Group>
-        <Button
-          className="add-edit-button mb-3"
-          variant="primary"
-          onClick={() => setModalShow(true)}
-        >
-          {t`new.item.add.location`}
-        </Button>
-        <Row className="mb-3">
-          <Form.Group as={Col}>
-            <Form.Label>{t`new.item.latitude`}</Form.Label>
-            <Form.Control
-              name="latitude"
-              type="text"
-              {...register("latitude", {
-                required: "Required",
-              })}
-              className={`form-control ${errors?.latitude ? "is-invalid" : ""}`}
-            />
-            <div className="invalid-feedback">{errors?.latitude?.message}</div>
-          </Form.Group>
-          <Form.Group as={Col}>
-            <Form.Label>{t`new.item.longitude`}</Form.Label>
-            <Form.Control
-              name="longitude"
-              type="text"
-              {...register("longitude", {
-                required: "Required",
-              })}
-              className={`form-control ${
-                errors?.longitude ? "is-invalid" : ""
-              }`}
-            />
-            <div className="invalid-feedback">{errors?.longitude?.message}</div>
-          </Form.Group>
-        </Row>
-        <Row className="mb-3">
-          <Form.Group as={Col}>
-            <Form.Label>{t`new.item.city`}</Form.Label>
-            <Form.Control
-              name="city"
-              type="text"
-              {...register("city", {
-                required: "Required",
-              })}
-              className={`form-control ${errors?.city ? "is-invalid" : ""}`}
-            />
-            <div className="invalid-feedback">{errors?.city?.message}</div>
-          </Form.Group>
-          <Form.Group as={Col}>
-            <Form.Label>{t`new.item.state`}</Form.Label>
-            <Form.Control
-              name="state"
-              type="text"
-              {...register("state", {
-                required: "Required",
-              })}
-              className={`form-control ${errors?.state ? "is-invalid" : ""}`}
-            />
-            <div className="invalid-feedback">{errors?.state?.message}</div>
-          </Form.Group>
-          <Form.Group as={Col}>
-            <Form.Label>{t`new.item.country`}</Form.Label>
-            <Form.Control
-              name="country"
-              type="text"
-              {...register("country", {
-                required: "Required",
-              })}
-              className={`form-control ${errors?.country ? "is-invalid" : ""}`}
-            />
-            <div className="invalid-feedback">{errors?.country?.message}</div>
-          </Form.Group>
-        </Row>
-        <Form.Group className="mb-3">
-          <Form.Label>{t`new.item.images`}</Form.Label>
-          <Form.Control
-            name="images"
-            type="text"
-            as={ImageUploadPreview}
-            item={item}
-            className={`form-control ${errors?.images ? "is-invalid" : ""}`}
-          />
+        {fieldsComponents.map((field) => {
+          const { component } = field;
+          return component;
+        })}
 
-          <div className="invalid-feedback">{errors?.images?.message}</div>
-        </Form.Group>
         <Form.Group>
           <Button
+            key="btn-submit"
             variant="primary"
             type="submit"
             className="add-edit-button"
-            disabled={formState.isSubmitting}
+            disabled={isSubmitting}
           >
-            {formState.isSubmitting && (
+            {isSubmitting && (
               <span className="spinner-border spinner-border-sm mr-1"></span>
             )}
-            {t`generic.submit`}
+            {isAddMode ? t`generic.submit` : t`generic.edit`}
           </Button>
         </Form.Group>
       </Form>

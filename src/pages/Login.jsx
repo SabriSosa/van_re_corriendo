@@ -12,8 +12,7 @@ import {
 } from "react-notifications";
 import { useNavigate } from "react-router";
 import CustomSpinner from "../components/generic/CustomSpinner";
-import * as AuthService from "../services/auth";
-import { auth } from "../services/firestore";
+import * as AuthService from "../services/AuthService";
 import "./Login.scss";
 
 function Login() {
@@ -34,7 +33,7 @@ function Login() {
         ? signInWithEmailAndPassword
         : createUserWithEmailAndPassword;
 
-    _fn(auth, email.value, password.value)
+    _fn(AuthService, email.value, password.value)
       .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;

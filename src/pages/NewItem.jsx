@@ -16,7 +16,7 @@ import {
 } from "../components/auxiliary";
 import CustomModal from "../components/generic/CustomModal";
 import CustomSpinner from "../components/generic/CustomSpinner";
-import * as FirestoreService from "../services/firestore";
+import * as FirestoreService from "../services/FirestoreService";
 import "./NewItem.scss";
 import { useSelector } from "react-redux";
 import { selectSelectedPost } from "../slices/postSlice";

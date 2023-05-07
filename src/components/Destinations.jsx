@@ -49,7 +49,7 @@ export default function Destinations() {
 
   posts.map((post) =>
     postComponents.push(
-      <Post key={post.title} setModalShow={setModalShow} post={post} />
+      <Post key={post.id} setModalShow={setModalShow} post={post} />
     )
   );
 

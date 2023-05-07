@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getDateFromDB } from "../components/auxiliary";
-import * as FirestoreService from "../services/firestore";
+import * as FirestoreService from "../services/FirestoreService";
 
 const initialState = {
   routes: [],

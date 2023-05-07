@@ -1,6 +1,8 @@
+import { t } from "@lingui/macro";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { NotificationManager } from "react-notifications";
 import { getDateFromDB } from "../components/auxiliary";
-import * as FirestoreService from "../services/firestore";
+import * as FirestoreService from "../services/FirestoreService";
 
 const initialState = {
   posts: [],
@@ -12,7 +14,7 @@ const initialState = {
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   const response = await FirestoreService.getPosts();
   return await Promise.all(
-    response.map(async ({ date, location, ...rest }) => {
+    response.map(async ({ date, location, created, ...rest }) => {
       return {
         latitude: location._lat,
         longitude: location._long,
@@ -25,7 +27,7 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
 
 export const getPostById = createAsyncThunk("posts/getPostById", async (id) => {
   const response = await FirestoreService.getPost(id);
-  const { date, location, ...rest } = response;
+  const { date, location, created, ...rest } = response;
   return {
     latitude: location._lat,
     longitude: location._long,
@@ -38,13 +40,25 @@ export const addNewPost = createAsyncThunk(
   "posts/addNewpost",
   async (initialPost) => {
     const response = await FirestoreService.createPost(initialPost);
-    return response;
+    const { date, location, created, ...rest } = response;
+    return {
+      latitude: location._lat,
+      longitude: location._long,
+      date: date.toDateString(),
+      ...rest,
+    };
   }
 );
 
 export const updatePost = createAsyncThunk("posts/updatePost", async (post) => {
   const response = await FirestoreService.updatePost(post);
-  return response;
+  const { date, location, created, ...rest } = response;
+  return {
+    latitude: location._lat,
+    longitude: location._long,
+    date: date.toDateString(),
+    ...rest,
+  };
 });
 
 export const postsSlice = createSlice({
@@ -58,6 +72,9 @@ export const postsSlice = createSlice({
         state.selectedPost = existingPost;
       }
     },
+    resetState(state, action) {
+      state.status = "succeeded";
+    },
   },
   extraReducers(builder) {
     builder
@@ -68,21 +85,69 @@ export const postsSlice = createSlice({
         state.status = "succeeded";
         state.posts = state.posts.concat(action.payload);
       })
-      .addCase(getPostById.fulfilled, (state, action) => {
-        state.posts = state.posts.concat(action.payload);
-      })
       .addCase(fetchPosts.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       })
       .addCase(addNewPost.fulfilled, (state, action) => {
+        state.status = "succeeded-item";
         state.posts.push(action.payload);
+        NotificationManager.success(
+          t`new.post.success.title`,
+          t`new.item.success.message`
+        );
+      })
+      .addCase(addNewPost.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(addNewPost.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+        NotificationManager.error(
+          t`new.post.error.title`,
+          action.error.message
+        );
+      })
+      .addCase(updatePost.fulfilled, (state, action) => {
+        NotificationManager.success(
+          t`new.post.success.title`,
+          t`update.item.success.message`
+        );
+        state.posts[
+          state.posts.findIndex((el) => el.id === action.payload.id)
+        ] = action.payload;
+      })
+      .addCase(updatePost.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(updatePost.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+        NotificationManager.error(
+          t`update.post.error.title`,
+          action.error.message
+        );
+      })
+      .addCase(getPostById.fulfilled, (state, action) => {
+        state.posts = state.posts.concat(action.payload);
+        state.status = "success";
+      })
+      .addCase(getPostById.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(getPostById.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+        NotificationManager.error(
+          t`update.post.error.title`,
+          action.error.message
+        );
       });
   },
 });
 
 // Actions
-export const { setSelectedPost } = postsSlice.actions;
+export const { setSelectedPost, resetState } = postsSlice.actions;
 
 //Selectors
 export const selectAllPosts = (state) => state.posts.posts;

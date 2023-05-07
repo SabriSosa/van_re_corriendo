@@ -1,3 +1,5 @@
+import Resizer from "react-image-file-resizer";
+
 export function getCity(lat, lng, setItem) {
   let xhr = new XMLHttpRequest();
   let key = "pk.463c606657acae1bc8f276a073302727"; //https://es.locationiq.com/ //sign in with Google Sabri
@@ -71,37 +73,54 @@ export const getDateFormat = (date) => {
   return _entryDate;
 };
 
-export const uploadPhoto = (files, id, folder) => {
+export const resizeFile = (file) =>
+  new Promise((resolve) => {
+    Resizer.imageFileResizer(
+      file,
+      800,
+      800,
+      "JPEG",
+      100,
+      0,
+      (uri) => {
+        resolve(uri);
+      },
+      "base64"
+    );
+  });
+
+export const uploadPhoto = async (files, id, folder) => {
   const url = `https://api.Cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`;
+
+  var timestamp = Math.round(new Date().getTime() / 1000);
 
   const formData = new FormData();
   for (let i = 0; i < files.length; i++) {
     let file = files[i];
-    formData.append("file", file);
-    formData.append("upload_preset", "van_re_corriendo");
-    formData.append("folder", "Camiontito");
-    formData.append("public_id", `/${folder}/${id}_${i + 1}`);
+    if (typeof file !== "string") {
+      file = await resizeFile(file);
+      formData.append("file", file);
+      formData.append("timestamp", timestamp);
+      formData.append(
+        "upload_preset",
+        process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET
+      );
+      formData.append("folder", process.env.REACT_APP_CLOUDINARY_FOLDER);
+      formData.append("public_id", `/${folder}/${id}_${i + 1}`);
 
-    fetch(url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => {
-        return response.text();
+      fetch(url, {
+        method: "POST",
+        body: formData,
       })
-      .then((data) => {
-        const str = JSON.stringify(JSON.parse(data), null, 4);
-        console.log(str);
-      })
-      .catch((err) => console.log("Error: ", err));
+        .then((response) => {
+          return response.text();
+        })
+        .then((data) => {
+          const str = JSON.stringify(JSON.parse(data), null, 4);
+        })
+        .catch((err) => console.log("Error: ", err));
+    }
   }
-};
-
-export const isLandscape = () => {
-  return window.orientation === 90 || window.orientation === -90;
-};
-export const isPortrait = () => {
-  return window.innerHeight > window.innerWidth;
 };
 
 export const getBase64FromUrl = async (urls) => {
@@ -121,4 +140,27 @@ export const getBase64FromUrl = async (urls) => {
     })
   );
   return images;
+};
+
+export const uploadPhotosToCloudinary = (images, id, prefix) => {
+  let _images = [];
+  if (images.length > 0) {
+    uploadPhoto(images, id, prefix);
+    for (let i = 1; i <= images.length; i++) {
+      if (typeof images[i - 1] === "string") {
+        let img = images[i - 1].split("/");
+        img = img[img.length - 1];
+
+        _images.push(img);
+      } else {
+        const extension = images[i - 1].type?.split("/")[1];
+        _images.push(`${id}_${i}.${extension}`);
+      }
+    }
+  }
+  return _images;
+};
+
+export const randomNumberInRange = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 };

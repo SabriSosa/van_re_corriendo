@@ -19,13 +19,14 @@ function ListPosts() {
   const statusPosts = useSelector(selectStatusPosts);
 
   useEffect(() => {
-    if (statusPosts === "initial") {
+    if (statusPosts === "initial" || statusPosts === "succeeded-item") {
       dispatch(fetchPosts());
     }
   }, [statusPosts, dispatch]);
 
   const schema = {
     id: "",
+    date: "",
     title: "",
     country: "",
     state: "",
@@ -34,7 +35,7 @@ function ListPosts() {
   };
 
   const onClick = (postId) => {
-    navigate(`/add-edit/${postId}`);
+    navigate(`/edit-post/${postId}`);
   };
   return (
     <Container fluid id="edit-post">

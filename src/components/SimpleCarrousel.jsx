@@ -2,7 +2,6 @@ import { AdvancedImage, AdvancedVideo } from "@cloudinary/react";
 import { Cloudinary } from "@cloudinary/url-gen";
 import { useState } from "react";
 import { Carousel } from "react-bootstrap";
-import { useDispatch } from "react-redux";
 import "./SimpleCarrousel.scss";
 
 export default function SimpleCarrousel({
@@ -17,11 +16,9 @@ export default function SimpleCarrousel({
 }) {
   const [index, setIndex] = useState(0);
 
-  const dispatch = useDispatch();
-
   const cld = new Cloudinary({
     cloud: {
-      cloudName: "djbmfd9y6",
+      cloudName: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
     },
   });
 

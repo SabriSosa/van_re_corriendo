@@ -14,7 +14,6 @@ import "./NewItemMap.scss";
 function NewItemMap({ setCoord, coordinates }) {
   const [map, setMap] = useState();
 
-  console.log("coordinates", coordinates);
   let _vectorLayer;
 
   const setPinOnMap = function (evt) {
