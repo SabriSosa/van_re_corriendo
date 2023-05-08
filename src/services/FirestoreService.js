@@ -1,10 +1,9 @@
-import { getAuth } from "@firebase/auth";
 import { initializeApp } from "firebase/app";
 import {
-  GeoPoint,
   addDoc,
   collection,
   doc,
+  GeoPoint,
   getDoc,
   getDocs,
   getFirestore,
@@ -29,8 +28,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
-export const auth = getAuth(app);
 
 const _getDocs = async (q) => {
   const querySnapshot = await getDocs(q);

@@ -5,10 +5,11 @@ footer {
   padding: 8px;
   align-items: center;
   margin-top: auto;
-  
+
   .footer-image {
     max-width: 10%;
     cursor: pointer;
+
     @media (max-width: 480px) and (orientation: portrait) {
       max-width: 25%;
     }

@@ -6,17 +6,15 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import { isDesktop } from "react-device-detect";
 import { NotificationContainer } from "react-notifications";
+import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import "./App.scss";
-
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import Router from "./Router";
 import Footer from "./components/Footer";
 import NavBarMenu from "./components/NavBar";
 import TabsBarMenu from "./components/TabsBar";
 import { messages } from "./locales/es/messages.js";
-import { createMediaLibrary } from "./services/CloudinaryService";
+import Router from "./Router";
+
 i18n.load("es", messages);
 i18n.loadLocaleData({
   es: { plurals: es },
@@ -28,24 +26,24 @@ i18n.activate("es");
 function App() {
   let excludedRoutes = ["/not-found"];
   if (!isDesktop) {
-    excludedRoutes.push("/routes");
+    excludedRoutes.push("/route");
   }
   const location = useLocation();
   const dispatch = useDispatch();
-  useEffect(() => {
-    const mediaLibraryOptions = {
-      cloud_name: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
-      api_key: process.env.REACT_APP_CLOUDINARY_API_KEY,
-    };
-    const handlers = {
-      insertHandler: function (data) {
-        data.assets.forEach((asset) => {
-          console.log("Inserted asset:", JSON.stringify(asset, null, 2));
-        });
-      },
-    };
-    createMediaLibrary(mediaLibraryOptions, handlers);
-  }, []);
+  // useEffect(() => {
+  //   const mediaLibraryOptions = {
+  //     cloud_name: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
+  //     api_key: process.env.REACT_APP_CLOUDINARY_API_KEY,
+  //   };
+  //   const handlers = {
+  //     insertHandler: function (data) {
+  //       data.assets.forEach((asset) => {
+  //         console.log("Inserted asset:", JSON.stringify(asset, null, 2));
+  //       });
+  //     },
+  //   };
+  //   createMediaLibrary(mediaLibraryOptions, handlers);
+  // }, []);
 
   const menu = isDesktop ? <NavBarMenu /> : <TabsBarMenu />;
 

@@ -1,7 +1,7 @@
 import { AdvancedImage, AdvancedVideo, lazyload } from "@cloudinary/react";
 import { Cloudinary } from "@cloudinary/url-gen";
 import { useState } from "react";
-import { Carousel } from "react-bootstrap";
+import Carousel from "react-bootstrap/Carousel";
 import "./SimpleCarrousel.scss";
 
 export default function SimpleCarrousel({

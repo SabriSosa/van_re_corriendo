@@ -1,44 +1,20 @@
 // react
-import { Control, FullScreen, Zoom } from "ol/control.js";
+import { FullScreen, Zoom } from "ol/control.js";
 import TileLayer from "ol/layer/Tile";
 import VectorLayer from "ol/layer/Vector";
 // openlayers
 import Map from "ol/Map";
-import View from "ol/View";
 import VectorSource from "ol/source/Vector";
 import XYZ from "ol/source/XYZ";
+import View from "ol/View";
 import React, { useEffect, useRef } from "react";
 import { Container } from "react-bootstrap";
 import { isMobile } from "react-device-detect";
-import { useNavigate } from "react-router";
 import "./MapWrapper.scss";
 
 function MapWrapper({ setMap, className }) {
   const mapElement = useRef();
   const mapRef = useRef();
-
-  const navigate = useNavigate();
-
-  const createBackButton = () => {
-    let button = document.createElement("button");
-    button.innerHTML = '<i class="fa fa-arrow-left"></i>';
-
-    const handleBack = function (e) {
-      navigate("/home");
-    };
-
-    button.addEventListener("click", handleBack, false);
-
-    let element = document.createElement("div");
-    element.className = "ol-control back-button";
-    element.appendChild(button);
-
-    const BackButton = new Control({
-      element: element,
-    });
-
-    return BackButton;
-  };
 
   useEffect(() => {
     // create and add vector source layer
@@ -70,9 +46,10 @@ function MapWrapper({ setMap, className }) {
         view: new View({
           projection: "EPSG:4326",
           center: [-56.162582739424394, -34.913942242397226],
-          zoom: 5,
+          zoom: 4,
           minZoom: 2,
           maxZoom: 19,
+          enableRotation: false,
         }),
 
         controls: [new FullScreen()],
@@ -80,8 +57,6 @@ function MapWrapper({ setMap, className }) {
 
       if (!isMobile) {
         initialMap.addControl(new Zoom());
-      } else {
-        initialMap.addControl(createBackButton());
       }
 
       initialMap.getTargetElement().classList.add("spinner");

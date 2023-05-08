@@ -3,7 +3,7 @@
   margin-top: 20px;
   @media (min-width: 992px) or (orientation: "landscape") {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     //Text and Description
     .item-project {
       flex: 1 1 0px;

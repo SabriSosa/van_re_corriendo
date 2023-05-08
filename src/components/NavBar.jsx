@@ -1,13 +1,14 @@
 import { Trans } from "@lingui/macro";
+import { GrFacebookOption } from "@react-icons/all-files/gr/GrFacebookOption";
+import { RiInstagramLine } from "@react-icons/all-files/ri/RiInstagramLine";
 import { useState } from "react";
 import { Image } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { GrFacebookOption } from "react-icons/gr";
-import { RiInstagramLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import "./NavBar.scss";
+
 const logo150 = require("../images/logo_150.png");
 
 const menu1 = [
@@ -58,6 +59,7 @@ function NavBarMenu() {
                 href="https://www.facebook.com/profile.php?id=100085509656617"
                 className="social-media-menu nav-link fb"
                 rel="noreferrer"
+                aria-label="Facebook link"
               >
                 <GrFacebookOption />
               </a>
@@ -66,6 +68,7 @@ function NavBarMenu() {
                 href="https://www.instagram.com/van_re_corriendo"
                 className="social-media-menu nav-link ig"
                 rel="noreferrer"
+                aria-label="Intagram link"
               >
                 <RiInstagramLine />
               </a>

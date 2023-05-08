@@ -1,3 +1,4 @@
+import { RiInstagramLine } from "@react-icons/all-files/ri/RiInstagramLine";
 import {
   FacebookIcon,
   FacebookShareButton,
@@ -5,13 +6,10 @@ import {
   LinkedinShareButton,
   TwitterIcon,
   TwitterShareButton,
-  WhatsappIcon
+  WhatsappIcon,
 } from "react-share";
-
-import { RiInstagramLine } from "react-icons/ri";
-
-import "./SocialMedia.scss";
 import { getDateString } from "./auxiliary";
+import "./SocialMedia.scss";
 
 export default function SocialMedia({ post }) {
   return (
@@ -39,8 +37,10 @@ export default function SocialMedia({ post }) {
           round={true}
         />
       </FacebookShareButton>
-      <a className="social-media"
-      href={`https://api.whatsapp.com/send?text=Nuevo post de @vanrecorriendo "${post.title}"%0ahttps://vanrecorriendo.com/home/${post.id}`}
+      <a
+        aria-label="Whatsapp link"
+        className="social-media"
+        href={`https://api.whatsapp.com/send?text=Nuevo post de @vanrecorriendo "${post.title}"%0ahttps://vanrecorriendo.com/home/${post.id}`}
       >
         <WhatsappIcon className="social-media-icon wp" size={25} round={true} />
       </a>
@@ -55,10 +55,12 @@ export default function SocialMedia({ post }) {
         />
       </LinkedinShareButton>
 
-      <a href="https://msng.link/o/?vanrecorriendo=ig">
+      <a
+        href="https://msng.link/o/?vanrecorriendo=ig"
+        aria-label="Instagram link"
+      >
         <RiInstagramLine className="social-media insta" />
       </a>
-      
     </section>
   );
 }

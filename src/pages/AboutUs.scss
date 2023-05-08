@@ -24,6 +24,12 @@
 .person {
   float: right;
   margin: 10px;
+  height: 150px;
+  width: 150px;
+  @media (min-width: 992px) or (orientation: "landscape") {
+    height: 200px;
+    width: 200px;
+  }
 }
 
 .person-container {

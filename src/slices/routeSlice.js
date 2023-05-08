@@ -19,7 +19,7 @@ export const fetchRoutes = createAsyncThunk("routes/fetchRoutes", async () => {
         latitude: location._lat,
         longitude: location._long,
         date: getDateFromDB(date),
-        imageRoute: `https://res.cloudinary.com/djbmfd9y6/image/upload/c_fill,h_200,w_200/Camiontito/Routes/${images[0]}`,
+        imageRoute: `https://res.cloudinary.com/djbmfd9y6/image/upload/c_fill,h_150,w_200/Camiontito/Routes/${images[0]}`,
         images: images,
 
         ...rest,
@@ -70,6 +70,8 @@ export const routesSlice = createSlice({
           r.longitude,
           r.latitude,
         ]);
+
+        state.selectedPlace = state.routes[0];
       })
       .addCase(fetchRoutes.rejected, (state, action) => {
         state.status = "failed";

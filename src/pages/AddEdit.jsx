@@ -1,14 +1,13 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Trans, t } from "@lingui/macro";
+import { t, Trans } from "@lingui/macro";
 import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import NewItemMap from "../components/NewItemMap";
 import { getAddress } from "../components/auxiliary";
 import CustomModal from "../components/generic/CustomModal";
 import CustomSpinner from "../components/generic/CustomSpinner";
-import { ImageUploadPreview } from "../components/generic/ImageUploadPreview";
+import NewItemMap from "../components/NewItemMap";
 import * as FirestoreService from "../services/FirestoreService";
 import "./AddEdit.scss";
 function AddEdit({
@@ -17,13 +16,11 @@ function AddEdit({
   status,
   fields,
   isAddMode,
-  id,
   onSubmitItem,
-  prefix
+  prefix,
 }) {
   const [coord, setCoord] = useState();
   const [modalShow, setModalShow] = React.useState(false);
-
 
   useEffect(() => {
     async function getFields() {
@@ -160,23 +157,22 @@ function AddEdit({
         key: 5,
       }),
     },
-    {
-      component: createRowComponent({
-        columns: [
-          {
-            name: "images",
-            as: ImageUploadPreview,
-            imgId: selectedItem?.date,
-            idItem: getValues()?.id,
-            errors: errors,
-            isAddMode: isAddMode,
-            images: fields.find(({ name }) => name === "images").value,
-            setValue: setValue,
-          },
-        ],
-        key: 6,
-      }),
-    },
+    // {
+    //   component: createRowComponent({
+    //     columns: [
+    //       {
+    //         name: "images",
+    //         as: ImageUploadPreview,
+    //         imgId: selectedItem?.date,
+    //         idItem: getValues()?.id,
+    //         errors: errors,
+    //         isAddMode: isAddMode,
+    //         images: fields.find(({ name }) => name === "images").value,
+    //         setValue: setValue,
+    //       },
+    //     ],
+    //     key: 6,
+    //   }),
   ];
 
   //Location Modal
@@ -225,7 +221,11 @@ function AddEdit({
       />
 
       <Form onSubmit={handleSubmit(onSubmit)} onReset={reset}>
-        <h1>{isAddMode ? t`add.${prefix}.title` : t`edit.${prefix}.title`}</h1>
+        <h1>
+          <Trans>
+            {isAddMode ? `add.${prefix}.title` : `edit.${prefix}.title`}
+          </Trans>
+        </h1>
 
         {fieldsComponents.map((field) => {
           const { component } = field;

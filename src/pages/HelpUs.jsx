@@ -1,10 +1,8 @@
 import { t } from "@lingui/macro";
 import React from "react";
-
 import { Container } from "react-bootstrap";
-import TitleComp from "../components/generic/Title";
-
 import HtmlContainer from "../components/generic/HtmlContainer";
+import TitleComp from "../components/generic/Title";
 import "./HelpUs.scss";
 
 function HelpUs() {
@@ -20,17 +18,19 @@ function HelpUs() {
             className="social"
             href="https://www.messenger.com/t/100085509656617"
             rel="noreferrer"
+            aria-label="Facebook Messenger link"
           >
             <img
               alt="fb-logo"
               src="https://res.cloudinary.com/djbmfd9y6/image/upload/c_scale,w_150/v1681856889/Camiontito/fb-logo.png"
             />
-          </a>  
+          </a>
           <a
             target="_blank"
             className="social"
             href="https://www.instagram.com/van_re_corriendo/"
             rel="noreferrer"
+            aria-label="Intagram link"
           >
             <img
               alt="ig-logo"

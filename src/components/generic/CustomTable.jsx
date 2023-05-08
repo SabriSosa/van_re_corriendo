@@ -1,6 +1,5 @@
+import { AiFillEdit } from "@react-icons/all-files/ai/AiFillEdit";
 import Table from "react-bootstrap/Table";
-
-import { AiFillEdit } from "react-icons/ai";
 
 const TableHeader = (props) => {
   const { headers } = props;

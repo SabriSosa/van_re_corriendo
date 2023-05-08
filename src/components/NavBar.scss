@@ -1,66 +1,63 @@
-.nav-link {
-  color: white !important;
-  font-size: calc(0.1vw + 1.25em) !important;
-  font-family: Lato, Sans-Serif;
-  background-color: transparent;
-  font-weight: 700 !important;
-  word-break: normal;
-  @media (max-width: 991px) {
-    color: black !important;
-  }
-
-  @media (max-width: 1200px) {
-    font-size: calc(0.1vw + 1.15em) !important;
-  }
-}
-.social-media-menu {
-  @media (max-width: 991px) {
-    display: none !important ;
-  }
-}
-.social-media-menu.fb {
-  margin: 0 10px;
-}
-.social-media-menu.ig {
-  margin-right: 30px;
-}
-
-.offcanvas-header {
-  justify-content: end !important;
-}
-
-.navbar-body {
-  align-items: center;
-  text-transform: uppercase;
-
-  @media (max-width: 991px) {
-    align-items: flex-start;
-    text-transform: none;
-  }
-}
-
-.navbar-toggler {
-  border: none !important;
-  margin-right: 0px !important;
-}
-.navbar-toggler:focus {
-  box-shadow: none !important;
-}
-
 .navbar-container {
   position: relative;
   padding: 0px !important;
   width: 100% !important;
 
   background: linear-gradient(black 5%, transparent 50%, transparent 0%),
-    url("https://res.cloudinary.com/djbmfd9y6/image/upload/v1678990866/Camiontito/fondo_landscape.png")
-      no-repeat fixed;
+    url("../images/fondo_landscape.png") no-repeat fixed;
   background-size: contain;
   height: 50vh;
 
-  //Pantallas muy grandes (desktops de más de 1200px)
   @media (min-width: 1200px) {
     height: 50vh;
+  }
+  .nav-link {
+    color: white !important;
+    font-size: calc(0.1vw + 1.25em) !important;
+    font-family: Lato, Sans-Serif;
+    background-color: transparent;
+    font-weight: 700 !important;
+    word-break: normal;
+    @media (max-width: 991px) {
+      color: black !important;
+    }
+
+    @media (max-width: 1200px) {
+      font-size: calc(0.1vw + 1.15em) !important;
+    }
+  }
+  .social-media-menu {
+    @media (max-width: 991px) {
+      display: none !important ;
+    }
+  }
+  .social-media-menu.fb {
+    margin: 0 10px;
+  }
+  .social-media-menu.ig {
+    margin-right: 30px;
+  }
+
+  .offcanvas-header {
+    justify-content: end !important;
+  }
+
+  .navbar-body {
+    align-items: center;
+    text-transform: uppercase;
+
+    @media (max-width: 991px) {
+      align-items: flex-start;
+      text-transform: none;
+    }
+  }
+
+  .navbar-toggler {
+    border: none !important;
+    margin-right: 0px !important;
+  }
+  .navbar-toggler:focus {
+    box-shadow: none !important;
   }
 }
 
@@ -75,80 +72,3 @@
     opacity: 1;
   }
 }
-
-.toggle-nav {
-  display: flex;
-  justify-content: space-between;
-}
-
-.offcanvas-header {
-  margin-right: 10px !important;
-}
-
-.logo-link-mobile {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px !important;
-  @media (min-width: 992px) {
-    display: none !important ;
-  }
-}
-
-.offcanvas-container {
-  flex-wrap: wrap !important;
-  padding: 0% !important;
-}
-
-.logo-link-menu {
-  @media (max-width: 991px) {
-    display: none !important ;
-  }
-}
-
-.offcanvas-start {
-  width: 250px !important;
-  opacity: 0.9;
-}
-
-// .tabs-container {
-//   margin-top: 12vh;
-
-//   .tabs {
-//     font-family: arial;
-//     margin: 0 auto;
-//     width: 70%;
-//     text-align: center;
-//     margin-top: 15vh;
-//   }
-//   .tab-buttons {
-//     display: flex;
-//     flex-wrap: wrap;
-//     padding-left: 0;
-//     margin-bottom: 0;
-//     height: 8vh;
-//     background-color: #74a9db;
-
-//     button {
-//       flex: 1 1 auto;
-//       text-align: center;
-
-//       font-size: 25px;
-//       background: transparent;
-//       border: none;
-//       outline: none;
-//       cursor: pointer;
-//       color: rgba(0, 0, 0, 0.4);
-//       transition: all ease-in-out 0.2s;
-//       border-bottom: 2px solid transparent;
-//     }
-//     .active {
-//       border-bottom: 2px solid #06090c;
-//       color: #17212a;
-//     }
-//   }
-
-//   .nav-link {
-//     font-size: calc(0.1vw + 0.75em) !important;
-//   }
-// }

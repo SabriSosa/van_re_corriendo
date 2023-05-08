@@ -1,13 +1,20 @@
 import { t } from "@lingui/macro";
+import { MdPerson } from "@react-icons/all-files/md/MdPerson";
 import React from "react";
 import { Container, Image } from "react-bootstrap";
 import { isMobile } from "react-device-detect";
-import { MdPerson } from "react-icons/md";
 import HtmlContainer from "../components/generic/HtmlContainer";
 import TitleComp from "../components/generic/Title";
 import "./AboutUs.scss";
 
 function AboutUs() {
+  const sabri = isMobile
+    ? require("../images/sabri_mobile.png")
+    : require("../images/sabri_desktop.png");
+  const robert = isMobile
+    ? require("../images/robert_mobile.png")
+    : require("../images/robert_desktop.png");
+
   const person = (title, img, _text) => {
     return (
       <Container className="person-container">
@@ -16,12 +23,7 @@ function AboutUs() {
           <MdPerson className="title-icon" />
         </h2>
         <div>
-          <Image
-            className="person"
-            src={`https://res.cloudinary.com/djbmfd9y6/image/upload/w_${
-              isMobile ? "150" : "200"
-            },c_fill,ar_1:1,g_auto,r_max/v1673907436/Camiontito/${img}.jpg`}
-          />
+          <Image alt={`photo-person-${title}`} className="person" src={img} />
           <HtmlContainer text={_text} className="about-us-html" />
         </div>
       </Container>
@@ -32,16 +34,8 @@ function AboutUs() {
     <Container className="about-us-container">
       <TitleComp title1={t`about.us.who`} title2={t`about.us.are`} />
       <HtmlContainer text={t`about.us`} className="about-us-html" />
-      {person(
-        t`about.us.sabri`,
-        "IMG_20220929_173749_jwpzkt",
-        t`about.us.sabri.description`
-      )}
-      {person(
-        t`about.us.robert`,
-        "robert-photo",
-        t`about.us.robert.description`
-      )}
+      {person(t`about.us.sabri`, sabri, t`about.us.sabri.description`)}
+      {person(t`about.us.robert`, robert, t`about.us.robert.description`)}
     </Container>
   );
 }

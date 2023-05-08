@@ -1,9 +1,9 @@
+import { BiCalendarAlt } from "@react-icons/all-files/bi/BiCalendarAlt";
+import { BiMap } from "@react-icons/all-files/bi/BiMap";
+import { BiWorld } from "@react-icons/all-files/bi/BiWorld";
+import { GiPathDistance } from "@react-icons/all-files/gi/GiPathDistance";
 import React from "react";
-
 import { Card, Col, Container, Row } from "react-bootstrap";
-import { BiCalendarAlt, BiMap, BiWorld } from "react-icons/bi";
-import { GiPathDistance } from "react-icons/gi";
-
 import "./TravelInfo.scss";
 import Wave from "./Wave";
 

@@ -1,6 +1,6 @@
+import { FaFacebookSquare } from "@react-icons/all-files/fa/FaFacebookSquare";
+import { FaInstagram } from "@react-icons/all-files/fa/FaInstagram";
 import { Container, Image } from "react-bootstrap";
-import { FaFacebookSquare, FaInstagram } from "react-icons/fa";
-
 import "./Footer.scss";
 
 const logo = require("../images/logo_150.png");
@@ -20,6 +20,7 @@ const Footer = () => {
             target="_blank"
             href="https://www.facebook.com/profile.php?id=100085509656617"
             rel="noreferrer"
+            aria-label="Facebook link"
           >
             <FaFacebookSquare className="face-footer icon-footer " size={35} />
           </a>
@@ -29,12 +30,13 @@ const Footer = () => {
           onClick={() => goToTop()}
           src={logo}
           alt="footer-logo"
-      />
+        />
         <div>
           <a
             target="_blank"
             href="https://www.instagram.com/van_re_corriendo/"
             rel="noreferrer"
+            aria-label="Intagram link"
           >
             <FaInstagram className="insta-footer icon-footer" size={35} />
           </a>

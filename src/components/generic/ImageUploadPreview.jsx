@@ -1,9 +1,10 @@
+import { t } from "@lingui/macro";
 import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-
-import { t } from "@lingui/macro";
 import { useDispatch, useSelector } from "react-redux";
+import useScript from "../../hooks/useScript";
 import {
+  createMediaLibrary,
   openMediaLibrary,
   openUploadWidget,
 } from "../../services/CloudinaryService";
@@ -15,6 +16,9 @@ export const ImageUploadPreview = React.forwardRef((props, ref) => {
   const dispatch = useDispatch();
   const { images, isAddMode, imgId, setValue, errors, idItem } = props;
   const loading = useSelector(selectLoading);
+  useScript("https://media-library.cloudinary.com/global/all.js");
+
+  useScript("https://widget.cloudinary.com/v2.0/global/all.js");
 
   const [files, setFiles] = useState([]);
   const [filesObj, setFilesObj] = useState([]);
@@ -25,12 +29,26 @@ export const ImageUploadPreview = React.forwardRef((props, ref) => {
     }
   }, [images]);
 
+  useEffect(() => {
+    if (window.cloudinary) {
+      createLibraryCloudinary();
+    }
+  }, [window]);
+
   const uploadImageWithCloudinary = () => {
     dispatch(setLoading({ loading: true }));
 
     openUploadWidget("Posts", idItem, () => {
       dispatch(setLoading({ loading: false }));
     });
+  };
+
+  const createLibraryCloudinary = () => {
+    const mediaLibraryOptions = {
+      cloud_name: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.REACT_APP_CLOUDINARY_API_KEY,
+    };
+    createMediaLibrary(mediaLibraryOptions);
   };
 
   const mediaLibraryCloudinary = () => {
@@ -71,7 +89,7 @@ export const ImageUploadPreview = React.forwardRef((props, ref) => {
   }
 
   const imagesFunction = isAddMode
-    ? uploadImageWithCloudinary
+    ? mediaLibraryCloudinary
     : mediaLibraryCloudinary;
 
   return (

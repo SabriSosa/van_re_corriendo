@@ -1,22 +1,10 @@
-import { Cloudinary as CoreCloudinary, Util } from "cloudinary-core";
 import { randomNumberInRange } from "../components/auxiliary";
-
-export const url = (publicId, options) => {
-  try {
-    const scOptions = Util.withSnakeCaseKeys(options);
-    const cl = CoreCloudinary.new();
-    return cl.url(publicId, scOptions);
-  } catch (e) {
-    console.error(e);
-    return null;
-  }
-};
 
 export const createUploadWidget = (options, callback) => {
   window.upw = window.cloudinary.createUploadWidget(options, callback);
 };
 
-export const createMediaLibrary = (config, handlers) => {
+export const createMediaLibrary = (config, handlers = {}) => {
   window.ml = window.cloudinary.createMediaLibrary(config, {
     handlers,
   });

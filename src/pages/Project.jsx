@@ -3,7 +3,6 @@ import React, { Suspense, useEffect } from "react";
 import { Button, Container, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import ScrollToTop from "react-scroll-to-top";
-import CustomSpinner from "../components/generic/CustomSpinner";
 import HtmlContainer from "../components/generic/HtmlContainer";
 import TitleComp from "../components/generic/Title";
 import Wave from "../components/Wave";
@@ -26,7 +25,7 @@ function ProjectForm() {
       dispatch(fetchProjects());
     }
   }, [statusProject, dispatch]);
-  
+
   const onClick = (prop) => {
     const selectedPlaceElem = document.getElementById(prop);
     selectedPlaceElem.scrollIntoView({
@@ -79,7 +78,7 @@ function ProjectForm() {
       <Wave className="wave-project" children={info} />
 
       {projects?.map((item) => (
-        <Suspense fallback={<div></div>}>
+        <Suspense key={item.id} fallback={<div></div>}>
           <ProjectItem key={item.id} item={item} />
         </Suspense>
       ))}

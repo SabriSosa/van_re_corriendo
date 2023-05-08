@@ -47,18 +47,6 @@ function TravelMap({ routes, coordinates }) {
     return canvas;
   };
 
-  const createText = () => {
-    let element = document.createElement("h1");
-    element.className = "ol-control title-map";
-    element.innerHTML = "Recorrido";
-
-    const Title = new Control({
-      element: element,
-    });
-
-    return Title;
-  };
-
   let selectStyle = function (feature) {
     dispatch(setselectedPlace({ routeId: feature.get("id") }));
     const canvas = createCanvas(feature.get("image"), "dodgerblue");
@@ -66,7 +54,7 @@ function TravelMap({ routes, coordinates }) {
     let styles = [
       new Style({
         image: new Icon({
-          scale: 1.1,
+          scale: 0.8,
           img: canvas,
           imgSize: canvas ? [canvas.width, canvas.height] : undefined,
         }),
@@ -84,10 +72,12 @@ function TravelMap({ routes, coordinates }) {
       var featuresCollection = selectInteraction.getFeatures();
       featuresCollection.pop();
       featuresCollection.push(__feature);
-      map.getView().fit(__feature.getGeometry(), {
+
+      const extent = __feature.getGeometry().getExtent()
+
+      map.getView().fit(extent, {
         size: map.getSize(),
-        maxZoom: 6,
-        duration: 500,
+        maxZoom: 7,
       });
 
       setTimeout(() => {
@@ -153,7 +143,7 @@ function TravelMap({ routes, coordinates }) {
 
             const style = new Style({
               image: new Icon({
-                scale: 0.8,
+                scale: 0.5,
                 img: canvas,
                 imgSize: canvas ? [canvas.width, canvas.height] : undefined,
               }),
@@ -189,14 +179,6 @@ function TravelMap({ routes, coordinates }) {
 
       setSelectInteraction(_selectInteraction);
       map.addInteraction(_selectInteraction);
-
-      if (isMobile) {
-        var domElement = document.createElement("div");
-        domElement.className = "myclass";
-        domElement.innerHTML = "content";
-
-        map.addControl(createText());
-      }
     }
   }, [map]);
 

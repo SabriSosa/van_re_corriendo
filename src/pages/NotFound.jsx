@@ -15,7 +15,7 @@ export default function NotFound() {
           <span className="circle big"></span>
           <span className="circle med"></span>
           <span className="circle small"></span>
-          <a href="/home">
+          <a aria-label="Home link" href="/home">
             <span className="circle logo"></span>
           </a>
         </div>

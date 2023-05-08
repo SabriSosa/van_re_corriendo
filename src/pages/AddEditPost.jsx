@@ -1,14 +1,15 @@
 import { t } from "@lingui/macro";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import * as Yup from "yup";
-
 import format from "date-fns/format";
+import { useEffect, useState } from "react";
+import { Container, Tab, Tabs } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
+import * as Yup from "yup";
 import {
   getDateFormat,
   uploadPhotosToCloudinary,
 } from "../components/auxiliary";
+import { ImageUploadPreview } from "../components/generic/ImageUploadPreview";
 import {
   addNewPost,
   getPostById,
@@ -24,6 +25,8 @@ function AddEditPost() {
   const navigate = useNavigate();
   const { id } = useParams();
   const isAddMode = !id;
+  const [activeKey, setActiveKey] = useState("generic");
+  const [disabled, setDisabled] = useState(true);
 
   const statusPosts = useSelector(selectStatusPosts);
   const selectedPost = useSelector((state) => selectPostById(state, id));
@@ -46,7 +49,6 @@ function AddEditPost() {
     city: Yup.string().required(t`city.required`),
     state: Yup.string().required(t`state.required`),
     country: Yup.string().required(t`country.required`),
-    images: Yup.array().required(t`images.required`),
   });
 
   const fields = [
@@ -64,13 +66,6 @@ function AddEditPost() {
     { name: "country", value: selectedPost?.country },
     { name: "state", value: selectedPost?.state },
     { name: "city", value: selectedPost?.city },
-    {
-      name: "images",
-      value: selectedPost?.images.map(
-        (img) =>
-          `https://res.cloudinary.com/djbmfd9y6/image/upload/ar_3:4,c_fill/Camiontito/Posts/${img}`
-      ),
-    },
   ];
 
   async function createItem(data) {
@@ -81,7 +76,10 @@ function AddEditPost() {
     dispatch(
       addNewPost({ images: _images, date: _date, id: parseInt(id), ...rest })
     ).then(() => {
-      navigate("/list-posts");
+      setActiveKey("images");
+      setDisabled(false);
+
+      // navigate("/list-posts");
     });
   }
 
@@ -93,26 +91,37 @@ function AddEditPost() {
     // deleteImagesCloudinary(selectedPost.images);
     const _images = uploadPhotosToCloudinary(images, date, "Posts");
 
-
     dispatch(
       updatePost({ images: _images, date: _date, id: parseInt(id), ...rest })
     ).then(() => {
-      navigate("/list-posts");
+      setActiveKey("images");
+      setDisabled(false);
+
+      // navigate("/list-posts");
     });
   }
 
   return (
-    <AddEdit
-    prefix = "Posts"
-      validationSchema={validationSchema}
-      selectedItem={selectedPost}
-      status={statusPosts}
-      errors={errorPost}
-      fields={fields}
-      isAddMode={isAddMode}
-      id={id}
-      onSubmitItem={isAddMode ? createItem : updateItem}
-    />
+    <Container>
+      <Tabs activeKey={activeKey} id="add-edit-post-tabs" className="mb-3">
+        <Tab eventKey="generic" title="Generic">
+          <AddEdit
+            prefix="Posts"
+            validationSchema={validationSchema}
+            selectedItem={selectedPost}
+            status={statusPosts}
+            errors={errorPost}
+            fields={fields}
+            isAddMode={isAddMode}
+            onSubmitItem={isAddMode ? createItem : updateItem}
+          />
+          <ImageUploadPreview isAddMode={isAddMode} />
+        </Tab>
+        <Tab eventKey="images" title="Images" disabled={false}>
+          <ImageUploadPreview isAddMode={isAddMode} />
+        </Tab>
+      </Tabs>
+    </Container>
   );
 }
 

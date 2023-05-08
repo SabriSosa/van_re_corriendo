@@ -46,7 +46,7 @@ function SideBar({ routes }) {
 
   return (
     routes && (
-      <Container className="sidebar-container">
+      <Container fluid className="sidebar-container">
         <CustomModal
           size={isDesktop ? "lg" : isTablet ? "md" : "sm"}
           id="travel-map"
