@@ -1,4 +1,5 @@
 import React from "react";
+import "./Wave.scss";
 
 import { Container } from "react-bootstrap";
 

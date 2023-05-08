@@ -56,9 +56,12 @@
 .main-container {
   padding: 0 !important;
   margin-bottom: 30px;
-  margin-top: 8vh !important;
-  @media (orientation: landscape) {
-    margin-top: 19vh !important;
+
+  @media only screen and (pointer: coarse) {
+    margin-top: 8vh !important;
+    @media (orientation: landscape) {
+      margin-top: 19vh !important;
+    }
   }
 }
 
