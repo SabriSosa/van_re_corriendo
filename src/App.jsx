@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import Router from "./Router";
 import Footer from "./components/Footer";
 import NavBarMenu from "./components/NavBar";
+import TabsBarMenu from "./components/TabsBar";
 import { messages } from "./locales/es/messages.js";
 import { createMediaLibrary } from "./services/CloudinaryService";
 i18n.load("es", messages);
@@ -46,9 +47,11 @@ function App() {
     createMediaLibrary(mediaLibraryOptions, handlers);
   }, []);
 
+  const menu = isDesktop ? <NavBarMenu /> : <TabsBarMenu />;
+
   return (
     <I18nProvider i18n={i18n}>
-      {!excludedRoutes.includes(location?.pathname) && <NavBarMenu />}
+      {menu}
       <Container fluid className="main-container">
         <NotificationContainer />
 

@@ -56,7 +56,12 @@
 .main-container {
   padding: 0 !important;
   margin-bottom: 30px;
+  margin-top: 8vh !important;
+  @media (orientation: landscape) {
+    margin-top: 19vh !important;
+  }
 }
+
 button {
   background-color: #74a9db !important;
   border-color: #74a9db !important;

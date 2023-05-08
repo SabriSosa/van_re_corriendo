@@ -9,7 +9,7 @@ const Destinations = React.lazy(() => import("../components/Destinations"));
 function Home() {
   return (
     <Container fluid className="home-container">
-      <ins
+      {/* <ins
         className="adsbygoogle"
         style={{
           display: "inline-block",
@@ -22,7 +22,7 @@ function Home() {
         data-ad-slot="8375174617"
         data-ad-format="auto"
         data-full-width-responsive="true"
-      ></ins>
+      ></ins> */}
 
       <Suspense fallback={<div></div>}>
         <Destinations />

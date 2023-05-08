@@ -26,11 +26,7 @@ function ProjectForm() {
       dispatch(fetchProjects());
     }
   }, [statusProject, dispatch]);
-
-  if (statusProject === "loading") {
-    return <CustomSpinner />;
-  }
-
+  
   const onClick = (prop) => {
     const selectedPlaceElem = document.getElementById(prop);
     selectedPlaceElem.scrollIntoView({
@@ -58,7 +54,7 @@ function ProjectForm() {
   const info = (
     <section className="cards">
       {sections.map((section) => (
-        <article className="card " key={section.title}>
+        <article className="card " key={section.action}>
           <Button
             variant="outline-light"
             onClick={() => onClick(section.action)}

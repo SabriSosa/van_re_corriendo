@@ -18,10 +18,10 @@
     display: none !important ;
   }
 }
-.social-media-menu.fb{
+.social-media-menu.fb {
   margin: 0 10px;
 }
-.social-media-menu.ig{
+.social-media-menu.ig {
   margin-right: 30px;
 }
 
@@ -56,46 +56,12 @@
     url("https://res.cloudinary.com/djbmfd9y6/image/upload/v1678990866/Camiontito/fondo_landscape.png")
       no-repeat fixed;
   background-size: contain;
-  height: 40vh;
-
-  @media (max-width: 576px)  and (orientation: portrait) {
-    background: linear-gradient(black 5%, transparent 50%, transparent 0%),
-      url("https://res.cloudinary.com/djbmfd9y6/image/upload/v1678993437/Camiontito/fondo-mobile.png")
-        no-repeat fixed;
-    background-size: contain;
-    height: 30vh;
-  }
-
-  //Pantallas pequeñas (móviles en portrait de más de 576px)
-  @media (min-width: 576px) and (orientation: portrait ){
-    height: 35vh;
-  }
-
-  //Pantallas medianas (tablets de portrait más de 768px)
-  @media (min-width: 768px) and (orientation: portrait ){
-    height: 25vh;
-  }
-
-  //Pantallas medianas (tablets de landscape más de 768px)
-  @media (min-width: 768px) and (orientation: landscape ){
-    height: 48vh;
-  }
-
-  //Pantallas grandes (desktops de más de 992px)
-  @media (min-width: 992px) {
-    height: 40vh;
-  }
-  
-  //tablet portrait
-  @media (min-width: 992px) and (orientation: portrait ){
-    height: 25vh;
-  }
+  height: 50vh;
 
   //Pantallas muy grandes (desktops de más de 1200px)
   @media (min-width: 1200px) {
-    height: 48vh;
+    height: 50vh;
   }
-   
 }
 
 #wave-menu {
@@ -144,3 +110,45 @@
   width: 250px !important;
   opacity: 0.9;
 }
+
+// .tabs-container {
+//   margin-top: 12vh;
+
+//   .tabs {
+//     font-family: arial;
+//     margin: 0 auto;
+//     width: 70%;
+//     text-align: center;
+//     margin-top: 15vh;
+//   }
+//   .tab-buttons {
+//     display: flex;
+//     flex-wrap: wrap;
+//     padding-left: 0;
+//     margin-bottom: 0;
+//     height: 8vh;
+//     background-color: #74a9db;
+
+//     button {
+//       flex: 1 1 auto;
+//       text-align: center;
+
+//       font-size: 25px;
+//       background: transparent;
+//       border: none;
+//       outline: none;
+//       cursor: pointer;
+//       color: rgba(0, 0, 0, 0.4);
+//       transition: all ease-in-out 0.2s;
+//       border-bottom: 2px solid transparent;
+//     }
+//     .active {
+//       border-bottom: 2px solid #06090c;
+//       color: #17212a;
+//     }
+//   }
+
+//   .nav-link {
+//     font-size: calc(0.1vw + 0.75em) !important;
+//   }
+// }

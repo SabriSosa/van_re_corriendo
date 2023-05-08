@@ -1,0 +1,47 @@
+.tabs-container {
+  padding: 0 !important;
+  position: fixed;
+  z-index: 999;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  .nav-tabs {
+    display: flex;
+    border-bottom: none;
+  }
+  .nav-item {
+    flex: auto;
+    padding-left: 0;
+    margin-bottom: 0;
+    background-color: #fff;
+    height: 7vh;
+    @media (orientation: landscape) {
+      height: 18vh;
+    }
+
+    button {
+      width: 100%;
+      height: inherit;
+      text-align: center;
+      font-size: 25px !important;
+      background: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      color: #000 !important;
+      transition: all ease-in-out 0.2s;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-link {
+      padding: 0% !important;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+    .active {
+      color: #74a9db !important;
+      border-bottom: 2px solid #74a9db;
+    }
+  }
+}

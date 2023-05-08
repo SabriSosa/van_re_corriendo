@@ -1,4 +1,4 @@
-import { AdvancedImage, AdvancedVideo } from "@cloudinary/react";
+import { AdvancedImage, AdvancedVideo, lazyload } from "@cloudinary/react";
 import { Cloudinary } from "@cloudinary/url-gen";
 import { useState } from "react";
 import { Carousel } from "react-bootstrap";
@@ -47,6 +47,7 @@ export default function SimpleCarrousel({
               cldVid={cld
                 .video(`${prefix}/${image}`)
                 .addTransformation(transformation)}
+              plugins={[lazyload()]}
             />
           ) : (
             <AdvancedImage
@@ -55,6 +56,7 @@ export default function SimpleCarrousel({
               cldImg={cld
                 .image(`${prefix}/${image}`)
                 .addTransformation(transformation)}
+              plugins={[lazyload()]}
             />
           )}
         </Carousel.Item>

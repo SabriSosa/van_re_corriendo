@@ -3,16 +3,12 @@ import { useState } from "react";
 import { Image } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Navbar from "react-bootstrap/Navbar";
-import Offcanvas from "react-bootstrap/Offcanvas";
 import { GrFacebookOption } from "react-icons/gr";
 import { RiInstagramLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import "./NavBar.scss";
-
 const logo150 = require("../images/logo_150.png");
-const logo50 = require("../images/logo_50.png");
 
 const menu1 = [
   { title: <Trans>menu.home</Trans>, action: "home" },
@@ -41,92 +37,40 @@ function NavBarMenu() {
         expand="lg"
         className="mb-3 nav-bar"
       >
-        <Container fluid className="offcanvas-container">
-          <Container fluid className="toggle-nav">
-            <Link to="/home" className="logo-link-mobile nav-link">
-              <Image alt="home-logo" src={logo50} />
-            </Link>
-            <Navbar.Toggle
-              aria-controls={`offcanvasNavbar-expand`}
-              onClick={toggleMenu}
-            />
-          </Container>
-          <Navbar.Offcanvas
-            id={`offcanvasNavbar-expand`}
-            aria-labelledby={`offcanvasNavbarLabel-expand`}
-            placement="end"
-            show={menuOpen}
-            onHide={handleClose}
-          >
-            <Offcanvas.Header closeButton></Offcanvas.Header>
-            <Offcanvas.Body>
-              <Nav className="navbar-body justify-content-center flex-grow-1 pe-3">
-                {menu1.map((menu) =>
-                  menu.submenu ? (
-                    <NavDropdown
-                      key={menu.action}
-                      title={menu.title}
-                      id={menu.action}
-                    >
-                      {menu.submenu.map((sub) => (
-                        <NavDropdown.Item key={sub.title} to={sub.action}>
-                          {sub.title}
-                        </NavDropdown.Item>
-                      ))}
-                    </NavDropdown>
-                  ) : (
-                    <Link
-                      onClick={handleClose}
-                      key={menu.action}
-                      id={menu.action}
-                      to={menu.action}
-                      className="nav-link"
-                    >
-                      {menu.title}
-                    </Link>
-                  )
-                )}
-                <Link
-                  onClick={handleClose}
-                  to="/home"
-                  className="logo-link-menu nav-link"
-                >
-                  <Image alt="mobile-logo" src={logo150} />
+        <Container>
+          <Navbar.Collapse id="desktop-navbar">
+            <Nav className="navbar-body justify-content-center flex-grow-1 pe-3">
+              {menu1.map((menu) => (
+                <Link className="nav-link" key={menu.action} to={menu.action}>
+                  {menu.title}
                 </Link>
-
-                {menu2.map((menu) => (
-                  <Link
-                    onClick={handleClose}
-                    key={menu.action}
-                    id={menu.action}
-                    to={menu.action}
-                    className="nav-link"
-                  >
-                    {menu.title}
-                  </Link>
-                ))}
-
-                <a
-                  onClick={handleClose}
-                  target="_blank"
-                  href="https://www.facebook.com/profile.php?id=100085509656617"
-                  className="social-media-menu nav-link fb"
-                  rel="noreferrer"
-                >
-                  <GrFacebookOption />
-                </a>
-                <a
-                  onClick={handleClose}
-                  target="_blank"
-                  href="https://www.instagram.com/van_re_corriendo"
-                  className="social-media-menu nav-link ig"
-                  rel="noreferrer"
-                >
-                  <RiInstagramLine />
-                </a>
-              </Nav>
-            </Offcanvas.Body>
-          </Navbar.Offcanvas>
+              ))}
+              <Link to="/home" className="logo-link-menu nav-link">
+                <Image alt="desktop-logo" src={logo150} />
+              </Link>
+              {menu2.map((menu) => (
+                <Link className="nav-link" key={menu.action} to={menu.action}>
+                  {menu.title}
+                </Link>
+              ))}
+              <a
+                target="_blank"
+                href="https://www.facebook.com/profile.php?id=100085509656617"
+                className="social-media-menu nav-link fb"
+                rel="noreferrer"
+              >
+                <GrFacebookOption />
+              </a>
+              <a
+                target="_blank"
+                href="https://www.instagram.com/van_re_corriendo"
+                className="social-media-menu nav-link ig"
+                rel="noreferrer"
+              >
+                <RiInstagramLine />
+              </a>
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
 
