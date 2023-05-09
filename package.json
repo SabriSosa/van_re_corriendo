@@ -31,14 +31,14 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "GENERATE_SOURCEMAP=false react-scripts build",
-    "winBuild": "set \"GENERATE_SOURCEMAP=false\" && react-scripts build",
+    "build": "react-scripts build && npm run purge-css",
+    "purge-css": "node ./purge-css",
+    "winBuild": "set \"GENERATE_SOURCEMAP=false\" && react-scripts build && npm run purge-css",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint:fix": "eslint --fix .",
     "extract": "lingui extract",
-    "compile": "lingui compile",
-    "postbuild": "purgecss --css build/static/css/*.css --content build/index.html build/static/js/*.js --output build/static/css"
+    "compile": "lingui compile"
   },
   "eslintConfig": {
     "extends": [
@@ -60,6 +60,7 @@
   },
   "devDependencies": {
     "@lingui/cli": "^3.17.2",
-    "@lingui/macro": "^3.17.2"
+    "@lingui/macro": "^3.17.2",
+    "purgecss": "^5.0.0"
   }
 }
