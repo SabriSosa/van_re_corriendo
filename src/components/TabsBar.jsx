@@ -68,7 +68,12 @@ function TabsBarMenu() {
           }}
         >
           {menu.map((menu) => (
-            <Tab tabAttrs={{"aria-label": menu.action}} title={menu.icon} key={menu.action} eventKey={menu.action} />
+            <Tab
+              tabAttrs={{ "aria-label": menu.action }}
+              title={menu.icon}
+              key={menu.action}
+              eventKey={menu.action}
+            />
           ))}
         </Tabs>
       </nav>

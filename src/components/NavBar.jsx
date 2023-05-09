@@ -1,7 +1,6 @@
 import { Trans } from "@lingui/macro";
 import { GrFacebookOption } from "@react-icons/all-files/gr/GrFacebookOption";
 import { RiInstagramLine } from "@react-icons/all-files/ri/RiInstagramLine";
-import { useState } from "react";
 import { Image } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -23,12 +22,6 @@ const menu2 = [
 ];
 
 function NavBarMenu() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-  const handleClose = () => setMenuOpen(false);
-
   return (
     <Container fluid className="navbar-container">
       <Navbar

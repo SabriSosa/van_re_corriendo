@@ -1,49 +1,5 @@
 import Resizer from "react-image-file-resizer";
 
-export function getCity(lat, lng, setItem) {
-  let xhr = new XMLHttpRequest();
-  let key = "pk.463c606657acae1bc8f276a073302727"; //https://es.locationiq.com/ //sign in with Google Sabri
-  // Paste your LocationIQ token below.
-  xhr.open(
-    "GET",
-    "https://us1.locationiq.com/v1/reverse.php?key=" +
-      key +
-      "&lat=" +
-      lat +
-      "&lon=" +
-      lng +
-      "&format=json",
-    true
-  );
-
-  xhr.send();
-  xhr.onreadystatechange = processRequest;
-  xhr.addEventListener("readystatechange", processRequest, false);
-
-  function processRequest(e) {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      var response = JSON.parse(xhr.responseText);
-      const _address = response.address;
-      const city =
-        _address?.city ||
-        _address?.village ||
-        _address?.town ||
-        _address?.county;
-
-      var ret =
-        city + ", " + response.address.state + ", " + response.address.country;
-      setItem(ret);
-      return;
-    }
-  }
-}
-export const getAddressString = (address) => {
-  const city =
-    address?.city || address?.village || address?.town || address?.county;
-
-  return city + ", " + address.state + ", " + address.country;
-};
-
 export const getAddress = async (lat, lng) => {
   const key = "pk.463c606657acae1bc8f276a073302727"; //https://es.locationiq.com/ //sign in with Google Sabri
   const response = await fetch(
@@ -73,7 +29,7 @@ export const getDateFormat = (date) => {
   return _entryDate;
 };
 
-export const resizeFile = (file) =>
+const resizeFile = (file) =>
   new Promise((resolve) => {
     Resizer.imageFileResizer(
       file,
@@ -123,7 +79,7 @@ export const uploadPhoto = async (files, id, folder) => {
   }
 };
 
-export const getBase64FromUrl = async (urls) => {
+const getBase64FromUrl = async (urls) => {
   const images = await Promise.all(
     urls.map(async (url) => {
       const data = await fetch(url);

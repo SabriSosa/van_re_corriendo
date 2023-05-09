@@ -2,18 +2,16 @@
 import { i18n } from "@lingui/core";
 import { I18nProvider } from "@lingui/react";
 import { es } from "make-plural/plurals";
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { Container } from "react-bootstrap";
 import { isDesktop } from "react-device-detect";
 import { NotificationContainer } from "react-notifications";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import "./App.scss";
-import Footer from "./components/Footer";
-import NavBarMenu from "./components/NavBar";
-import TabsBarMenu from "./components/TabsBar";
-import { messages } from "./locales/es/messages.js";
 import Router from "./Router";
+import Footer from "./components/Footer";
+import { messages } from "./locales/es/messages.js";
 
 i18n.load("es", messages);
 i18n.loadLocaleData({
@@ -45,18 +43,24 @@ function App() {
   //   createMediaLibrary(mediaLibraryOptions, handlers);
   // }, []);
 
-  const menu = isDesktop ? <NavBarMenu /> : <TabsBarMenu />;
+  const TabsBar = lazy(() => import("./components/TabsBar"));
+
+  const NavBar = lazy(() => import("./components/NavBar"));
+
+  const menu = isDesktop ? <NavBar /> : <TabsBar />;
 
   return (
-    <I18nProvider i18n={i18n}>
-      {menu}
-      <Container fluid className="main-container">
-        <NotificationContainer />
+    <Suspense fallback={<p>Cargando2...</p>}>
+      <I18nProvider i18n={i18n}>
+        {menu}
+        <Container fluid className="main-container">
+          <NotificationContainer />
 
-        <Router />
-      </Container>
-      {!excludedRoutes.includes(location?.pathname) && <Footer />}
-    </I18nProvider>
+          <Router />
+        </Container>
+        {!excludedRoutes.includes(location?.pathname) && <Footer />}
+      </I18nProvider>
+    </Suspense>
   );
 }
 

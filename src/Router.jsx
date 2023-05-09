@@ -30,7 +30,6 @@ function Router() {
   return (
     <Suspense fallback={<CustomSpinner />}>
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/home/:postId" element={<Home />} />
         <Route path="/contact" element={<ContactForm />} />
@@ -52,6 +51,7 @@ function Router() {
             </ProtectedRoute>
           }
         />
+        <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="*" element={<Navigate to="/not-found" replace />} />
       </Routes>
     </Suspense>
