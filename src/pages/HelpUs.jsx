@@ -6,6 +6,9 @@ import TitleComp from "../components/generic/Title";
 import "./HelpUs.scss";
 
 function HelpUs() {
+  const logofb = require("../images/fb-logo.png");
+  const logoig = require("../images/ig-logo.png");
+
   return (
     <Container className="help-us-container">
       <TitleComp title1={t`help.us.title`} />
@@ -22,7 +25,8 @@ function HelpUs() {
           >
             <img
               alt="fb-logo"
-              src="https://res.cloudinary.com/djbmfd9y6/image/upload/c_scale,w_150/v1681856889/Camiontito/fb-logo.png"
+              src={logofb}
+              width={225}
             />
           </a>
           <a
@@ -34,7 +38,8 @@ function HelpUs() {
           >
             <img
               alt="ig-logo"
-              src="https://res.cloudinary.com/djbmfd9y6/image/upload/c_scale,w_150/v1681857600/Camiontito/ig-logo.png"
+              src={logoig}
+              width={225}
             />
           </a>
         </p>
