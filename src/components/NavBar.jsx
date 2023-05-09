@@ -47,7 +47,12 @@ function NavBarMenu() {
                 </Link>
               ))}
               <Link to="/home" className="logo-link-menu nav-link">
-                <Image alt="desktop-logo" src={logo150} />
+                <Image
+                  height={150}
+                  width={147}
+                  alt="desktop-logo"
+                  src={logo150}
+                />
               </Link>
               {menu2.map((menu) => (
                 <Link className="nav-link" key={menu.action} to={menu.action}>

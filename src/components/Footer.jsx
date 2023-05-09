@@ -26,6 +26,7 @@ const Footer = () => {
           </a>
         </div>
         <Image
+          height={"25%"}
           className="footer-image"
           onClick={() => goToTop()}
           src={logo}
@@ -42,7 +43,7 @@ const Footer = () => {
           </a>
         </div>
       </Container>
-      {`Copyright © Van Re Corriendo ${year}`}
+      <div>{`Copyright © Van Re Corriendo ${year}`}</div>
     </footer>
   );
 };

@@ -2,16 +2,19 @@ import { t } from "@lingui/macro";
 import { MdPerson } from "@react-icons/all-files/md/MdPerson";
 import React from "react";
 import { Container, Image } from "react-bootstrap";
-import { isMobile } from "react-device-detect";
+import { isMobile, useMobileOrientation } from "react-device-detect";
 import HtmlContainer from "../components/generic/HtmlContainer";
 import TitleComp from "../components/generic/Title";
 import "./AboutUs.scss";
 
 function AboutUs() {
-  const sabri = isMobile
-    ? require("../images/sabri_mobile.png")
-    : require("../images/sabri_desktop.png");
-  const robert = isMobile
+  const { isPortrait } = useMobileOrientation();
+
+  const sabri =
+    isMobile && isPortrait
+      ? require("../images/sabri_mobile.png")
+      : require("../images/sabri_desktop.png");
+  const robert = isMobile && isPortrait
     ? require("../images/robert_mobile.png")
     : require("../images/robert_desktop.png");
 
@@ -23,7 +26,13 @@ function AboutUs() {
           <MdPerson className="title-icon" />
         </h2>
         <div>
-          <Image alt={`photo-person-${title}`} className="person" src={img} />
+          <Image
+            height={isMobile ? 150 : 200}
+            width={isMobile ? 150 : 200}
+            alt={`photo-person-${title}`}
+            className="person"
+            src={img}
+          />
           <HtmlContainer text={_text} className="about-us-html" />
         </div>
       </Container>
