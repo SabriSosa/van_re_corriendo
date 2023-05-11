@@ -30,10 +30,9 @@
     "yup": "^1.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && npm run purge-css",
-    "purge-css": "node ./purge-css",
-    "winBuild": "set \"GENERATE_SOURCEMAP=false\" && react-scripts build && npm run purge-css",
+    "start": "react-scripts --max_old_space_size=8128 start",
+    "build": "npm run purge-bootstrap && react-scripts build",
+    "purge-bootstrap": "purgecss --config ./purgecss.config.js --output src/bootstrap.min.css",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint:fix": "eslint --fix .",
@@ -61,6 +60,7 @@
   "devDependencies": {
     "@lingui/cli": "^3.17.2",
     "@lingui/macro": "^3.17.2",
+    "sass": "^1.62.1",
     "purgecss": "^5.0.0"
   }
 }

@@ -52,7 +52,7 @@ export default function Post({ post, setModalShow }) {
             isVideo={post.isVideo}
             transformation="ar_3:4,c_fill"
           />
-          {body("pc")}
+          {body("desktop")}
         </div>
       </Card>
       {body("mobile")}

@@ -1,4 +1,3 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import "react-notifications/lib/notifications.css";
@@ -8,6 +7,7 @@ import App from "./App";
 import "./index.scss";
 import reportWebVitals from "./reportWebVitals";
 import store from "./store";
+import './bootstrap.min.css'
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
