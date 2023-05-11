@@ -53,7 +53,8 @@ function TabsBarMenu() {
     const path = location.pathname.split("/")[1];
 
     if (key !== path) {
-      setKey(path);
+      const _path = path === "" ? "home" : path;
+      setKey(_path);
     }
   }, [location]);
 

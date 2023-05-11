@@ -6,7 +6,7 @@ import * as AuthService from "./services/AuthService";
 const Home = lazy(() => import("./pages/Home"));
 const AboutUs = lazy(() => import("./pages/AboutUs"));
 const AddEditPost = lazy(() => import("./pages/AddEditPost"));
-const ContactForm = lazy(() => import("./pages/Contact"));
+const Contact = lazy(() => import("./pages/Contact"));
 const ListPosts = lazy(() => import("./pages/ListPosts"));
 const ListRoutes = lazy(() => import("./pages/ListRoutes"));
 const HelpUs = lazy(() => import("./pages/HelpUs"));
@@ -30,9 +30,10 @@ function Router() {
   return (
     <Suspense fallback={<CustomSpinner />}>
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/home/:postId" element={<Home />} />
-        <Route path="/contact" element={<ContactForm />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/project" element={<ProjectForm />} />
         <Route path="/route" element={<TravelRoute />} />
@@ -51,7 +52,6 @@ function Router() {
             </ProtectedRoute>
           }
         />
-        <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="*" element={<Navigate to="/not-found" replace />} />
       </Routes>
     </Suspense>

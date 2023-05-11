@@ -1,22 +1,27 @@
 import { t } from "@lingui/macro";
 import { MdPerson } from "@react-icons/all-files/md/MdPerson";
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Image } from "react-bootstrap";
 import { isMobile, useMobileOrientation } from "react-device-detect";
+import ReactGA from "react-ga4";
 import HtmlContainer from "../components/generic/HtmlContainer";
 import TitleComp from "../components/generic/Title";
 import "./AboutUs.scss";
 
 function AboutUs() {
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/about-us", title: "About us" });
+  }, []);
   const { isPortrait } = useMobileOrientation();
 
   const sabri =
     isMobile && isPortrait
       ? require("../images/sabri_mobile.png")
       : require("../images/sabri_desktop.png");
-  const robert = isMobile && isPortrait
-    ? require("../images/robert_mobile.png")
-    : require("../images/robert_desktop.png");
+  const robert =
+    isMobile && isPortrait
+      ? require("../images/robert_mobile.png")
+      : require("../images/robert_desktop.png");
 
   const person = (title, img, _text) => {
     return (

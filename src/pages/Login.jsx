@@ -1,21 +1,26 @@
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
+  signInWithEmailAndPassword
 } from "@firebase/auth";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import ReactGA from "react-ga4";
 import {
   NotificationContainer,
-  NotificationManager,
+  NotificationManager
 } from "react-notifications";
 import { useNavigate } from "react-router";
 import CustomSpinner from "../components/generic/CustomSpinner";
 import * as AuthService from "../services/AuthService";
 import "./Login.scss";
 
+
 function Login() {
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/login", title: "Login" });
+  }, []);
   const [waiting, setWaiting] = useState(false);
   let [authMode, setAuthMode] = useState("signin");
   const navigate = useNavigate();

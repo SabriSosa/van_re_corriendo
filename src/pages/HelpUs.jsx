@@ -1,11 +1,15 @@
 import { t } from "@lingui/macro";
-import React from "react";
+import { useEffect } from "react";
 import { Container } from "react-bootstrap";
+import ReactGA from "react-ga4";
 import HtmlContainer from "../components/generic/HtmlContainer";
 import TitleComp from "../components/generic/Title";
 import "./HelpUs.scss";
 
 function HelpUs() {
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/help-us", title: "Help us" });
+  }, []);
   const logofb = require("../images/fb-logo.png");
   const logoig = require("../images/ig-logo.png");
 
@@ -23,11 +27,7 @@ function HelpUs() {
             rel="noreferrer"
             aria-label="Facebook Messenger link"
           >
-            <img
-              alt="fb-logo"
-              src={logofb}
-              width={225}
-            />
+            <img alt="fb-logo" src={logofb} width={225} />
           </a>
           <a
             target="_blank"
@@ -36,11 +36,7 @@ function HelpUs() {
             rel="noreferrer"
             aria-label="Intagram link"
           >
-            <img
-              alt="ig-logo"
-              src={logoig}
-              width={225}
-            />
+            <img alt="ig-logo" src={logoig} width={225} />
           </a>
         </p>
       </Container>

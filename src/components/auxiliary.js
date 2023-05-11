@@ -73,6 +73,7 @@ export const uploadPhoto = async (files, id, folder) => {
         })
         .then((data) => {
           const str = JSON.stringify(JSON.parse(data), null, 4);
+          console.log("Upload Photo cloudinary", str)
         })
         .catch((err) => console.log("Error: ", err));
     }

@@ -4,7 +4,7 @@ import { es } from "make-plural/plurals";
 import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { isDesktop } from "react-device-detect";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 import { NotificationContainer } from "react-notifications";
 import { useLocation } from "react-router-dom";
 import "./App.scss";
@@ -26,25 +26,6 @@ function App() {
     excludedRoutes.push("/route");
   }
   const location = useLocation();
-  //const dispatch = useDispatch();
-  // useEffect(() => {
-  //   const mediaLibraryOptions = {
-  //     cloud_name: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
-  //     api_key: process.env.REACT_APP_CLOUDINARY_API_KEY,
-  //   };
-  //   const handlers = {
-  //     insertHandler: function (data) {
-  //       data.assets.forEach((asset) => {
-  //         console.log("Inserted asset:", JSON.stringify(asset, null, 2));
-  //       });
-  //     },
-  //   };
-  //   createMediaLibrary(mediaLibraryOptions, handlers);
-  // }, []);
-
-  // const TabsBar = lazy(() => import("./components/TabsBar"));
-
-  // const NavBar = lazy(() => import("./components/NavBar"));
 
   const menu = isDesktop ? <NavBarMenu /> : <TabsBarMenu />;
   useEffect(() => {

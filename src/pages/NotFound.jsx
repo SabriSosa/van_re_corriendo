@@ -1,8 +1,18 @@
 import { t } from "@lingui/macro";
+import { useEffect } from "react";
 import { Container } from "react-bootstrap";
+import ReactGA from "react-ga4";
 import "./NotFound.scss";
 
 export default function NotFound() {
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      page: "/not-found",
+      title: "Not Found",
+    });
+  }, []);
+
   return (
     <Container fluid className="not-found-container">
       <section id="not-found">

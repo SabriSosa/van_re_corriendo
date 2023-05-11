@@ -1,17 +1,19 @@
 import emailjs from "@emailjs/browser";
 import { t } from "@lingui/macro";
-
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
+import ReactGA from "react-ga4";
 import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
 import TitleComp from "../components/generic/Title";
-
 import "./Contact.scss";
 
-const ContactForm = () => {
+const Contact = () => {
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/contact", title: "Contact" });
+  }, []);
   const form = useRef();
   const [name, setName] = useState();
   const [email, setEmail] = useState();
@@ -88,4 +90,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+export default Contact;

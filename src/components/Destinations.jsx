@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -8,12 +8,14 @@ import {
   selectStatusPosts,
   setSelectedPost,
 } from "../slices/postSlice";
+import AdsComponent from "./AdsComponent";
 import "./Destinations.scss";
-import PaginationPost from "./Pagination";
-import Post from "./Post";
-import PostModal from "./PostModal";
-import TitleSpinner from "./generic/TitleSpinner";
 import TitleComp from "./generic/Title";
+import TitleSpinner from "./generic/TitleSpinner";
+import PostModal from "./PostModal";
+import Post from "./Post";
+
+const PaginationPost = lazy(() => import("./Pagination"));
 
 export default function Destinations() {
   const [modalShow, setModalShow] = useState(false);
@@ -31,14 +33,14 @@ export default function Destinations() {
   }, [statusPosts, dispatch]);
 
   useEffect(() => {
-    if (postId && statusPosts === "succeeded") {      
+    if (postId && statusPosts === "succeeded") {
       dispatch(setSelectedPost({ postId: postId }));
       setModalShow(true);
     }
   }, [postId, statusPosts]);
 
   if (statusPosts === "loading") {
-    return <TitleSpinner title='publicaciones' />;
+    return <TitleSpinner title="publicaciones" />;
   }
 
   const onHide = () => {
@@ -58,29 +60,31 @@ export default function Destinations() {
 
   const totalPages = Math.ceil(totalRows / rowsPerPage);
 
+  const style = {
+    display: "block",
+    minWidth: "100px",
+    maxWidth: "100px",
+    width: "100%",
+    height: "90px",
+  };
   return (
     <Container fluid className="container-destinations" id="destinos">
       <TitleComp title1="Publicaciones" />
       <PostModal show={modalShow} onHide={onHide} />
-      <ins
-        className="adsbygoogle"
-        style={{
-          display: "block",
-          minWidth: "100px",
-          maxWidth: "100px",
-          width: "100%",
-          height: "90px",
-        }}
-        data-ad-format="fluid"
-        data-ad-layout-key="-7r+eg+14-4t+7k"
-        data-ad-client="ca-pub-1162077696260246"
-        data-ad-slot="1245238601"
-      ></ins>
-      <PaginationPost
-        data={postComponents}
-        rowsPerPage={rowsPerPage}
-        totalPages={totalPages}
+      <AdsComponent
+        dataAdClient="ca-pub-1162077696260246"
+        dataAdSlot="1245238601"
+        dataAddFormat="fluid"
+        style={style}
+        dataAdLayoutKey="-7r+eg+14-4t+7k"
       />
+      <Suspense>
+        <PaginationPost
+          data={postComponents}
+          rowsPerPage={rowsPerPage}
+          totalPages={totalPages}
+        />
+      </Suspense>
     </Container>
   );
 }

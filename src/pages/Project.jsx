@@ -1,6 +1,7 @@
 import { t, Trans } from "@lingui/macro";
 import React, { Suspense, useEffect } from "react";
 import { Button, Container, Image } from "react-bootstrap";
+import ReactGA from "react-ga4";
 import { useDispatch, useSelector } from "react-redux";
 import ScrollToTop from "react-scroll-to-top";
 import HtmlContainer from "../components/generic/HtmlContainer";
@@ -19,6 +20,10 @@ function ProjectForm() {
   const dispatch = useDispatch();
   const projects = useSelector(selectAllProjects);
   const statusProject = useSelector(selectStatusProject);
+
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/project", title: "Project" });
+  }, []);
 
   useEffect(() => {
     if (statusProject === "initial") {

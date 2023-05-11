@@ -19,7 +19,7 @@
     "react-bootstrap": "^2.7.0",
     "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
-    "react-ga": "^3.3.1",
+    "react-ga4": "^2.1.0",
     "react-image-file-resizer": "^0.4.8",
     "react-notifications": "^1.7.4",
     "react-redux": "^8.0.5",
@@ -31,8 +31,8 @@
     "yup": "^1.1.1"
   },
   "scripts": {
-    "start": "react-scripts --max_old_space_size=8128 start",
-    "build": "npm run purge-bootstrap && react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "purge-bootstrap": "purgecss --config ./purgecss.config.js --output src/bootstrap.min.css",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -61,7 +61,7 @@
   "devDependencies": {
     "@lingui/cli": "^3.17.2",
     "@lingui/macro": "^3.17.2",
-    "sass": "^1.62.1",
-    "purgecss": "^5.0.0"
+    "purgecss": "^5.0.0",
+    "sass": "^1.62.1"
   }
 }
