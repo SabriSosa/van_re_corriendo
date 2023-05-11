@@ -42,7 +42,7 @@ const _getDocs = async (q) => {
 
 export const getPosts = async () => {
   const sectionsCollectionRef = collection(db, "post");
-  const q = query(sectionsCollectionRef, orderBy("id", "asc"));
+  const q = query(sectionsCollectionRef, orderBy("id", "desc"));
   return _getDocs(q);
 };
 
