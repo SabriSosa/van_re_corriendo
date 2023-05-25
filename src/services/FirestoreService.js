@@ -148,4 +148,9 @@ export const getPost = async (id) => {
   return d.data();
 };
 
+export const getGeneric = async (id) => {
+  const d = await getDoc(doc(db, "generic", id));
+  return d.data();
+};
+
 //https://github.com/Tammibriggs/firebase-with-react-hooks

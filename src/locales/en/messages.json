@@ -62,6 +62,8 @@
   "new.item.success.title": "",
   "new.item.title": "",
   "new.item.type": "",
+  "new.post.error.title": "",
+  "new.post.success.title": "",
   "not.found": "",
   "not.found.404": "",
   "not.found.error": "",
@@ -85,7 +87,13 @@
   "read.more": "",
   "state.required": "",
   "title.required": "",
+  "travel.info.countries": "",
+  "travel.info.country": "",
+  "travel.info.days": "",
+  "travel.info.kms": "",
   "update.item.error.message": "",
   "update.item.success.message": "",
+  "update.post.error.title": "",
+  "{0}": "",
   "{label}": ""
 }

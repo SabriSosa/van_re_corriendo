@@ -5,7 +5,7 @@ function HtmlContainer({ text, className }) {
   return (
     <Container fluid
       dangerouslySetInnerHTML={{
-        __html: DOMPurify.sanitize(text),
+        __html: DOMPurify.sanitize(text,{ ADD_ATTR: ['target'] }),
       }}
       className={className}
     />

@@ -1,19 +1,26 @@
+import { t } from "@lingui/macro";
 import { BiCalendarAlt } from "@react-icons/all-files/bi/BiCalendarAlt";
 import { BiMap } from "@react-icons/all-files/bi/BiMap";
 import { BiWorld } from "@react-icons/all-files/bi/BiWorld";
 import { GiPathDistance } from "@react-icons/all-files/gi/GiPathDistance";
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { getGenericById, selectTravelInfo } from "../slices/genericSlice";
 import "./TravelInfo.scss";
 import Wave from "./Wave";
 
 function TravelInfo() {
+  const dispatch = useDispatch();
+  const travelInfo = useSelector(selectTravelInfo);
+
+  useEffect(() => {
+    dispatch(getGenericById("travel-info"));
+  }, [dispatch]);
+
   const difference = Math.round(
     (new Date() - new Date("10/08/2022")) / (1000 * 60 * 60 * 24)
   ).toFixed(0);
-  const country = "URUGUAY";
-  const kms = 9000;
-  const countries = 3;
 
   const info = (
     <Container fluid className="container-travel">
@@ -24,10 +31,10 @@ function TravelInfo() {
               <BiMap size={35} />
             </Card.Title>
             <Card.Subtitle as="h3" className="">
-              Donde estamos
+              {t`travel.info.country`}
             </Card.Subtitle>
             <Container className="divider" />
-            <Card.Text as="h3">{country}</Card.Text>
+            <Card.Text as="h3">{travelInfo?.country}</Card.Text>
           </Card>
         </Col>
         <Col>
@@ -36,7 +43,7 @@ function TravelInfo() {
               <BiCalendarAlt size={35} />
             </Card.Title>
             <Card.Subtitle as="h3" className="">
-              Dias de viaje
+              {t`travel.info.days`}
             </Card.Subtitle>
             <Container className="divider" />
             <Card.Text as="h3">{difference}</Card.Text>
@@ -48,10 +55,10 @@ function TravelInfo() {
               <GiPathDistance size={35} />
             </Card.Title>
             <Card.Subtitle as="h3" className="">
-              KMS Recorridos
+              {t`travel.info.kms`}
             </Card.Subtitle>
             <Container className="divider" />
-            <Card.Text as="h3">{kms}</Card.Text>
+            <Card.Text as="h3">{travelInfo?.kms}</Card.Text>
           </Card>
         </Col>
         <Col>
@@ -60,10 +67,10 @@ function TravelInfo() {
               <BiWorld size={35} />
             </Card.Title>
             <Card.Subtitle as="h3" className="">
-              Paises visitados
+              {t`travel.info.countries`}
             </Card.Subtitle>
             <Container className="divider" />
-            <Card.Text as="h3">{countries}</Card.Text>
+            <Card.Text as="h3">{travelInfo?.countries}</Card.Text>
           </Card>
         </Col>
       </Row>
