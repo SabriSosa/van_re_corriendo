@@ -24,6 +24,23 @@
     overflow-y: hidden;
     white-space: nowrap;
   }
+
+  .initial-card-container {
+    display: none;
+    @media only screen and (orientation: portrait) {
+      display: inline-block;
+      width: 200px;
+      font-size: 1.2rem;
+      .initial-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      svg {
+        font-size: 30px;
+      }
+    }
+  }
 }
 
 .modal-header-travel-map {

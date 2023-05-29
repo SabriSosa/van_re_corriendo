@@ -4,10 +4,10 @@ import { Container } from "react-bootstrap";
 import { isMobile } from "react-device-detect";
 import ReactGA from "react-ga4";
 import { useDispatch, useSelector } from "react-redux";
-import CustomSpinner from "../components/generic/CustomSpinner";
-import TitleComp from "../components/generic/Title";
 import Sidebar from "../components/SideBar";
 import TravelMap from "../components/TravelMap";
+import CustomSpinner from "../components/generic/CustomSpinner";
+import TitleComp from "../components/generic/Title";
 import {
   fetchRoutes,
   selectAllCoordinates,

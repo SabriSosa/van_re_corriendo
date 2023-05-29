@@ -1,10 +1,17 @@
+import { t } from "@lingui/macro";
+
+import { useEffect } from "react";
 import Card from "react-bootstrap/Card";
-import { useSelector } from "react-redux";
-import { selectSelectedPlace } from "../slices/routeSlice";
+import { isMobileOnly, useMobileOrientation } from "react-device-detect";
+import { useInView } from "react-intersection-observer";
+import { useDispatch, useSelector } from "react-redux";
+import { selectSelectedPlace, setSelectedPlace } from "../slices/routeSlice";
 import "./SideBarItem.scss";
 import { getDateString, initialDate } from "./auxiliary";
 
 function SideBarItem({ item, handleSelectItem }) {
+  const dispatch = useDispatch();
+
   const days = (date_1, date_2) => {
     const diffTime = Math.abs(date_2 - date_1);
     return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
@@ -15,10 +22,30 @@ function SideBarItem({ item, handleSelectItem }) {
   const handelOnClick = () => {
     handleSelectItem(item);
   };
+  const { isLandscape } = useMobileOrientation();
+
+  const options = isMobileOnly
+    ? {
+        threshold: 1,
+      }
+    : {
+      rootMargin: isLandscape? '-50% 0px -50% 0px' : '0px -50% 0px -50%'
+    };
+
+  const { ref, inView, entry } = useInView(options);
+
+  useEffect(() => {
+    if (inView && selectedPlace.id !== item.id) {
+      console.log("inView", inView);
+      console.log("item", item.city);
+      dispatch(setSelectedPlace({ routeId: item.id }));
+    }
+  }, [inView]);
 
   const dayOfTravel = days(new Date(item.date), initialDate);
   return (
     <Card
+      ref={ref}
       id={item.id}
       className={`sidebar-card ${
         selectedPlace?.id === item.id ? "card-active" : ""
@@ -32,7 +59,9 @@ function SideBarItem({ item, handleSelectItem }) {
       />
       <Card.ImgOverlay className="img-overlay-sidebar">
         <Card.Title className="title-sidebar">{item.city}</Card.Title>
-        <h6 className="title-sidebar-day">DIA {dayOfTravel}</h6>
+        <h6 className="title-sidebar-day">
+          {t`side.bar.day`} {dayOfTravel}
+        </h6>
       </Card.ImgOverlay>
       <Card.Body className="sidebar-body">
         <Card.Text className="sub-title-sidebar sidebar-text">

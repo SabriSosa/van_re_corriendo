@@ -50,7 +50,7 @@ export const routesSlice = createSlice({
   name: "routes",
   initialState,
   reducers: {
-    setselectedPlace(state, action) {
+    setSelectedPlace(state, action) {
       const { routeId } = action.payload;
       const existingRoute = state.routes.find((route) => route.id == routeId);
       if (existingRoute) {
@@ -88,7 +88,7 @@ export const routesSlice = createSlice({
 });
 
 // Actions
-export const { setselectedPlace } = routesSlice.actions;
+export const { setSelectedPlace } = routesSlice.actions;
 export const { routeAdded, routeUpdated, reactionAdded } = routesSlice.actions;
 
 //Selectors

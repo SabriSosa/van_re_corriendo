@@ -1,5 +1,4 @@
 // react
-import { Control } from "ol/control.js";
 // openlayers
 import Feature from "ol/Feature";
 import Polyline from "ol/format/Polyline";
@@ -9,9 +8,8 @@ import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import { Circle as CircleStyle, Fill, Icon, Stroke, Style } from "ol/style";
 import React, { useEffect, useState } from "react";
-import { isMobile } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
-import { selectSelectedPlace, setselectedPlace } from "../slices/routeSlice";
+import { selectSelectedPlace, setSelectedPlace } from "../slices/routeSlice";
 import MapWrapper from "./generic/MapWrapper";
 
 function TravelMap({ routes, coordinates }) {
@@ -48,7 +46,7 @@ function TravelMap({ routes, coordinates }) {
   };
 
   let selectStyle = function (feature) {
-    dispatch(setselectedPlace({ routeId: feature.get("id") }));
+    dispatch(setSelectedPlace({ routeId: feature.get("id") }));
     const canvas = createCanvas(feature.get("image"), "dodgerblue");
 
     let styles = [
@@ -73,7 +71,7 @@ function TravelMap({ routes, coordinates }) {
       featuresCollection.pop();
       featuresCollection.push(__feature);
 
-      const extent = __feature.getGeometry().getExtent()
+      const extent = __feature.getGeometry().getExtent();
 
       map.getView().fit(extent, {
         size: map.getSize(),

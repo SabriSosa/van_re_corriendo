@@ -1,22 +1,26 @@
+import { t } from "@lingui/macro";
+import { BsArrowBarRight } from "@react-icons/all-files/bs/BsArrowBarRight";
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { isDesktop, isTablet } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoading } from "../slices/genericSlice";
-import { selectSelectedPlace, setselectedPlace } from "../slices/routeSlice";
-import CustomModal from "./generic/CustomModal";
+import { selectSelectedPlace, setSelectedPlace } from "../slices/routeSlice";
 import "./SideBar.scss";
 import SideBarItem from "./SideBarItem";
 import SimpleCarrousel from "./SimpleCarrousel";
+import { getDateString, initialDate } from "./auxiliary";
+import CustomModal from "./generic/CustomModal";
 
 function SideBar({ routes }) {
   const [modalShow, setModalShow] = useState(false);
+
   const [selectedItem, setSelectedItem] = useState();
   const dispatch = useDispatch();
   const selectedPlace = useSelector(selectSelectedPlace);
 
   const handleSelectItem = (item) => {
-    dispatch(setselectedPlace({ routeId: item.id }));
+    dispatch(setSelectedPlace({ routeId: item.id }));
     setSelectedItem(item);
     setModalShow(true);
     dispatch(setLoading({ loading: true }));
@@ -55,6 +59,15 @@ function SideBar({ routes }) {
           title={`${selectedItem?.city}, ${selectedItem?.state}, ${selectedItem?.country}`}
           onHide={() => setModalShow(false)}
         />
+        <Container className="initial-card-container">
+          <Container className="initial-card">
+            <BsArrowBarRight />
+            {t`sidebar.start.travel`}
+            <span className="">
+              {getDateString(initialDate)}
+            </span>
+          </Container>
+        </Container>
         {routes.map((item) => (
           <SideBarItem
             id={item.id}
