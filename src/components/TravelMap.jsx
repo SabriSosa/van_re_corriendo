@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectSelectedPlace, setSelectedPlace } from "../slices/routeSlice";
 import MapWrapper from "./generic/MapWrapper";
 
-function TravelMap({ routes, coordinates }) {
+function TravelMap({ routes, coordinates, setIsSelected }) {
   const [map, setMap] = useState();
   const [vSource, setvSource] = useState();
   const [selectInteraction, setSelectInteraction] = useState();
@@ -180,7 +180,15 @@ function TravelMap({ routes, coordinates }) {
     }
   }, [map]);
 
-  return <MapWrapper setMap={setMap} className="mapwrapper" />;
+  return (
+    <MapWrapper
+      onClick={() => {
+        setIsSelected(false);
+      }}
+      setMap={setMap}
+      className="mapwrapper"
+    />
+  );
 }
 
 export default TravelMap;

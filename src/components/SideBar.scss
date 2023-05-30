@@ -2,10 +2,15 @@
   padding: 0px;
 }
 .sidebar-container {
+  transition: 2s;
+
   max-height: calc(100vh - 100px);
   overflow-y: auto;
   padding-top: 8px;
   flex: 15;
+
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 
   @media only screen and (max-device-width: 1200px) {
     max-height: calc(100vh);

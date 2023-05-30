@@ -11,7 +11,7 @@ export const getAddress = async (lat, lng) => {
 
 export const getDateString = (date) => {
   const _date = new Date(date);
-  return `${_date.getDate()}/${_date.getMonth() + 1}/${_date.getFullYear()}`;
+  return `${_date.getDate()}/${_date.getMonth() + 1}/${_date.getFullYear().toString().slice(2)}`;
 };
 
 export const getDateFromDB = (date) => {

@@ -8,8 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectSelectedPlace, setSelectedPlace } from "../slices/routeSlice";
 import "./SideBarItem.scss";
 import { getDateString, initialDate } from "./auxiliary";
+import "./SideBarItem.scss";
 
-function SideBarItem({ item, handleSelectItem }) {
+function SideBarItem({ item, handleSelectItem , isSelected}) {
   const dispatch = useDispatch();
 
   const days = (date_1, date_2) => {
@@ -47,22 +48,10 @@ function SideBarItem({ item, handleSelectItem }) {
     <Card
       ref={ref}
       id={item.id}
-      className={`sidebar-card ${
-        selectedPlace?.id === item.id ? "card-active" : ""
-      }`}
+      className={`sidebar-card 
+      ${selectedPlace?.id === item.id ? "card-active" : ""} `}
       onClick={handelOnClick}
     >
-      <Card.Img
-        src={item.imageRoute}
-        alt="Card image"
-        className="img-sidebar"
-      />
-      <Card.ImgOverlay className="img-overlay-sidebar">
-        <Card.Title className="title-sidebar">{item.city}</Card.Title>
-        <h6 className="title-sidebar-day">
-          {t`side.bar.day`} {dayOfTravel}
-        </h6>
-      </Card.ImgOverlay>
       <Card.Body className="sidebar-body">
         <Card.Text className="sub-title-sidebar sidebar-text">
           {item?.state}, {item?.country}
@@ -71,6 +60,15 @@ function SideBarItem({ item, handleSelectItem }) {
           {getDateString(item.date)}
         </Card.Text>
       </Card.Body>
+      <Card.ImgOverlay className="img-overlay-sidebar">
+        <Card.Title className="title-sidebar">{item.city}</Card.Title>
+        <h6 className="title-sidebar-day"> {t`side.bar.day`} {dayOfTravel}</h6>
+      </Card.ImgOverlay>
+      <Card.Img
+        src={item.imageRoute}
+        alt="Card image"
+        className={`${isSelected ? "img-sidebar-selected" : "img-sidebar"}`}
+      />
     </Card>
   );
 }

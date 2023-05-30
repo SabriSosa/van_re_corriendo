@@ -12,7 +12,7 @@ import { Container } from "react-bootstrap";
 import { isMobile } from "react-device-detect";
 import "./MapWrapper.scss";
 
-function MapWrapper({ setMap, className }) {
+function MapWrapper({ setMap, className, onClick}) {
   const mapElement = useRef();
   const mapRef = useRef();
 
@@ -72,6 +72,7 @@ function MapWrapper({ setMap, className }) {
       id="map-wrapper"
       ref={mapElement}
       className={`map ${className}`}
+      onClick={onClick}
     ></Container>
   );
 }

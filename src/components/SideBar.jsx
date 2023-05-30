@@ -12,7 +12,7 @@ import SimpleCarrousel from "./SimpleCarrousel";
 import { getDateString, initialDate } from "./auxiliary";
 import CustomModal from "./generic/CustomModal";
 
-function SideBar({ routes }) {
+function SideBar({ routes, setIsSelected, isSelected }) {
   const [modalShow, setModalShow] = useState(false);
 
   const [selectedItem, setSelectedItem] = useState();
@@ -22,7 +22,11 @@ function SideBar({ routes }) {
   const handleSelectItem = (item) => {
     dispatch(setSelectedPlace({ routeId: item.id }));
     setSelectedItem(item);
-    setModalShow(true);
+    if (isDesktop) {
+      setModalShow(true);
+    } else {       
+      setIsSelected(true);      
+    }
     dispatch(setLoading({ loading: true }));
   };
   useEffect(() => {
@@ -70,6 +74,7 @@ function SideBar({ routes }) {
         </Container>
         {routes.map((item) => (
           <SideBarItem
+            isSelected={isSelected}
             id={item.id}
             key={item.id}
             item={item}

@@ -8,7 +8,6 @@ const fs = require("fs");
     const { css, file } = result;
 
     fs.stat(file, (error, originalFileStats) => {
-      // console.log(originalFileStats);
       fs.writeFileSync(file, css);
       const newFileStats = fs.statSync(file);
       console.log(

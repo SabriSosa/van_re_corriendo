@@ -23,12 +23,12 @@ function TravelRoute() {
       title: "Travel Route",
     });
   }, []);
-  const [selectSelectedPlace, setSelectedPlace] = useState(1);
 
   const dispatch = useDispatch();
   const routes = useSelector(selectAllRoutes);
   const coordinates = useSelector(selectAllCoordinates);
   const routeStatus = useSelector((state) => state.routes.status);
+  const [isSelected, setIsSelected] = useState(false);
 
   useEffect(() => {
     if (routeStatus === "initial") {
@@ -45,14 +45,13 @@ function TravelRoute() {
       <Container fluid className="sidebar-map">
         <Sidebar
           routes={routes}
-          selectSelectedPlace={selectSelectedPlace}
-          setSelectedPlace={setSelectedPlace}
+          isSelected={isSelected}
+          setIsSelected={setIsSelected}
         />
         <TravelMap
           routes={routes}
           coordinates={coordinates}
-          selectSelectedPlace={selectSelectedPlace}
-          setSelectedPlace={setSelectedPlace}
+          setIsSelected={setIsSelected}
         />
       </Container>
     </Container>

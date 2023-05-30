@@ -19,7 +19,8 @@ export const fetchRoutes = createAsyncThunk("routes/fetchRoutes", async () => {
         latitude: location._lat,
         longitude: location._long,
         date: getDateFromDB(date),
-        imageRoute: `https://res.cloudinary.com/djbmfd9y6/image/upload/c_fill,h_150,w_200/Camiontito/Routes/${images[0]}`,
+        //imageRoute: `https://res.cloudinary.com/djbmfd9y6/image/upload/c_fill,h_150,w_200/Camiontito/Routes/${images[0]}`,
+        imageRoute: `https://res.cloudinary.com/djbmfd9y6/image/upload/ar_1:1,c_crop/Camiontito/Routes/${images[0]}`,
         images: images,
 
         ...rest,

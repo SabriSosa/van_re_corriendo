@@ -10,11 +10,7 @@ export const createMediaLibrary = (config, handlers = {}) => {
   });
 
   window.ml.on("upload", (data) => {
-    console.log("data event test? ", data.event);
-
     if (data.event == "display-changed") {
-      console.log("estoy aca?");
-
       window.ml.hide();
       openUploadWidget();
     }

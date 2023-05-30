@@ -2,15 +2,27 @@
   margin-bottom: 10px;
   cursor: pointer;
   opacity: 0.6;
-
-  .card-img {
+ 
+  .img-sidebar {
     border-bottom-right-radius: 0 !important;
     border-bottom-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    min-height: 180px;
+    height: 180px;
+  }
+  .img-sidebar-selected {
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    height: auto !important;
+    min-height: 300px;
   }
 
   @media only screen and (max-device-width: 960px) and (orientation: portrait) {
     display: inline-block;
-    margin: 2px 5px 5px 5px;
+    margin: 2px 10px 10px 10px;
     white-space: nowrap;
 
     .sidebar-body {
@@ -21,8 +33,9 @@
 
 .title-sidebar {
   color: white;
-  margin-bottom: 0 !important;
-  padding: 8px;
+  margin-bottom: 5px !important;
+  //padding: 8px;
+  align-self: flex-end;
   text-shadow: 1px 1px 2px rgb(27, 46, 52);
   @media only screen and (max-device-width: 960px) and (orientation: portrait) {
     white-space: pre-wrap;
@@ -32,7 +45,7 @@
 .title-sidebar-day {
   color: white;
   margin-top: auto !important;
-  margin-bottom: 30px !important;
+  //margin-bottom: 30px !important;
   margin-left: auto !important;
   background-color: #74a9db;
   border-radius: 4px;
@@ -68,6 +81,9 @@
   border-bottom-right-radius: 2px;
   border-bottom-left-radius: 2px;
 
+  margin: 0px -3px 10px -3px !important;
+  z-index: 999;
+
   .sidebar-body {
     background-color: #74a9db;
 
@@ -80,6 +96,10 @@
 .img-overlay-sidebar {
   padding: 5px !important;
   display: flex;
-  flex-direction: column;
+  //  flex-direction: column;
 }
 
+.card-img{
+  transition: min-height 0.5s;
+  transition-timing-function: linear;
+}
