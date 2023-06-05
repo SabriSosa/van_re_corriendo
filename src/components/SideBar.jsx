@@ -6,11 +6,11 @@ import { isDesktop, isTablet } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoading } from "../slices/genericSlice";
 import { selectSelectedPlace, setSelectedPlace } from "../slices/routeSlice";
+import { getDateString, initialDate } from "./auxiliary";
+import CustomModal from "./generic/CustomModal";
 import "./SideBar.scss";
 import SideBarItem from "./SideBarItem";
 import SimpleCarrousel from "./SimpleCarrousel";
-import { getDateString, initialDate } from "./auxiliary";
-import CustomModal from "./generic/CustomModal";
 
 function SideBar({ routes, setIsSelected, isSelected }) {
   const [modalShow, setModalShow] = useState(false);
@@ -22,21 +22,32 @@ function SideBar({ routes, setIsSelected, isSelected }) {
   const handleSelectItem = (item) => {
     dispatch(setSelectedPlace({ routeId: item.id }));
     setSelectedItem(item);
+
     if (isDesktop) {
       setModalShow(true);
-    } else {       
-      setIsSelected(true);      
+    } else {
+      setIsSelected(true);
     }
     dispatch(setLoading({ loading: true }));
   };
+
   useEffect(() => {
     if (selectedPlace) {
-      const selectedPlaceElem = document.getElementById(selectedPlace.id);
-      selectedPlaceElem?.scrollIntoView({
-        block: "center",
-        inline: "center",
-        behavior: "smooth",
-      });
+      if (selectedPlace.id === 1) {
+        const initialPlace = document.getElementById(0);
+        initialPlace?.scrollIntoView({
+          block: "center",
+          inline: "center",
+          behavior: "smooth",
+        });
+      } else {
+        const selectedPlaceElem = document.getElementById(selectedPlace.id);
+        selectedPlaceElem?.scrollIntoView({
+          block: "center",
+          inline: "center",
+          behavior: "smooth",
+        });
+      }
     }
   }, [selectedPlace]);
 
@@ -54,7 +65,7 @@ function SideBar({ routes, setIsSelected, isSelected }) {
 
   return (
     routes && (
-      <Container fluid className="sidebar-container">
+      <Container fluid className={`sidebar-container ${isSelected ? "sidebar-container-selected" : ""}`} >
         <CustomModal
           size={isDesktop ? "lg" : isTablet ? "md" : "sm"}
           id="travel-map"
@@ -63,13 +74,11 @@ function SideBar({ routes, setIsSelected, isSelected }) {
           title={`${selectedItem?.city}, ${selectedItem?.state}, ${selectedItem?.country}`}
           onHide={() => setModalShow(false)}
         />
-        <Container className="initial-card-container">
+        <Container className="initial-card-container" id={0}>
           <Container className="initial-card">
             <BsArrowBarRight />
             {t`sidebar.start.travel`}
-            <span className="">
-              {getDateString(initialDate)}
-            </span>
+            <span className="">{getDateString(initialDate)}</span>
           </Container>
         </Container>
         {routes.map((item) => (

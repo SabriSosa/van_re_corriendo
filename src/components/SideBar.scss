@@ -2,7 +2,8 @@
   padding: 0px;
 }
 .sidebar-container {
-  transition: 2s;
+  transition: 0.5s;
+  transition-timing-function: linear;
 
   max-height: calc(100vh - 100px);
   overflow-y: auto;
@@ -14,7 +15,7 @@
 
   @media only screen and (max-device-width: 1200px) {
     max-height: calc(100vh);
-    flex: 25 1;
+    flex: 26 1;
   }
 
   @media only screen and (orientation: portrait) {
@@ -45,6 +46,12 @@
         font-size: 30px;
       }
     }
+  }
+}
+
+.sidebar-container-selected {
+  @media only screen and (max-device-width: 1200px) and (orientation: landscape){
+    flex: 40 1;
   }
 }
 

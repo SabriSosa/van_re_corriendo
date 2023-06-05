@@ -53,7 +53,7 @@ export const routesSlice = createSlice({
   reducers: {
     setSelectedPlace(state, action) {
       const { routeId } = action.payload;
-      const existingRoute = state.routes.find((route) => route.id == routeId);
+      const existingRoute = state.routes.find((route) => route.id === routeId);     
       if (existingRoute) {
         state.selectedPlace = existingRoute;
       }
@@ -99,6 +99,6 @@ export const selectAllRoutes = (state) => state.routes.routes;
 export const selectAllCoordinates = (state) => state.routes.coordinates;
 
 export const selectRouteById = (state, routeId) =>
-  state.routes.routes.find((route) => route.id == routeId);
+  state.routes.routes.find((route) => route.id === routeId);
 
 export default routesSlice.reducer;
