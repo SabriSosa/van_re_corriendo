@@ -8,7 +8,7 @@ import { selectSelectedPlace, setSelectedPlace } from "../slices/routeSlice";
 import { getDateString, initialDate } from "./auxiliary";
 import "./SideBarItem.scss";
 
-function SideBarItem({ item, handleSelectItem, isSelected }) {
+function SideBarItem({ item, handleSelectPlace, isSelected }) {
   const dispatch = useDispatch();
 
   const days = (date_1, date_2) => {
@@ -19,7 +19,7 @@ function SideBarItem({ item, handleSelectItem, isSelected }) {
   const selectedPlace = useSelector(selectSelectedPlace);
 
   const handelOnClick = () => {
-    handleSelectItem(item);
+    handleSelectPlace(item);
   };
   const { isLandscape } = useMobileOrientation();
 
@@ -34,11 +34,17 @@ function SideBarItem({ item, handleSelectItem, isSelected }) {
 
   const { ref, inView } = useInView(options);
 
-  useEffect(() => {
-    if (inView && selectedPlace.id !== item.id) {
-      dispatch(setSelectedPlace({ routeId: item.id }));
-    }
-  }, [inView]);
+  // if (inView){
+  //   console.log("in view???", item.city)
+
+  // }
+
+  // useEffect(() => {
+  //   if (inView && selectedPlace.id !== item.id) {
+  //     console.log("entro al inview???")
+  //     dispatch(setSelectedPlace({ routeId: item.id }));
+  //   }
+  // }, [inView]);
 
   const dayOfTravel = days(new Date(item.date), initialDate);
   return (

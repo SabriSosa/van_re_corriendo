@@ -182,7 +182,8 @@ function TravelMap({ routes, coordinates, setIsSelected }) {
 
   return (
     <MapWrapper
-      onClick={() => {
+      onClick={(e) => {
+        e.preventDefault();
         setIsSelected(false);
       }}
       setMap={setMap}
